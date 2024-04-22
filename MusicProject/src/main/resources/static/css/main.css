@@ -165,3 +165,50 @@ label[for="menuToggle"]:hover {
 */
 
 
+/* *** footer *** */
+
+footer {
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    padding: 3rem 0 0 0;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+article {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0;
+}
+
+article a {
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+}
+
+article span {
+    padding: 0 20px;
+}
+
+.footer-info {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-info span {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+

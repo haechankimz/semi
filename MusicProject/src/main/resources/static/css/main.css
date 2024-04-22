@@ -165,7 +165,7 @@ label[for="menuToggle"]:hover {
 */
 
 
-/* *** footer *** */
+/* ****** footer ****** */
 
 footer {
     box-sizing: border-box;
@@ -181,6 +181,7 @@ footer {
 .footer-title {
     font-size: 2rem;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 article {

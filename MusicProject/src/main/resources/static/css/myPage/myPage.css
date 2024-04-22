@@ -1,0 +1,145 @@
+.myPage-content{
+  display: flex;
+  width: 1200px;
+  min-height: 700px;
+  margin: 50px auto;
+}
+
+.left-side{
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #ccc;
+}
+
+.myPage-main{
+  width: 70%;
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sideMenuList{
+  width: 100%;
+  list-style: none;
+  padding-right: 20px;
+}
+
+.sideMenuList > li {
+  height: 50px;
+  font-size: 15px;
+}
+
+.sideMenuList > li > a {
+  color: black;
+  text-decoration: none;
+  width: 270px;
+  height: 100%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  border: 1px solid #ccc;
+  border-radius: 24px;
+}
+
+.sideMenuList > li > a:hover{
+  background-color: #ccc;
+}
+
+.sideMenuList > li > a:active{
+  background-color: black;
+  color: white;
+}
+
+/* ------------------------------------------------------------ */
+.myPage-main{
+  width: 75%;
+  padding: 0 20px;
+}
+
+/* 마이페이지 제목 */
+.myPage-title{
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+/* 마이페이지 부제 */
+.myPage-subject{
+  display: block;
+  margin-bottom: 30px;
+
+  font-size: 14px;
+  letter-spacing: -1px;
+}
+
+/* 마이페이지 행 단위 스타일 지정 */
+.myPage-row{
+  width: 500px;
+  height: 50px;
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom : 2px solid #ddd;
+}
+
+.myPage-row > * {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 행 제목 */
+.myPage-row > label{
+  width: 30%;
+  color: black;
+}
+
+.myPage-row > span{
+  width: 70%;
+  color: black;
+}
+
+/* 행 내부 input 태그 */
+.myPage-row > input{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-weight: normal;
+}
+
+/* 제출 버튼 */
+.myPage-submit{
+  width: 100%;
+  padding: 10px;
+  margin: 50px 0;
+  
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+/* form태그 */
+form[name='myPageFrm']{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 내부 input 요소 focus 시 */
+.myPage-row:focus-within{ 
+  border-bottom-color: black;
+}

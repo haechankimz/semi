@@ -42,19 +42,8 @@ if(updateProfile != null){
   });
 
   deleteImage.addEventListener("click", () => {
-    profileImage.src="/images/user.png";
-    imageInput.value = "";
+
   });
-
-
-
-
-
-
-
-
-
-
 
 
 

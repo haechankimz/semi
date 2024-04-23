@@ -126,20 +126,21 @@ header {
     display: none;
 }
 
-label[for="menuToggle"] {
+#menuToggle {
     cursor: pointer;
     user-select: none;
 }
 
-label[for="menuToggle"]:hover {
-    text-decoration: underline;  /* 밑줄 */
+#menuToggle:hover {
+    text-decoration: none;  /* 밑줄 */
 }
 
 /* 
     MYPAGE/LOGOUT 일단 안보이게
-    로그인 하면 보이게
+    로그인 하면 보이게 
 */
-/*
+
+
 #menuToggle + div {
     display: none;
 }
@@ -162,7 +163,7 @@ label[for="menuToggle"]:hover {
     justify-content: center;
     align-items: center;
 }
-*/
+
 
 /* *** 로그인 팝업 레이어 *** */
 #popupLayer{
@@ -200,6 +201,7 @@ label[for="menuToggle"]:hover {
 /* ID/PW input 태그 */
 #loginPw > input {
     outline: none;
+    border: none;
     width: 243px;
     height: 35px;
     margin-bottom: 10px;
@@ -233,6 +235,7 @@ label {
     margin-top: 5px;
     margin-left: 80px;
     font-size: 12px;
+    color: black;
 }
 
 #loginForm {
@@ -286,6 +289,16 @@ label {
     background-color: rgba(0, 0, 0, 0.5);
 } */
 
+.top-menu > a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+
+}
 
 /* ****** footer ****** */
 

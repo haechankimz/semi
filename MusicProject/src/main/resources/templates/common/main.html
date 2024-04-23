@@ -7,13 +7,15 @@
     
     <link rel="stylesheet" href="css/main.css">
 
+    <th:block th:replace="~{common/common}"></th:block>
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
 
+        <!-- 임시 content 너비 지정 -->
         <div style="height: 500px;">
-            <h1>테스트</h1>
+            
         </div>
 
 
@@ -24,6 +26,7 @@
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/main.js"></script>
 
     
 </body>

@@ -1,68 +1,59 @@
+/* 회원 페이지 전체를 감싸고 있는 요소 */
 .myPage-content{
   display: flex;
-  width: 1200px;
+  width: 1300px;
   min-height: 700px;
   margin: 50px auto;
 }
 
+/* 사이드메뉴 */
 .left-side{
-  width: 30%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid #ccc;
+  width: 25%;
+  border-right: 2px solid #ddd;
 }
 
-.myPage-main{
-  width: 70%;
-  padding: 0 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sideMenuList{
+.list-group{
   width: 100%;
   list-style: none;
   padding-right: 20px;
 }
 
-.sideMenuList > li {
+.list-group > li{
   height: 50px;
-  font-size: 15px;
+  font-size: 18px;
 }
 
-.sideMenuList > li > a {
-  color: black;
+.list-group > li > a{
+  color:black;
   text-decoration: none;
-  width: 270px;
-  height: 100%;
-  margin-top: 15px;
-  margin-bottom: 10px;
+
+  margin-top: 20px;
+
   display: flex;
+  height: 100%;
+
   justify-content: center;
   align-items: center;
 
-  font-size: 18px;
-  font-weight: bold;
-
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 24px;
 }
 
-.sideMenuList > li > a:hover{
+.list-group > li > a:hover{
   background-color: #ccc;
 }
 
-.sideMenuList > li > a:active{
+.list-group > li > a:active{
   background-color: black;
   color: white;
 }
 
-/* ------------------------------------------------------------ */
+
+/* ********************************* */
+/* 마이페이지 공통 */
 .myPage-main{
   width: 75%;
-  padding: 0 20px;
+  padding: 0 50px;
 }
 
 /* 마이페이지 제목 */
@@ -96,9 +87,9 @@
   font-weight: bold;
 }
 
-/* 행 제목 */
 .myPage-row > label{
   width: 30%;
+  margin: 0 10px;
   color: black;
 }
 
@@ -107,7 +98,6 @@
   color: black;
 }
 
-/* 행 내부 input 태그 */
 .myPage-row > input{
   width: 100%;
   height: 100%;
@@ -116,9 +106,8 @@
   font-weight: normal;
 }
 
-/* 제출 버튼 */
 .myPage-submit{
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin: 50px 0;
   
@@ -126,12 +115,13 @@
   font-size: 20px;
   font-weight: bold;
 
+  border-radius: 24px;
+
   background-color: black;
   color: white;
   cursor: pointer;
 }
 
-/* form태그 */
 form[name='myPageFrm']{
   display: flex;
   justify-content: center;
@@ -139,7 +129,177 @@ form[name='myPageFrm']{
   flex-direction: column;
 }
 
-/* 내부 input 요소 focus 시 */
 .myPage-row:focus-within{ 
   border-bottom-color: black;
+}
+
+/* 내 정보 수정 */
+
+.info-title{
+  border: none;
+}
+
+.info-title > span {
+  margin: 0 10px;
+}
+
+.info-address{
+  margin: 0;
+}
+
+.info-address > button{
+  width: 30%;
+  height: 70%;
+
+  font-size: 14px;
+  font-weight: normal;
+
+  border-radius: 24px;
+
+  background-color: white;
+  border : 1px solid gray;
+  cursor: pointer;
+}
+
+.main-section{
+  display: flex;
+}
+
+.info-section{
+  width: 60%;
+}
+
+.profile-section{
+  margin-left: 25px;
+  padding-top: 40px;
+  width: 40%;
+}
+
+.profile-image-area{
+  width: 170px;
+  height: 170px;
+
+  margin-left: 60px;
+
+  border: 2px solid #ccc;
+  border-radius: 50%;
+
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#profileImage{
+  height: 100%;
+}
+
+/* 삭제버튼 */
+form[name='myPageFrm']{position: relative;}
+
+#deleteImage{
+  position: absolute;
+  top: 260px;
+  right: 460px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+#deleteImage:active{
+  user-select: none;
+  color: red;
+}
+
+
+/* 이미지 버튼 영역 */
+.profile-btn-area{
+  width: 230px;
+  margin: 20px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-btn-area > *{
+  width: 110px;
+  height: 33px;
+  padding: 5px 10px;
+  margin-right: 24px;
+
+  border: 1px solid black;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#imageInput{ display: none;}
+
+.profile-btn-area > label{
+  border-radius: 24px;
+}
+
+/* ***********************비밀번호 변경*************************** */
+.myPage-row > input[type='password']{
+  width: 70%;
+} 
+
+/* **********회원 탈퇴 약관********** */
+.secession-terms{
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: auto;
+  /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
+
+  font-family: sans-serif; /* 돋움체 */
+  font-size: 14px;
+}
+
+/* ***********************내가 쓴 글*************************** */
+.write-btn-area > button{
+  width: 80px;
+  height: 30px;
+  text-align: center;
+
+  margin-bottom: 10px;
+
+  background-color: white;
+  border-radius: 24px;
+}
+
+.write-btn-area > button:hover{
+  background-color: #ccc;
+}
+
+.write-btn-area > button:active{
+  background-color: black;
+  color: white;
+}
+
+#writeList{
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border-collapse: collapse;
+}
+
+#writeList > thead{
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+}
+
+#writeList > tbody > tr > td {
+  text-align: center;
+}
+
+#writeList > tbody > tr > td:last-child{
+  width: 20%;
 }

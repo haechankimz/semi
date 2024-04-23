@@ -79,6 +79,8 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+
+    background-color: white;
 }
 
 nav>ul {
@@ -110,6 +112,7 @@ nav a {
 nav a:hover {
     color: white;
     background-color: black;
+    text-decoration: none;
 }
 
 header {
@@ -289,6 +292,7 @@ label {
     background-color: rgba(0, 0, 0, 0.5);
 } */
 
+
 .top-menu > a {
     display: flex;
     justify-content: center;
@@ -298,6 +302,84 @@ label {
     width: 40px;
     height: 40px;
 
+
+/* ****** banner swiper ****** */
+:root {
+    --swiper-theme-color: #000
+}
+
+.swiper-container {
+    width: 100%;
+    height: 500px;
+    margin-bottom: 40px;
+}
+
+.swiper-pagination {
+    position: relative;
+    bottom: 50px !important;
+    left: 0;
+    right: 0;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ****** 미니들 ****** */
+
+.mainBoard {
+    display: flex;
+    top: 30px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.miniBoard {
+    display: inline-block;
+    padding: 20px;
+    margin-left: 200px;
+    width: 600px;
+    height: 450px;
+    justify-content: center;
+}
+
+.category {
+    margin-right: 20px;
+}
+
+#miniBoard-content ul li {
+    list-style: none;
+}
+
+#miniBoard-content ul li a {
+    text-decoration: none;
+}
+
+.hotBoard {
+    display: inline-block;
+    padding: 26px;
+    margin-right: 200px;
+    width: 400px;
+    height: 450px;
 }
 
 /* ****** footer ****** */
@@ -309,6 +391,7 @@ footer {
     padding: 3rem 0 0 0;
     display: flex;
     justify-content: center; 
+    margin-top: 40px;
     align-items: center;
     flex-direction: column;
 }

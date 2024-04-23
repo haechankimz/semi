@@ -4,30 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Project</title>
+
     
     <link rel="stylesheet" href="css/main.css">
 
     <th:block th:replace="~{common/common}"></th:block>
+
+
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
+
 
         <!-- 임시 content 너비 지정 -->
         <div style="height: 500px;">
             
         </div>
 
+        <!-- banner swiper -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
 
-        <a href="/boardList.html">boardList 테스트트</a>
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
 
 
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
 
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
+
+                <div class="swiper-slide">
+                    <img src="https://via.placeholder.com/1000x500">
+                </div>
+
+                
+            </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+
+        <hr>
+        <p>COMMUNITY</p>
+
+            <container class="mainBoard">
+                <!-- 미니 게시판 -->
+                <div class="miniBoard" style="border: 1px solid black;">
+                    <h3 style="display: inline;">  
+                        [
+                        <a href="#">국내</a>
+                        <a href="#">국외</a>
+                        <a href="#">자유</a>
+                        <a href="#">공지</a>
+                        ]
+                    </h3>
+                      
+                    <div id="miniBoard-content">
+                        <table>
+                            <tr>
+                                <th>1</th>
+                                <td>최고의 인기</td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>최고의 인기</td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>최고의 인기</td>
+                            </tr>
+                            <tr>
+                                <th>4</th>
+                                <td>최고의 인기</td>
+                            </tr>
+                            <tr>
+                                <th>5</th>
+                                <td>최고의 인기</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+        
+                <div class="hotBoard" style="border: 1px solid black;">
+                    <h3 style="display: inline;">실시간 인기글</h3>
+                    <table>
+                        <tr>
+                            <th>1</th>
+                            <td>최고의 인기</td>
+                        </tr>
+                        <tr>
+                            <th>2</th>
+                            <td>최고의 인기</td>
+                        </tr>
+                        <tr>
+                            <th>3</th>
+                            <td>최고의 인기</td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>최고의 인기</td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>최고의 인기</td>
+                        </tr>
+                    </table>
+                </div>
+            </container>
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
     <script src="/js/main.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/main.js"></script>
     
 </body>
 </html>

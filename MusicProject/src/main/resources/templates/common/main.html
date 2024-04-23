@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Project</title>
+
+    
+    <link rel="stylesheet" href="css/main.css">
+
+    <th:block th:replace="~{common/common}"></th:block>
+
+
 </head>
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
+
+
+        <!-- 임시 content 너비 지정 -->
+        <div style="height: 500px;">
+            
+        </div>
 
         <!-- banner swiper -->
         <div class="swiper-container">
@@ -23,6 +36,7 @@
                 <div class="swiper-slide">
                     <img src="https://via.placeholder.com/1000x500">
                 </div>
+
 
                 <div class="swiper-slide">
                     <img src="https://via.placeholder.com/1000x500">
@@ -115,6 +129,7 @@
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/main.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/js/main.js"></script>

@@ -1,5 +1,7 @@
 package edu.kh.music.member.model.service;
 
+import java.util.Map;
+
 import edu.kh.music.member.model.dto.Member;
 
 public interface MemberService {
@@ -9,5 +11,11 @@ public interface MemberService {
 	 * @return
 	 */
 	Member login(Member member);
+
+	/** 회원가입
+	 * @param map
+	 * @return
+	 */
+	int signup(Map<String, Object> map);
 
 }

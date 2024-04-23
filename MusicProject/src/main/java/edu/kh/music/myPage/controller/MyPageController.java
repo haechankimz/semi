@@ -22,18 +22,18 @@ public class MyPageController {
 	
 	@GetMapping("write")
 	public String write() {
-		return "myPage/myPage-profile";
+		return "myPage/myPage-write";
 	}
 	
 	@GetMapping("changePw")
 	public String changePw() {
-		return "myPage/myPage-profile";
+		return "myPage/myPage-changePw";
 	}
 	
 	
 	@GetMapping("secession")
 	public String secession() {
-		return "myPage/myPage-profile";
+		return "myPage/myPage-secession";
 	}
 	
 	

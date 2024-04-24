@@ -33,3 +33,12 @@
     <button class="category-btn">인디</button>
     <button class="category-btn">R&B</button>
 </category>
+
+<!-- <category>
+    <th:block th:each="category : ${application.categoryList}">
+        <button class="category-btn"
+            th:href="@{/board/{boardCode}(boardCode=${boardType.boardCode})}"
+            th:text="${category.categoryName}">카테고리
+        </button>
+    </th:block>
+</category> -->

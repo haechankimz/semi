@@ -50,16 +50,17 @@ a:hover {
 }
 
 .list-table tr > *{ text-align: center; }
-.list-table tr > *:nth-of-type(1){ width: 7%; }
+.list-table tr > *:nth-of-type(1){ width: 8%; }
 
-.list-table tr > td:nth-of-type(2){ width: 10%; }
+.list-table tr > *:nth-of-type(2){ width: 10%; }
 
-.list-table tr > *:nth-of-type(3){ 
-    width: 47%;
-    padding-left: 50px;
+.list-table tr > td:nth-of-type(3){ 
+    width: 44%;
+    text-align: left;
+    padding-left: 30px;
     text-decoration: none;
 }
-.list-table tr > *:nth-of-type(4){ width: 5%; }
+.list-table tr > *:nth-of-type(4){ width: 7%; }
 .list-table tr > *:nth-of-type(5){ width: 20%; }
 .list-table tr > *:nth-of-type(6){ width: 5%; }
 .list-table tr > *:nth-of-type(7){ width: 6%; }
@@ -82,4 +83,33 @@ a:hover {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+}
+
+
+/* ***** pagination ****** */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.pagination li {
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.current {
+    font-weight: bold;
+    background-color: black;
+    border-radius: 50%;
+    color: white;
+    letter-spacing: 0 !important;
 }

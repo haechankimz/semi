@@ -1,6 +1,7 @@
 package edu.kh.music.member.model.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Member {
 	
 	private int memberNo;
@@ -19,7 +21,7 @@ public class Member {
 	private String memberNickname;
 	private String memberTel;
 	private String memberAddress;
-	private String profilImg;
+	private String profileImg;
 	private String enrollDate;
 	private String memberDelFl;
 	private String authority;

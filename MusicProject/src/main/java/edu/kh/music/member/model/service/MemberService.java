@@ -13,9 +13,21 @@ public interface MemberService {
 	Member login(Member member);
 
 	/** 회원가입
-	 * @param map
+	 * @param member
 	 * @return
 	 */
-	int signup(Map<String, Object> map);
+	int signup(Member member);
+
+	/** 회원가입 (이메일 중복 검사)
+	 * @param memberEmail
+	 * @return
+	 */
+	int checkEmail(String memberEmail);
+
+	/** 회원가입 (닉네임 중복 검사)
+	 * @param memberNickname
+	 * @return
+	 */
+	int checkNickname(String memberNickname);
 
 }

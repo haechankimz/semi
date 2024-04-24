@@ -242,6 +242,11 @@ label {
     color: black;
 }
 
+.save-id-area {
+    margin: 80px;
+    color: white;
+}
+
 #loginForm {
     position: absolute;
     top: 50%;
@@ -302,6 +307,7 @@ label {
     color: #404040;
     width: 40px;
     height: 40px;
+    cursor: pointer;
 }
 
 

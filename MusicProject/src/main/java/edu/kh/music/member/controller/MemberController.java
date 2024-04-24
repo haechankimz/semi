@@ -1,6 +1,9 @@
 package edu.kh.music.member.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,5 +62,59 @@ public class MemberController {
 		status.setComplete();
 		return "redirect:/";
 	}
-
+	
+	
+	// 회원가입
+	@GetMapping("signup")
+	public String signup() {
+		return "member/signup";
+	}
+	
+	@PostMapping("signup")
+	public String signup(
+			Member member,
+			@RequestParam("memberAddress") String memberAddress,
+			RedirectAttributes ra) {
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberAddress", memberAddress);
+		map.put("member", member);
+		
+		int result = service.signup(map);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "가입이 완료 되었습니다. 로그인 후 홈페이지를 이용해 주세요.";
+			path = "/";
+			
+		} else {
+			message = "회원 가입 실패";
+			path = "signup";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

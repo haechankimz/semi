@@ -1,5 +1,9 @@
 package edu.kh.music.member.model.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +39,15 @@ public class MemberServiceImpl implements MemberService{
 		loginMember.setMemberPw(null);
 		
 		return loginMember;
+	}
+	
+	
+	// 회원가입
+	@Override
+	public int signup(Map<String, Object> map) {
+		
+		
+		return 0;
 	}
 
 }

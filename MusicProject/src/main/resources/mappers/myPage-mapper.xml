@@ -19,5 +19,19 @@
 		MEMBER_DEL_FL = 'Y'
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
+	
+	<update id="updateInfo">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_TEL = #{memberTel},
+		MEMBER_ADDRESS = #{memberAddress}
+	</update>
+	
+	<update id="updateProfile">
+		UPDATE "MEMBER" SET
+		PROFILE_IMG = #{profileImg}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
   
 </mapper>

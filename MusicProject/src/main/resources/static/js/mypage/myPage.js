@@ -1,15 +1,15 @@
 const updateProfile = document.querySelector("#updateProfile");
 
 if(updateProfile != null){
+  const profileImage = document.querySelector("#profileImage");
+  const imageInput = document.querySelector("#imageInput");
+  const deleteImage = document.querySelector("#deleteImage");
 
   updateProfile.addEventListener("submit", e => {
     
     const memberNickname = document.querySelector("#memberNickname");
     const memberTel = document.querySelector("#memberTel");
     const memberAddress = document.querySelectorAll("[name='memberAddress']");
-    const profileImage = document.querySelector("#profileImage");
-    const imageInput = document.querySelector("#imageInput");
-    const deleteImage = document.querySelector("#deleteImage");
 
 
     if(memberNickname.value.trim().length == 0){
@@ -37,10 +37,85 @@ if(updateProfile != null){
       alert("주소를 모두 작성 또는 미작성 해주세요.")
       e.preventDefault();
       add0.focus();
+      return;
     } 
-  
+    e.preventDefault();
   });
 
+  profileImage.addEventListener("change", () => {
+
+    // 프로필 이미지가 새로 업로드 되거나 삭제 되었음을 기록하는 상태 변수
+    let statusCheck = -1;
+    let backupInput;
+
+    const changeImageFn = e => {
+
+      const maxSize = 1024 * 1024 * 5 ;
+      const file = e.target.files[0];
+    
+      if(file == undefined){
+    
+        const temp = backupInput.cloneNode(true);
+    
+        imageInput.after(backupInput);
+        imageInput.remove();
+        imageInput = backupInput;
+        imageInput.addEventListener("change", changeImageFn);
+
+        backupInput = temp;
+
+        return;
+      }
+
+      const reader = new FileReader();
+  
+      reader.readAsDataURL(file);
+  
+      reader.addEventListener("load", e => {
+        
+        const url = e.target.result; // == reader.result
+  
+        
+        profileImage.setAttribute("src", url);
+  
+        // 새 이미지 선택 상태를 기록
+        statusCheck = 1;
+  
+        // 파일이 선택된 input을 복제해서 백업
+        backupInput = imageInput.cloneNode(true);
+      });
+    }
+
+    imageInput.addEventListener("change", changeImageFn);
+
+    deleteImage.addEventListener("click", () => {
+      profileImage.src = "/images/user.png";
+
+      imageInput.value = '';
+
+      backupInput = undefined; // 백업본도 삭제
+
+      statusCheck = 0; 
+
+    });
+  })
+
+  let flag = true;
+
+  // 기존 프로필 이미지가 없다가 새 이미지가 선택된 경우
+  if(loginMemberProfileImg == null && statusCheck == 1) flag = false;
+
+  // 기존 프로필 이미지가 있다가 삭제한 경우
+  if(loginMemberProfileImg != null && statusCheck == 0) flag = false;
+
+  // 기존 프로필 이미지가 있다가 새 이미지가 선택된 경우
+  if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
+  
+
+  if(flag){ // flag 값이 true인 경우
+    e.preventDefault();
+    alert("이미지 변경 후 클릭하세요");
+  }
 }
 
 /* **********************비밀번호 변경*********************** */

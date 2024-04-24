@@ -11,9 +11,8 @@ function execDaumPostcode() {
                 addr = data.jibunAddress;
             }
 
-            document.getElementById('postcode').value = data.zonecode;
-            document.getElementById("address").value = addr;
-            document.getElementById("detailAddress").focus();
+            document.getElementById('memberAddress').value = data.zonecode + " " + addr;
+            document.getElementById("memberAddress").focus();
         }
     }).open();
 }
@@ -27,7 +26,6 @@ const checkSignupObj = {
     "memberPw" : false,
     "memberPwCheck" : false,
     "memberNickname" : false,
-    "memberTel" : false,
     "memberTel" : false,
     "authKey" : false, /* 인증  */
 }
@@ -54,7 +52,7 @@ sendAuthKeyBtn.addEventListener("click", () => {
     checkSignupObj.authKey = false;
     authKeyMessage.innerText = "";
 
-    if(checkSignupObj.memberEmail) {
+    if(!checkSignupObj.memberEmail) {
         alert("중복된 이메일 입니다.");
         return;
     }
@@ -80,18 +78,20 @@ sendAuthKeyBtn.addEventListener("click", () => {
         else {}
     })
 
-    authKeyMessage.innerText = setSec;
+    authKeyMessage.innerText = setTime;
     authKeyMessage.classList.remove('confirm', 'error');
 
     alert("인증번호가 발송 되었습니다.");
 
     timer = setInterval( () => {
 
+        authKeyMessage.innerText = `${zero(min)} : ${zero(sec)}`
+
         if(min == 0 && sec == 0) {
             checkSignupObj.authKey = false;
             clearInterval.apply(setTime);
             authKeyMessage.classList.add('error');
-            authKeyMessage.classList.remove('donfirm');
+            authKeyMessage.classList.remove('confirm');
             return;
         }
 
@@ -101,11 +101,15 @@ sendAuthKeyBtn.addEventListener("click", () => {
         }
 
         sec--;
+
     }, 1000);
 });
 
-
-
+// 00:00 형식으로 출력되게 함
+const zero = (number) => {
+    if(number < 10 ) return "0" + number;
+    else return number;
+}
 
 
 /* 이메일 유효성 검사 */
@@ -295,15 +299,15 @@ memberNickname.addEventListener("input", e => {
 const memberTel = document.querySelector("#memberTel");
 const telMessage = document.querySelector("#telMessage");
 
-memberPwCheck.addEventListener("input", e => {
+memberTel.addEventListener("input", e => {
     
     const inputMemeberTel = e.target.value;
 
-    if(inputMemeberTel.trim().length == 0){
+    if(inputMemeberTel.trim().length === 0){
         telMessage.innerText = "전화번호를 입력해주세요.(- 제외)";
         telMessage.classList.remove('confirm', 'error');
         checkSignupObj.memberTel = false;
-        memberNickname.value= "";
+        memberTel.value= "";
         return;
     }
 
@@ -312,7 +316,7 @@ memberPwCheck.addEventListener("input", e => {
     if( !regExp.test(inputMemeberTel) ){
         telMessage.innerText = "올바르지 않는 전화번호 형식입니다.";
         telMessage.classList.add('error');
-        telMessage.classList.remove('confrim');
+        telMessage.classList.remove('confirm');
         checkSignupObj.memberTel = false;
         return;
     }
@@ -321,5 +325,78 @@ memberPwCheck.addEventListener("input", e => {
     telMessage.classList.add('confirm');
     telMessage.classList.remove('error');
     checkSignupObj.memberTel = true;
+});
+
+
+/* 회원가입 폼 제출시 */
+const signupForm = document.querySelector("#signupForm");
+
+authKey.addEventListener("submit", e => {
+
+    for(let obj in checkSignupObj){
+
+        // checkSignupObj 가 false인 경우 
+        if(!checkSignupObj[obj]) { 
+
+            let message;
+
+            switch(obj) {
+                case "memeberEmail" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberPw" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberPwCheck" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberNickname" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberTel" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "authKey" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+            }
+
+            alert(message);
+            document.getElementById(obj).focus();
+            e.preventDefault();
+            return;
+        }
+    }
+});
+
+
+/* 인증하기 버튼 클릭 시 */
+checkAuthKeyBtn.addEventListener("click", () => {
+
+    if(min === 0 && sec === 0){
+        alert("인증 번호 입력 제한 시간을 초과 하였습니다.");
+        return;
+    }
+
+    if(authKey.value.trim() < 6){
+        alert("인증번호를 다시 입력 해주세요.");
+        return;
+    }
+
+    const obj ={
+        "email" : memberEmail.value,
+        "authKey" : authKey.value
+    };
+
+    fetch("/email/checkAuthKey", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(obj)
+    })
+    .then(resp => resp.text())
+    .then(result => {
+
+        if(result == 0) {
+            alert("인증번호가 일치하지 않습니다.");
+            checkSignupObj.authKey = false;
+            return;
+        }
+
+        clearInterval(timer);
+
+        authKeyMessage.innerText = "인증 완료 되었습니다.";
+        authKeyMessage.classList.add('confirm');
+        authKeyMessage.classList.remove('error');
+        checkSignupObj.authKey = true;
+    })
+
 });
 

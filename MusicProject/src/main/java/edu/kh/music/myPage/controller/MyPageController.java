@@ -1,5 +1,7 @@
 package edu.kh.music.myPage.controller;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.member.model.dto.Member;
@@ -26,6 +29,9 @@ public class MyPageController {
 	public String profile(
 		@SessionAttribute("loginMember") Member loginMember,
 		Model model) {
+		
+		
+	
 			
 		return "myPage/myPage-profile";
 	}
@@ -108,14 +114,49 @@ public class MyPageController {
 			message = "회원이 탈퇴 되었습니다.";
 			status.setComplete();
 		} else {
-			path = "/myPage/myPage-secession";
+			path = "/myPage/secession";
 			message = "비밀번호가 일치하지 않습니다.";
 		}
 
 		ra.addFlashAttribute("message", message);
 		
-		return "redirect:";
+		return "redirect:" + path;
 	}
+	
+	
+	// 회원 수정
+	@PostMapping("profile")
+	public String updateProfile(Member member,
+		@SessionAttribute("loginMember") Member loginMember,
+		@RequestParam("uploadImg") MultipartFile uploadImg,
+		RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		int memberNo = loginMember.getMemberNo();
+		member.setMemberNo(memberNo);
+		
+		int result = service.updateProfile(member, uploadImg ,memberNo);
+		
+		String message = null;
+		
+		if(result > 0) {
+			message = "수정 성공!";
+			
+			loginMember.setMemberNickname(member.getMemberNickname());
+			loginMember.setMemberTel(member.getMemberTel());
+			loginMember.setMemberAddress(member.getMemberAddress());
+		} else {
+			message = "수정 실패";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:profile";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

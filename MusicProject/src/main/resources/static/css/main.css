@@ -361,6 +361,13 @@ label {
     justify-content: space-evenly;
     padding: 20px;
 }
+
+#community {
+    margin: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
 .miniBoard {
     display: inline-block;
     padding: 20px;

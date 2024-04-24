@@ -23,62 +23,66 @@
     </section>
 
     <!-- 구분용 -->
-    <section id="thirdSection"></section>
+    <section id="thirdSection">
+    
+        <!-- 마이 페이지, 로그인 드롭다운 -->
 
-    <!-- 마이 페이지, 로그인 드롭다운 -->
-
-  <!-- 마이 페이지, 로그인 드롭다운 -->
-
-        
-  <div class="top-menu">
+        <div class="top-menu">
+    
+            <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정) -->
+    
+            <th:block th:if="${session.loginMember == null}">
+                <a class="fa-solid fa-user" id="loginIcon"></a>
+            </th:block>
             
-    <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정) -->
-    
-   <a href="#" class="fa-solid fa-user"></a>
-    
-   <!--
-    로그인 O (아이콘 클릭시 마이 페이지/로그아웃 드롭박스 예정) 
-   <label for="menuToggle">
-       <i class="fa-solid fa-user"></i>
-   </label>
+            <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃 드롭박스 예정)  -->
+            <th:block th:unless="${session.loginMember == null}">
+                <label for="menuToggle" id="menuToggle">
+                    <!-- <i class="fa-solid fa-user"></i> -->
+                   
+                    [[${session.loginMember?.memberNickname}]]
+                </label>
+        
+                <input type="checkbox" id="menuToggle">
+        
+                <div class="header-menu">
 
-   <input type="checkbox" id="menuToggle">
+                    <a href="/member/logout">LOGOUT</a>
+                </div>
+           </th:block>
 
-   <div class="header-menu">
-       <a href="#">MYAGE</a>
-       <a href="#">LOGOUT</a>
-   </div>   -->
-</div>
+        </div>
+    </section>
 
 
 </header>
 
 <!-- 로그인 팝업 -->
-<form action="#" method="POST" id="loginForm">
+<form action="/member/login" method="POST" id="loginForm">
 
-<section id="popupLayer" class="popup-hidden">
+    <section id="popupLayer" class="popup-hidden">
 
-   <p id="p">로그인</p>
-   <span id="popupClose" class="fa-solid fa-xmark"></span> <!-- x버튼 -->
+        <p id="p">로그인</p>
+        <span id="popupClose" class="fa-solid fa-xmark"></span> <!-- x버튼 -->
 
-   <section id="loginPw">
-       <input type="text" name="" placeholder="아이디" id="idInput">
-       <input type="password" name="" placeholder="비밀번호" id="pwInput">
-   </section>
+        <section id="loginPw">
+            <input type="text" name="memberEmail" placeholder="아이디(이메일)" id="idInput">
+            <input type="password" name="memberPw" placeholder="비밀번호" id="pwInput">
+        </section>
 
-   <label>
-       <input type="checkbox" name="" id="saveId"> 아이디 저장
-   </label>
+        <label class="save-id-area">
+            <input type="checkbox" name="saveId" id="saveId"> 아이디 저장
+        </label>
 
-   <section>
-       <button id="loginBtn">로그인</button>
-   </section>
+        <section>
+            <button id="loginBtn">로그인</button>
+        </section>
 
-   <article class="signup-area">
-       <a href="#">ID/PW 찾기</a>
-       <a href="#">회원가입하러 가기</a>
-   </article>
-</section>
+        <article class="signup-area">
+            <a href="#">ID/PW 찾기</a>
+            <a href="/member/signup">회원가입하러 가기</a>
+        </article>
+    </section>
 
 </form>
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.member.model.dto.Member;
@@ -22,9 +23,14 @@ public class MyPageController {
 	
 	
 	@GetMapping("profile")
-	public String profile() {
+	public String profile(
+		@SessionAttribute("loginMember") Member loginMember,
+		Model model) {
+			
 		return "myPage/myPage-profile";
 	}
+	
+	
 	
 	@GetMapping("write")
 	public String write() {
@@ -42,24 +48,7 @@ public class MyPageController {
 		return "myPage/myPage-secession";
 	}
 	
-	// 프로필 수정
-	@PostMapping("profile")
-	public String updateProfile(
-		@SessionAttribute("loginMember") Member loginMember,
-		Model model) {
-		
-		String memberAddress = loginMember.getMemberAddress();
-		
-		if(memberAddress != null) {
-			String[] arr = memberAddress.split("\\^\\^\\^");
-			
-			model.addAttribute("postcode", arr[0]);
-			model.addAttribute("address", arr[1]);
-			model.addAttribute("detailAddress", arr[2]);
-		}
-		
-		return "/myPage/myPage-profile";
-	}
+	
 	
 	
 	
@@ -87,10 +76,10 @@ public class MyPageController {
 		
 		if(result > 0) {
 			message = "비밀번호가 변경되었습니다";
-			path = "myPage/profile";
+			path = "myPage/myPage-profile";
 		}else {
 			message = "비밀번호가 일치하지 않습니다";
-			path = "myPage/changePw";
+			path = "myPage/myPage-changePw";
 		}
 		
 		ra.addFlashAttribute("message", message);
@@ -103,11 +92,29 @@ public class MyPageController {
 	@PostMapping("secession")
 	public String secsssioin(
 		@SessionAttribute("loginMember") Member loginMember,
-		@RequestParam("memberPw") String memberPw) {
+		@RequestParam("memberPw") String memberPw,
+		SessionStatus status,
+		RedirectAttributes ra) {
+		
+		int memberNo = loginMember.getMemberNo();
 		
 		int result = service.secession(memberPw, loginMember);
 		
-		return null;
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			path = "/";
+			message = "회원이 탈퇴 되었습니다.";
+			status.setComplete();
+		} else {
+			path = "/myPage/myPage-secession";
+			message = "비밀번호가 일치하지 않습니다.";
+		}
+
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:";
 	}
 	
 	

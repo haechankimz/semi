@@ -29,13 +29,14 @@
       
                   <input type="text" name="memberNickname" 
                     maxlength="10" id="memberNickname" 
-                    >
+                    th:text="${session.loginMember.memberNickname}">
                 </div>
       
                 <div class="myPage-row">
                   <label>전화번호</label>
                   <input type="text" name="memberTel" 
-                    maxlength="11" id="memberTel">
+                    maxlength="11" id="memberTel"
+                    th:text="${session.loginMember.memberTel}">
                 </div>
       
                 <div class="myPage-row info-title">

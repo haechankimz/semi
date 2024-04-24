@@ -1,9 +1,6 @@
 const updateProfile = document.querySelector("#updateProfile");
 
 if(updateProfile != null){
-  const profileImage = document.querySelector("#profileImage");
-  const imageInput = document.querySelector("#imageInput");
-  const deleteImage = document.querySelector("#deleteImage");
 
   updateProfile.addEventListener("submit", e => {
     
@@ -42,80 +39,99 @@ if(updateProfile != null){
     e.preventDefault();
   });
 
-  profileImage.addEventListener("change", () => {
+  const profileImage = document.querySelector("#profileImage");
+  const imageInput = document.querySelector("#imageInput");
+  const deleteImage = document.querySelector("#deleteImage");
 
-    // 프로필 이미지가 새로 업로드 되거나 삭제 되었음을 기록하는 상태 변수
-    let statusCheck = -1;
-    let backupInput;
+  let statusCheck = -1;
+  let backupInput;
 
-    const changeImageFn = e => {
+  const changeImageFn = e => {
 
-      const maxSize = 1024 * 1024 * 5 ;
-      const file = e.target.files[0];
-    
-      if(file == undefined){
-    
+    const maxSize =  1024 * 1024 * 5;
+    const file = e.target.files[0];
+
+    if(file == undefined){
+      console.log("파일 선택 후 취소됨");
+      const temp = backupInput.cloneNode(true);
+
+      imageInput.after(backupInput);
+
+      imageInput.remove();
+
+      imageInput = backupInput;
+
+      imageInput.addEventListener("change", changeImageFn);
+
+      backupInput = temp;
+
+      return;
+    }
+
+    if(file.size > maxSize){
+      alert("5MB 이하의 이미지 파일을 선택해 주세요");
+
+      if(statusCheck == -1){
+        imageInput.value = '';
+      }else{ 
+
         const temp = backupInput.cloneNode(true);
-    
+
         imageInput.after(backupInput);
+
         imageInput.remove();
+
         imageInput = backupInput;
+
         imageInput.addEventListener("change", changeImageFn);
 
         backupInput = temp;
-
-        return;
       }
-
-      const reader = new FileReader();
-  
-      reader.readAsDataURL(file);
-  
-      reader.addEventListener("load", e => {
-        
-        const url = e.target.result; // == reader.result
-  
-        
-        profileImage.setAttribute("src", url);
-  
-        // 새 이미지 선택 상태를 기록
-        statusCheck = 1;
-  
-        // 파일이 선택된 input을 복제해서 백업
-        backupInput = imageInput.cloneNode(true);
-      });
+      
+      return;
     }
 
-    imageInput.addEventListener("change", changeImageFn);
+    const reader = new FileReader();
+    reader.readAsDataURL(file); 
 
-    deleteImage.addEventListener("click", () => {
-      profileImage.src = "/images/user.png";
+    reader.addEventListener("load", e => {
+      const url = e.target.result; 
 
-      imageInput.value = '';
+      profileImage.setAttribute("src", url);
 
-      backupInput = undefined; // 백업본도 삭제
+      statusCheck = 1;
 
-      statusCheck = 0; 
-
+      backupInput = imageInput.cloneNode(true);
     });
-  })
+
+  }
+  imageInput.addEventListener("change", changeImageFn);
+
+  deleteImage.addEventListener("click", () => {
+
+    profileImage.src = "/images/user.png";
+    imageInput.value = '';
+
+    backupInput = undefined; 
+
+    statusCheck = 0; 
+
+  });
 
   let flag = true;
 
-  // 기존 프로필 이미지가 없다가 새 이미지가 선택된 경우
-  if(loginMemberProfileImg == null && statusCheck == 1) flag = false;
+  if(loginMemberprofileImage == null && statusCheck == 1) flag = false;
 
-  // 기존 프로필 이미지가 있다가 삭제한 경우
-  if(loginMemberProfileImg != null && statusCheck == 0) flag = false;
+  if(loginMemberprofileImage != null && statusCheck == 0) flag = false;
 
-  // 기존 프로필 이미지가 있다가 새 이미지가 선택된 경우
-  if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
+  if(loginMemberprofileImage != null && statusCheck == 1) flag = false;
   
 
-  if(flag){ // flag 값이 true인 경우
+  if(flag){ 
     e.preventDefault();
     alert("이미지 변경 후 클릭하세요");
   }
+  e.preventDefault();
 }
 
 /* **********************비밀번호 변경*********************** */
@@ -177,26 +193,17 @@ if(secession != null){
     const memberPw = document.querySelector("#memberPw");
     const agree = document.querySelector("#agree");
 
-    // 비밀번호 입력 되었는지 확인
     if(memberPw.value.trim().length == 0){
       alert("비밀번호를 입력해 주세요");
       e.preventDefault();
       return;
     }
 
-    // 약관 동의 체크 확인
-
-    // checkbox 또는 radio   checked 속성
-    // checked -> 체크 시 true, 미체크시 false 반환
-    // - checked = true -> 체크하기
-    // - checked = false -> 체크 해제 하기
-
     if(!agree.checked){ // 체크 안됐을때
       alert("약관에 동의해주세요.");
       e.preventDefault();
       return;
     }
-    // 정말 탈퇴? 물어보기
     if( !confirm("정말 탈퇴 하시겠습니까?")){ // 취소 선택시
       alert("취소 되었습니다.");
       e.preventDefault();

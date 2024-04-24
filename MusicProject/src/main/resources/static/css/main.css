@@ -142,7 +142,9 @@ header {
     MYPAGE/LOGOUT 일단 안보이게
     로그인 하면 보이게 
 */
-
+header {
+    position: relative;
+}
 
 #menuToggle + div {
     display: none;
@@ -236,9 +238,13 @@ header {
 
 label {
     margin-top: 5px;
-    margin-left: 80px;
     font-size: 12px;
     color: black;
+}
+
+.save-id-area {
+    margin: 80px;
+    color: white;
 }
 
 #loginForm {
@@ -301,6 +307,8 @@ label {
     color: #404040;
     width: 40px;
     height: 40px;
+    cursor: pointer;
+}
 
 
 /* ****** banner swiper ****** */

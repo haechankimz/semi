@@ -125,12 +125,12 @@ p {
     cursor: pointer;
 }
 
-#addBtn:hover {
+#signupBtn:hover {
     background-color: #404040;
     color: white;
 }
 
-#addBtn:active {
+#signupBtn:active {
     transform: scale(0.95);
 }
 

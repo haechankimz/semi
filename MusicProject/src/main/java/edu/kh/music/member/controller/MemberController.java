@@ -1,15 +1,14 @@
 package edu.kh.music.member.controller;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -73,14 +72,9 @@ public class MemberController {
 	@PostMapping("signup")
 	public String signup(
 			Member member,
-			@RequestParam("memberAddress") String memberAddress,
 			RedirectAttributes ra) {
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberAddress", memberAddress);
-		map.put("member", member);
-		
-		int result = service.signup(map);
+		int result = service.signup(member);
 		
 		String message = null;
 		String path = null;
@@ -97,6 +91,22 @@ public class MemberController {
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:" + path;
+	}
+	
+	// 이메일 확인
+	@ResponseBody
+	@PostMapping("checkEmail")
+	public int checkEmail(
+			@RequestBody String memberEmail) {
+		return service.checkEmail(memberEmail);
+	}
+	
+	// 닉네임 확인
+	@ResponseBody
+	@PostMapping("checkNickname")
+	public int checkNickname(
+			@RequestBody String memberNickname) {
+		return service.checkNickname(memberNickname);
 	}
 }
 

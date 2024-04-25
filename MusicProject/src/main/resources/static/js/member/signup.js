@@ -330,23 +330,30 @@ memberTel.addEventListener("input", e => {
 
 /* 회원가입 폼 제출시 */
 const signupForm = document.querySelector("#signupForm");
+const agree = document.querySelector("#agree");
 
 signupForm.addEventListener("submit", e => {
 
     for(let obj in checkSignupObj){
 
+        if(!agree.checked){
+            alert("약관에 동의해 주세요.");
+            e.preventDefault();
+            return;
+        }
+        
         // checkSignupObj 가 false인 경우 
         if(!checkSignupObj[obj]) { 
 
             let message;
 
             switch(obj) {
-                case "memberEmail" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberPw" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberPwCheck" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberNickname" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberTel" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "authKey" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberEmail" : message = "작성한 이메일을 확인해 주세요."; break;
+                case "memberPw" : message = "작성한 비밀번호를 확인해 주세요."; break;
+                case "memberPwCheck" : message = "작성한 비밀번호와 일치 하는지 확인해 주세요."; break;
+                case "memberNickname" : message = "작성한 닉네임을 확인해 주세요."; break;
+                case "memberTel" : message = "작성한 전화번호를 작성했는지 확인해 주세요."; break;
+                case "authKey" : message = "인증번호 인증 여부를 확인해 주세요."; break;
             }
 
             alert(message);
@@ -355,6 +362,7 @@ signupForm.addEventListener("submit", e => {
             return;
         }
     }
+
 });
 
 

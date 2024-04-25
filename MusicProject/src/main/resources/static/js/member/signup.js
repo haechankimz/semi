@@ -331,7 +331,7 @@ memberTel.addEventListener("input", e => {
 /* 회원가입 폼 제출시 */
 const signupForm = document.querySelector("#signupForm");
 
-authKey.addEventListener("submit", e => {
+signupForm.addEventListener("submit", e => {
 
     for(let obj in checkSignupObj){
 
@@ -341,7 +341,7 @@ authKey.addEventListener("submit", e => {
             let message;
 
             switch(obj) {
-                case "memeberEmail" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberEmail" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
                 case "memberPw" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
                 case "memberPwCheck" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
                 case "memberNickname" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
@@ -399,4 +399,5 @@ checkAuthKeyBtn.addEventListener("click", () => {
     })
 
 });
+
 

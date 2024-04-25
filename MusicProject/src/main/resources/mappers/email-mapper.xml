@@ -3,11 +3,11 @@
 <mapper namespace="edu.kh.music.email.model.mapper.EmailMapper">
 
 	<!-- 이전 인증 번호 업데이트 -->
-	 <update id="udpateAuthKey">
+	 <update id="updateAuthKey">
 	 	UPDATE "AUTH_KEY" SET
 	 	"AUTH_KEY" = #{authKey},
 	 	"CREATE_TIME" = SYSDATE
-	 	WHERE "EMAIL" = #{email}
+	 	WHERE "EMAIL" = #{authEmail}
 	 </update>
 	 
 	 <!-- 새 인증번호 삽입 -->
@@ -22,6 +22,12 @@
 	 	FROM "AUTH_KEY"
 	 	WHERE EMAIL = #{email}
 	 	AND AUTH_KEY = #{authKey}
+	 	AND 24 / 60 * 5 >= (SYSDATE - CREATE_TIME) / 24 / 60
 	 </select>
+  	
+  	<delete id="deleteAuthKey">
+  		DELETE FROM "AUTH_KEY"
+  		WHERE EMAIL = #{email}
+  	</delete>
   
 </mapper>

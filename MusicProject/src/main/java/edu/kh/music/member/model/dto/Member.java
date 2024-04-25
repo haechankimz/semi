@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,4 +26,5 @@ public class Member {
 	private String enrollDate;
 	private String memberDelFl;
 	private String authority;
+  
 }

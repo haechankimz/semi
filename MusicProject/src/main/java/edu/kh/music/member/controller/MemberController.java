@@ -1,6 +1,5 @@
 package edu.kh.music.member.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -109,13 +108,6 @@ public class MemberController {
 		return service.checkNickname(memberNickname);
 	}
 }
-
-
-
-
-
-
-
 
 
 

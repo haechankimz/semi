@@ -41,9 +41,9 @@ public class BoardTypeInterceptor implements HandlerInterceptor {
 		HttpServletRequest request,
 		HttpServletResponse response,
 		Object handler,
-		ModelAndView modleAndView) throws Exception {
+		ModelAndView modelAndView) throws Exception {
 		
-		HandlerInterceptor.super.postHandle(request, response, handler, modleAndView);
+		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}
 	
 	@Override

@@ -52,7 +52,7 @@
 
               <section class="profile-section">
                 <div class="profile-image-area">
-                  <img id="profileImage"> 
+                  <img th:with="user=#{user.default.image}" th:src="${session.loginMember.profileImg ?: user }" id="profileImage"> 
                 </div>
                 <span id="deleteImage">x</span>
         
@@ -75,7 +75,7 @@
   <th:block th:replace="~{common/footer}"></th:block>
 
 <script th:inline="javascript">
-    const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/ "회원 프로필 이미지";
+    const loginMemberProfileImage = /*[[${session.loginMember.profileImg}]]*/ "회원 프로필 이미지";
   </script>
 
   <script src="/js/myPage/myPage.js"></script>

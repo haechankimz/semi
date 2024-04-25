@@ -1,18 +1,23 @@
 package edu.kh.music.myPage.controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +34,6 @@ public class MyPageController {
 	public String profile(
 		@SessionAttribute("loginMember") Member loginMember,
 		Model model) {
-		
-		
 	
 			
 		return "myPage/myPage-profile";
@@ -134,7 +137,7 @@ public class MyPageController {
 		int memberNo = loginMember.getMemberNo();
 		member.setMemberNo(memberNo);
 		
-		int result = service.updateProfile(member, uploadImg ,memberNo);
+		int result = service.updateProfile(member, uploadImg ,memberNo, loginMember);
 		
 		String message = null;
 		
@@ -144,13 +147,22 @@ public class MyPageController {
 			loginMember.setMemberNickname(member.getMemberNickname());
 			loginMember.setMemberTel(member.getMemberTel());
 			loginMember.setMemberAddress(member.getMemberAddress());
+			loginMember.setProfileImg(member.getProfileImg());
 		} else {
 			message = "수정 실패";
 		}
 		
-		ra.addFlashAttribute("message", message);
+		ra.addFlashAttribute("message", message);	
 		
 		return "redirect:profile";
+	}
+	
+	@ResponseBody
+	@PostMapping("selectBoard")
+	public List<Board> selectBoard(
+			@RequestBody Map<String, Integer> map){
+		
+		return service.selectBoard(map);
 	}
 	
 	

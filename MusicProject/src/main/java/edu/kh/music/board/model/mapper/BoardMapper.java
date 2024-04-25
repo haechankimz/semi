@@ -1,6 +1,7 @@
 package edu.kh.music.board.model.mapper;
 
 import java.util.List;
+import java.util.Locale.Category;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +16,12 @@ public interface BoardMapper {
 	 * @return
 	 */
 	List<Map<String, Object>> selectBoardTypeList();
+
 	
+	/** 카테고리 버튼 가져오기
+	 * @return
+	 */
+//	List<Map<String, Object>> selectCategoryList();
 	
 	/** 게시글 수 조회
 	 * @param boardCode
@@ -32,11 +38,23 @@ public interface BoardMapper {
 	List<Board> selectBoardList(int boardCode, RowBounds rowBounds);
 
 
-	/** 카테고리 이름 가져오기
+	/** 게시글에 카테고리 이름 가져오기
 	 * @param categoryNo
 	 * @return
 	 */
 	String getCategoryName();
+
+	/** 게시글 상세 조회
+	 * @param map
+	 * @return
+	 */
+	Board selectOne(Map<String, Integer> map);
+
+
+	List<String> selectCategoryList(int boardCode);
+
+
+
 	
 	
 

@@ -2,11 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.music.board.model.mapper.BoardMapper">
 
+<!-- 	<resultMap type="Board" id="board_rm">
+		<id property="boardNo" column="BOARD_NO"/>
+		
+		<collection 
+			property="commentList"
+			select = "selectCommentList"
+			column="BOARD_NO"
+			javaType="java.util.ArrayList"
+			ofType="Comment" />
+	</resultMap> -->
+
 	<!-- 게시판 종류 -->
 	<select id="selectBoardTypeList">
 		SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName"
 		FROM BOARD_TYPE
 		ORDER BY BOARD_CODE	
+	</select>
+	
+	<!-- 카테고리 버튼 가져오기 -->		
+	<select id="selectCategoryList" resultType="String">
+		SELECT CATEGORY_NAME
+		FROM CATEGORY
+		WHERE BOARD_CODE = #{boardCode}
 	</select>
 	
 	<!-- 게시글 수 조회 -->
@@ -17,7 +35,7 @@
 		AND BOARD_CODE = #{boardCode}
 	</select>
 	
-	<!-- 카테고리 가져오기 -->
+	<!-- 게시글에 카테고리 가져오기 -->
 	<select id="getCategoryName">
 		SELECT CATEGORY_NO "categoryNo", CATEGORY_NAME "categoryName"
 		FROM CATEGORY
@@ -57,6 +75,35 @@
 		WHERE BOARD_DEL_FL = 'N'
 		AND BOARD_CODE = #{boardCode}
 		ORDER BY BOARD_NO DESC
+	</select>
+	
+	<!-- 게시글 상세 조회 -->
+	<select id="selectOne">
+		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CODE, READ_COUNT,
+			MEMBER_NO, MEMBER_NICKNAME,
+			
+			TO_CHAR(BOARD_WRITE_DATE, 'YYYY"."MM"."DD HH24":"MI') BOARD_WRITE_DATE,
+			TO_CHAR(BOARD_UPDATE_DATE, 'YYYY"."MM"."DD HH24":"MI') BOARD_UPDATE_DATE,
+			
+			(SELECT CATEGORY_NAME FROM "CATEGORY" C
+		 	 WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, 
+			
+			(SELECT COUNT(*) FROM "BOARD_LIKE"
+			 WHERE BOARD_NO = #{boardNo}) LIKE_COUNT,
+			 
+			(SELECT COUNT(*) FROM "BOARD_LIKE"
+			 WHERE MEMBER_NO = #{memberNo} 
+			 AND BOARD_NO = #{boardNo}) LIKE_CHECK,
+			 
+			(SELECT COUNT(*) FROM "COMMENT" C
+			 WHERE C.BOARD_NO = B.BOARD_NO
+			 AND COMMENT_DEL_FL='N') COMMENT_COUNT 
+			 
+		FROM "BOARD" B
+		JOIN "MEMBER" USING(MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		AND BOARD_NO = #{boardNo}
 	</select>
   
 </mapper>

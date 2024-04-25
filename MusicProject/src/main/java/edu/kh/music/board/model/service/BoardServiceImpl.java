@@ -27,6 +27,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectBoardTypeList();
 	}
 	
+	// 카테고리 버튼
+	@Override
+	public List<String> selectCategoryList(int boardCode) {
+		return mapper.selectCategoryList(boardCode);
+	}
+	
 	
 	// 게시글 목록 조회
 	@Override
@@ -52,11 +58,22 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
-	// 카테고리 가져오기
+	// 게시글에 카테고리 가져오기
 	@Override
 	public String getCategoryName(int categoryNo) {
 		return mapper.getCategoryName();
 	}
+
+	// 게시글 상세조회
+	@Override
+	public Board selectOne(Map<String, Integer> map) {
+		return mapper.selectOne(map);
+	}
+
+
+
+
+
 
 	
 

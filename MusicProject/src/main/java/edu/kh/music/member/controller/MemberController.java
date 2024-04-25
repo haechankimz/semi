@@ -107,7 +107,59 @@ public class MemberController {
 			@RequestBody String memberNickname) {
 		return service.checkNickname(memberNickname);
 	}
+	
+	
+	// id/pw 찾기 화면 전환
+	@GetMapping("idpw")
+	public String idpw() {
+		 return "member/idpw";
+	}
+	
+	// id 찾기
+	@PostMapping("findId")
+	public String findId(
+			Member member,
+			Model model,
+			RedirectAttributes ra) {
+		
+		String id = service.findId(member);		
+		
+		if(id == null) {
+			ra.addFlashAttribute("message", "조회된 아이디(이메일)이 없습니다."+ "\n" + "정확한 이메일 또는 전화번호를 입력해 주세요.");
+			return "redirect:/member/idpw";
+			
+		} else {
+			model.addAttribute("id", id);
+			
+			return "member/selectId"; // forward
+		}
+		
+	}
+	
+	// pw 찾기
+	@PostMapping("findPw")
+	public String findPw(
+			Member member,
+			Model model,
+			RedirectAttributes ra) {
+		
+		String pw = service.findPw(member);
+		
+		if(pw == null) {
+			ra.addFlashAttribute("message", "조회된 결과가 없습니다. 정보를 입력 해주세요.");
+			return "redirect:/member/idpw";
+			
+		} else {
+			model.addAttribute("pw", pw);
+			return "member/updatePw";
+		}
+	}
+		
+		
+	
 }
+	
+
 
 
 

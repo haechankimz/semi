@@ -12,6 +12,8 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import edu.kh.music.email.model.mapper.EmailMapper;
+import edu.kh.music.member.model.dto.Member;
+import edu.kh.music.member.model.mapper.MemberMapper;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
@@ -21,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class EmailServiceImpl implements EmailService {
 	
 	private final EmailMapper mapper;
+	
 	
 	private final JavaMailSender mailSender;
 	private final SpringTemplateEngine engine; // html -> java로 변환
@@ -59,7 +62,7 @@ public class EmailServiceImpl implements EmailService {
 		map.put("authKey", authKey);
 		map.put("authEmail", authEmail);
 		
-		int result = mapper.udpateAuthKey(map);
+		int result = mapper.updateAuthKey(map);
 		
 		if(result == 0) result = mapper.insertAuthKey(map);
 		
@@ -98,7 +101,15 @@ public class EmailServiceImpl implements EmailService {
 	// 이메일 인증 번호 확인
 	@Override
 	public int checkAuthKey(Map<String, Object> map) {
-		return mapper.checkAuthKey(map);
+		
+		Member member = new Member();
+		
+		int result = mapper.deleteAuthKey(member.getMemberEmail());
+		
+		if(result == 0) return mapper.checkAuthKey(map);
+		 
+		else return mapper.updateAuthKey(map);
+		
 	}
 	
 	

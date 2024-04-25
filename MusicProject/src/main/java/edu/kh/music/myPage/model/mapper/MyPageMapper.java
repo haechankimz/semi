@@ -1,10 +1,11 @@
 package edu.kh.music.myPage.model.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.member.model.dto.Member;
 
 @Mapper
@@ -24,6 +25,10 @@ public interface MyPageMapper {
 
 	// 프로필 이미지 수정
 	int updateProfile(Member mem);
+
+
+	// 내가 쓴 글 조회
+	List<Board> selectBoard(int memberNo);
 
 
 	

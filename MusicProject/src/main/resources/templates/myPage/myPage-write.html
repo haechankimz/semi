@@ -21,27 +21,28 @@
         <h1 class="myPage-title">내 게시글 / 내 댓글</h1>
 
         <div class="write-btn-area">
-          <button type="button">내 게시글</button>
-          <button type="button">내 댓글</button>
+          <button type="button" id="myBoard">내 게시글</button>
+          <button type="button" id="myComment">내 댓글</button>
         </div>
 
-        <table class="write-list" id="writeList">
-          <thead>
-            <tr>
-              <th>번호</th>
-              <th>제목</th>
-              <th>작성일</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>1번째 작성한 글</td>
-              <td>2024-04-23</td>
-            </tr>
-          </tbody>
-        </table>
+        
+        <div id="listMain">
+          <table class="write-board-list">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>내용</th>
+                <th>조회수</th>
+                <th>작성일</th>
+              </tr>
+            </thead>
+  
+            <tbody id="writeList">
+              
+            </tbody>
+          </table>
+        </div>
+        
         
       </section>
     </section>
@@ -49,6 +50,10 @@
   </main>
 
   <th:block th:replace="~{common/footer}"></th:block>
+
+  <script th:inline="javascript">
+    const loginMemberNo = /*[[${session.loginMember.memberNo}]]*/ "로그인한 회원 번호";
+  </script>
 
   <script src="/js/myPage/myPage.js"></script>
 </body>

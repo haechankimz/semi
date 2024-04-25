@@ -3,6 +3,7 @@ package edu.kh.music.myPage.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.common.util.Utility;
 import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.myPage.model.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
@@ -68,14 +71,18 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	
 	@Override
-	public int updateProfile(Member member, MultipartFile profileImg, int memberNo) throws IllegalStateException, IOException {
+	public int updateProfile(Member member, MultipartFile profileImg, int memberNo, Member loginMember) throws IllegalStateException, IOException {
 		
 		int result1 = mapper.updateInfo(member);
 		
 		String updatePath = null;
+		String rename = null;
 		
 		if(!profileImg.isEmpty()) {
-			updatePath = profileWebPath;
+			
+			rename = Utility.fileRename(profileImg.getOriginalFilename());
+			
+			updatePath = profileWebPath + rename;
 		}
 		
 		Member mem = Member.builder()
@@ -87,12 +94,11 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		if(result2 > 0) {
 			if(!profileImg.isEmpty()) {
-				profileImg.transferTo(new File(profileFolderPath));
+				profileImg.transferTo(new File(profileFolderPath + rename));
 			}
 			
 			member.setProfileImg(updatePath);
 		}
-		
 		int result = result1 + result2;
 		
 		return result;
@@ -100,9 +106,13 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	
 	
-	
-	
-	
+	@Override
+	public List<Board> selectBoard(Map<String, Integer> map) {
+		
+		int memberNo = map.get("memberNo");
+		
+		return mapper.selectBoard(memberNo);
+	}
 	
 	
 	

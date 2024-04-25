@@ -36,6 +36,17 @@ if(updateProfile != null){
       add0.focus();
       return;
     } 
+
+    let flag = true;
+
+    if(loginMemberProfileImg == null && statusCheck == 1) flag = false;
+    if(loginMemberProfileImg != null && statusCheck == 0) flag = false;
+    if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
+
+    if(flag){ 
+      e.preventDefault();
+      alert("이미지 변경 후 클릭하세요");
+    }
     e.preventDefault();
   });
 
@@ -46,6 +57,7 @@ if(updateProfile != null){
   let statusCheck = -1;
   let backupInput;
 
+
   const changeImageFn = e => {
 
     const maxSize =  1024 * 1024 * 5;
@@ -55,10 +67,9 @@ if(updateProfile != null){
       console.log("파일 선택 후 취소됨");
       const temp = backupInput.cloneNode(true);
 
+      
       imageInput.after(backupInput);
-
       imageInput.remove();
-
       imageInput = backupInput;
 
       imageInput.addEventListener("change", changeImageFn);
@@ -78,11 +89,8 @@ if(updateProfile != null){
         const temp = backupInput.cloneNode(true);
 
         imageInput.after(backupInput);
-
         imageInput.remove();
-
         imageInput = backupInput;
-
         imageInput.addEventListener("change", changeImageFn);
 
         backupInput = temp;
@@ -95,10 +103,9 @@ if(updateProfile != null){
     reader.readAsDataURL(file); 
 
     reader.addEventListener("load", e => {
-      const url = e.target.result; 
-
+      
+      let url = e.target.result;
       profileImage.setAttribute("src", url);
-
       statusCheck = 1;
 
       backupInput = imageInput.cloneNode(true);
@@ -112,26 +119,13 @@ if(updateProfile != null){
     profileImage.src = "/images/user.png";
     imageInput.value = '';
 
-    backupInput = undefined; 
+    backupInput = undefined;
 
     statusCheck = 0; 
 
   });
 
-  let flag = true;
 
-  if(loginMemberprofileImage == null && statusCheck == 1) flag = false;
-
-  if(loginMemberprofileImage != null && statusCheck == 0) flag = false;
-
-  if(loginMemberprofileImage != null && statusCheck == 1) flag = false;
-  
-
-  if(flag){ 
-    e.preventDefault();
-    alert("이미지 변경 후 클릭하세요");
-  }
-  e.preventDefault();
 }
 
 /* **********************비밀번호 변경*********************** */
@@ -151,11 +145,11 @@ if(changePw != null){
     let str; // undefined 상태
 
     if( currentPw.value.trim().length == 0){
-      str = "현재 비밀번호를 입력해주세요";
+      str = "현재 비밀번호를 입력해주세요.";
     }else if(newPw.value.trim().length == 0){
-      str = "새 비밀번호를 입력해주세요";
+      str = "새 비밀번호를 입력해주세요.";
     }else if(newPwConfirm.value.trim().length == 0){
-      str = "새 비밀번호 확인을 입력 해주세요";
+      str = "새 비밀번호 확인을 입력 해주세요.";
     }
 
     if(str != undefined){ // str에 값이 대입됨 == if문 중 하나 실행됨
@@ -212,3 +206,49 @@ if(secession != null){
 
   });
 }
+
+
+const myBoard = document.querySelector("#myBoard");
+const myComment = document.querySelector("#myComment");
+const writeList = document.querySelector("#writeList");
+const listMain = document.querySelector("#listMain");
+
+myBoard.addEventListener("click", () => {
+
+  const obj = { "memberNo" : loginMemberNo };
+
+  fetch("/myPage/selectBoard", {
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(obj)
+  })
+  .then( response => response.json())
+  .then( list => {
+    console.log(list);
+
+    if(list != null){
+
+      for(let board of list){
+        const tr = document.createElement("tr");
+        const arr = ['boardNo', 'boardTitle', 'readCount', 'boardWriteDate'];
+  
+        for(let key of arr){
+          const td = document.createElement("td");
+          td.innerText = board[key];
+          tr.append(td);
+        }
+        writeList.append(tr);
+      }
+    } else{
+      const h3 = document.createElement("h3")
+      h3.innerText = "작성한 글이 존재하지 않습니다.";
+      listMain.append(h3);
+    }
+
+
+  });
+})
+
+
+
+

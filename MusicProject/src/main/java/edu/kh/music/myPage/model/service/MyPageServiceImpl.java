@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.dto.Comment;
 import edu.kh.music.common.util.Utility;
 import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.myPage.model.mapper.MyPageMapper;
@@ -115,6 +116,13 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
+	@Override
+	public List<Comment> selectComment(Map<String, Integer> map) {
+		
+		int memberNo = map.get("memberNo");
+		
+		return mapper.selectComment(memberNo);
+	}
 	
 	
 	

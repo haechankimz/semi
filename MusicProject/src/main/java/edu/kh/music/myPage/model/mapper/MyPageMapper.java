@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.dto.Comment;
 import edu.kh.music.member.model.dto.Member;
 
 @Mapper
@@ -29,6 +30,9 @@ public interface MyPageMapper {
 
 	// 내가 쓴 글 조회
 	List<Board> selectBoard(int memberNo);
+
+	// 내가 쓴 댓글 조회
+	List<Comment> selectComment(int memberNo);
 
 
 	

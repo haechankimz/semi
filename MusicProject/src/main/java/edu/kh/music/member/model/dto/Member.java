@@ -7,14 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter 
-@Setter 
-@NoArgsConstructor 
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
 @Builder
-@AllArgsConstructor
 public class Member {
-
+	
 	private int memberNo;
 	private String memberEmail;
 	private String memberPw;
@@ -25,5 +26,5 @@ public class Member {
 	private String enrollDate;
 	private String memberDelFl;
 	private String authority;
-	
+  
 }

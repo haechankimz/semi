@@ -2,6 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.music.myPage.model.mapper.MyPageMapper">
 
+	<select id="selectPw">
+		SELECT MEMBER_PW
+		FROM "MEMBER"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<update id="changePw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{newPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="secession">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="updateInfo">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_TEL = #{memberTel},
+		MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="updateProfile">
+		UPDATE "MEMBER" SET
+		PROFILE_IMG = #{profileImg}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	
+	<select id="selectBoard">
+		SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, 
+		 	TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD') BOARD_WRITE_DATE
+		FROM "BOARD"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
   
 </mapper>

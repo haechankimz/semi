@@ -103,7 +103,7 @@
   height: 100%;
   border: none;
   outline: none;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .myPage-submit{
@@ -170,7 +170,10 @@ form[name='myPageFrm']{
 }
 
 .profile-section{
-  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding-top: 40px;
   width: 40%;
 }
@@ -178,8 +181,6 @@ form[name='myPageFrm']{
 .profile-image-area{
   width: 170px;
   height: 170px;
-
-  margin-left: 60px;
 
   border: 2px solid #ccc;
   border-radius: 50%;
@@ -197,12 +198,11 @@ form[name='myPageFrm']{
 }
 
 /* 삭제버튼 */
-form[name='myPageFrm']{position: relative;}
 
 #deleteImage{
   position: absolute;
-  top: 260px;
-  right: 460px;
+  top: 285px;
+  right: 435px;
   cursor: pointer;
   font-size: 18px;
   user-select: none;
@@ -218,6 +218,7 @@ form[name='myPageFrm']{position: relative;}
 .profile-btn-area{
   width: 230px;
   margin: 20px 0;
+  padding-left: 26px;
 
   display: flex;
   justify-content: center;
@@ -273,33 +274,54 @@ form[name='myPageFrm']{position: relative;}
   border-radius: 24px;
 }
 
-.write-btn-area > button:hover{
-  background-color: #ccc;
-}
-
 .write-btn-area > button:active{
   background-color: black;
   color: white;
 }
 
-#writeList{
+.write-board-list{
   width: 100%;
   margin-top: 10px;
   padding: 20px;
   border-collapse: collapse;
 }
 
-#writeList > thead{
+.write-board-list > thead{
   width: 100%;
+  height: 35px;
   background-color: black;
   color: white;
   font-size: 15px;
 }
 
-#writeList > tbody > tr > td {
+.write-board-list > tbody > tr > td {
   text-align: center;
 }
 
-#writeList > tbody > tr > td:last-child{
-  width: 20%;
+/* ***** pagination ****** */
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li {
+  width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.pagination a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.current {
+  font-weight: bold;
+  background-color: black;
+  border-radius: 50%;
+  color: white;
+  letter-spacing: 0 !important;
 }

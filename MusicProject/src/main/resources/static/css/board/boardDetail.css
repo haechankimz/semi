@@ -30,6 +30,7 @@
 
 .board-content {
     clear: both;
+    min-height: 400px;
     padding: 30px 0;
     margin: 20px 0 30px;
     border-top: 1px solid #ccc;

@@ -1,7 +1,33 @@
+/* ***** 카테고리 ***** */
+category {
+    align-items: center;
+    display: flex;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+.category-btn {
+    width: 70px;
+    height: 35px;
+    margin: 0 10px;
+    border: none;
+    background-color: rgb(60, 60, 60);
+    font-weight: bold;
+    color: white;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.category-btn:hover {
+    background-color: rgb(192, 190, 190);
+    color: black;
+    transition-duration: 0.2s;
+}
+
 /* 게시판 제목 */
 .board-name {
     font-size: 2em;
-    margin: 20px 0;
+    margin: 20px 5px;
 }
 
 /* 게시글 제목 */

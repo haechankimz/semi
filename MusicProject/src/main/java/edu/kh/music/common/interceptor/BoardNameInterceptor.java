@@ -13,8 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 public class BoardNameInterceptor implements HandlerInterceptor {
 	
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
+	public void postHandle(HttpServletRequest request, 
+						   HttpServletResponse response, 
+						   Object handler,
+						   ModelAndView modelAndView) throws Exception {
 		
 		ServletContext application = request.getServletContext();
 		
@@ -30,13 +32,15 @@ public class BoardNameInterceptor implements HandlerInterceptor {
 				int temp = 
 					Integer.parseInt(String.valueOf(boardType.get("boardCode")));
 				
-			if(temp == boardCode) {
-				request.setAttribute("boardName", boardType.get("boardName"));
-				break;
-			}
+				if(temp == boardCode) {
+					request.setAttribute("boardName", boardType.get("boardName"));
+					break;
+				}
 			
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
-		}catch (Exception e) {}
 	
 		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
 	}

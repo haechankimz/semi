@@ -25,6 +25,7 @@
 		MEMBER_NICKNAME = #{memberNickname},
 		MEMBER_TEL = #{memberTel},
 		MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
 	<update id="updateProfile">
@@ -32,6 +33,25 @@
 		PROFILE_IMG = #{profileImg}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
+	
+	
+	<select id="selectBoard">
+		SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, 
+		 	TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD') BOARD_WRITE_DATE
+		FROM "BOARD"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
   
 </mapper>

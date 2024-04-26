@@ -43,7 +43,7 @@
 		AND AUTHORITY = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	</select>
-  
+	
   	<!-- 아이디 찾기 -->
   	<select id="findId">
   		SELECT MEMBER_EMAIL 
@@ -66,5 +66,27 @@
 		AND AUTHORITY = 'N'
   	</select>
   	
+  	
+  	<!-- 아이디 찾기 -->
+  	<select id="checkId">
+  		SELECT COUNT(*)
+		FROM "MEMBER"
+		WHERE MEMBER_DEL_FL  = 'N'
+		AND AUTHORITY = 'N'
+		AND MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_TEL = #{memberTel}
+  	</select>
+  	
+  	
+  	<!-- 비밀번호 찾기 -->
+	<select id="checkPw">
+		SELECT COUNT(*)
+		FROM "MEMBER"
+		WHERE MEMBER_DEL_FL  = 'N'
+		AND AUTHORITY = 'N'
+		AND MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_TEL = #{memberTel}
+		AND MEMBER_EMAIL = #{memberEmail}
+	</select>  	
   
 </mapper>

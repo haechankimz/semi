@@ -284,5 +284,3 @@ SELECT * FROM "MEMBER";
 
 
 
-
-

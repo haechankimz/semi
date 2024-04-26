@@ -139,7 +139,7 @@ memberEmail.addEventListener("input", e => {
 
     for (let obj in pwObj) {
 
-        if (!pwObj[obj]) {
+      if (!pwObj[obj]) {
             alert("작성된 정보를 확인해 주세요.");
             document.getElementById(obj).focus();
             e.preventDefault();

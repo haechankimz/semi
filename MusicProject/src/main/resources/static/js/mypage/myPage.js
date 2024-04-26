@@ -252,9 +252,7 @@ myBoard.addEventListener("click", () => {
         writeList.append(tr);
       }
     } else{
-      const span = document.createElement("span")
-      span.innerText = "작성한 글이 존재하지 않습니다.";
-      listMain.append(span);
+      alert("작성한 댓글이 없습니다.");
     }
   });
 })
@@ -274,7 +272,7 @@ myComment.addEventListener("click", () => {
 
     if(!list){
 
-      
+      writeList.innerText= "";
 
       for(let comment of list){
         const tr = document.createElement("tr");
@@ -289,9 +287,7 @@ myComment.addEventListener("click", () => {
         writeList.append(tr);
       }
     } else{
-      const span = document.createElement("span");
-      span.innerText = "작성한 글이 존재하지 않습니다.";
-      writeList.append(span);
+      alert("작성한 댓글이 없습니다.");
     }
     
     

@@ -19,20 +19,20 @@
       <h1 class="board-title" th:text="${boardName}">게시판</h1>
 
       <div class="input-area">
-        <select name="selectCategory" id="selectCategory">
+        <select name="categoryNo" id="selectCategory">
           <option value="0">카테고리 입력</option>
-          <option value="1">힙합</option>
-          <option value="2">발라드</option>
-          <option value="3">댄스</option>
-          <option value="4">재즈</option>
-          <option value="5">팝</option>
-          <option value="6">록</option>
-          <option value="7">EDM</option>
-          <option value="8">인디</option>
-          <option value="9">R&B</option>
+          <option value="28">힙합</option>
+          <option value="29">발라드</option>
+          <option value="30">댄스</option>
+          <option value="31">재즈</option>
+          <option value="32">팝</option>
+          <option value="33">록</option>
+          <option value="34">EDM</option>
+          <option value="35">인디</option>
+          <option value="36">R&B</option>
         </select>
 
-        <input type="text" placeholder="제목을 입력해주세요.">
+        <input type="text" name="boardTitle" placeholder="제목을 입력해주세요.">
       </div>
 
       <h2 class="content">내용</h2>
@@ -96,7 +96,7 @@
     const boardCode = /*[[${boardCode}]]*/ "게시판 코드 번호";
   </script>
 
-  <script src="/js/board/boardList.js"></script>
+  <script src="/js/board/boardWrite.js"></script>
   
 </body>
 </html>

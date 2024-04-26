@@ -22,7 +22,7 @@
 	
 	<!-- 카테고리 버튼 가져오기 -->		
 	<select id="selectCategoryList">
-		SELECT CATEGORY_NAME, CATEGORY_NO
+		SELECT CATEGORY_NAME "categoryName", CATEGORY_NO "categoryNo"
 		FROM CATEGORY
 		WHERE BOARD_CODE = #{boardCode}
 	</select>

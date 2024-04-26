@@ -51,15 +51,15 @@ public class BoardController {
 		// 카테고리 버튼이름 가져오기
 		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
 		
-		List<String> cateName = new ArrayList<>();
-//		List<Integer> cateNo = new ArrayList<>();
-		
-		for (Map<String, Object> category : categoryList) {
-			String categoryName = (String) category.get("categoryName");
-//			int  categoryNo = (int) category.get("categoryNo");
-			cateName.add(categoryName);
-//			cateNo.add(categoryNo);
-		}
+//		List<String> cateName = new ArrayList<>();
+////		List<Integer> cateNo = new ArrayList<>();
+//		
+//		for (Map<String, Object> category : categoryList) {
+//			String categoryName = (String) category.get("categoryName");
+////			int  categoryNo = (int) category.get("categoryNo");
+//			cateName.add(categoryName);
+////			cateNo.add(categoryNo);
+//		}
 		
 		Map<String, Object> map = null;
 		
@@ -80,7 +80,7 @@ public class BoardController {
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("cateName", cateName);
+//		model.addAttribute("cateName", cateName);
 //		model.addAttribute("cateNo", cateNo);
 		
 		

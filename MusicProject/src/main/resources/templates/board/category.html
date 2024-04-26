@@ -8,8 +8,9 @@
 
 <category>
     <button class="category-btn"
-        th:each="categoryName : ${categoryList}"
-        th:text="${categoryName}">
+        th:each="category : ${categoryList}"
+        th:text="${category.categoryName}"
+        th:data-category-no="${category.categoryNo}">
     </button>
 </category>
 

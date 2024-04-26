@@ -289,9 +289,9 @@ myComment.addEventListener("click", () => {
         writeList.append(tr);
       }
     } else{
-      const span = document.createElement("span")
+      const span = document.createElement("span");
       span.innerText = "작성한 글이 존재하지 않습니다.";
-      listMain.append(span);
+      writeList.append(span);
     }
     
     

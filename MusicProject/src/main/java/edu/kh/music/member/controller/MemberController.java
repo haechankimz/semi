@@ -156,6 +156,23 @@ public class MemberController {
 	}
 		
 		
+	/*
+	 * // 아이디 찾기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("checkId") public int checkId(
+	 * 
+	 * @RequestBody Member member) { return service.checkId(member); }
+	 * 
+	 * // 비밀번호 찾기
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @PostMapping("checkPw") public int checkPw(
+	 * 
+	 * @RequestBody Member member) { return service.checkPw(member); }
+	 */
 	
 }
 	

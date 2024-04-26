@@ -32,7 +32,7 @@ public interface MemberMapper {
 	 * @return
 	 */
 	int checkNickname(String memberNickname);
-
+	
 	/** 아이디 찾기
 	 * @param member
 	 * @return
@@ -44,5 +44,19 @@ public interface MemberMapper {
 	 * @return
 	 */
 	String findPw(Member member);
+//
+//	/** 아이디 찾기
+//	 * @param member
+//	 * @return
+//	 */
+//	int checkId(Member member);
+//
+//	/** 비밀번호 찾기
+//	 * @param member
+//	 * @return
+//	 */
+//	int checkPw(Member member);
+//	
+	
 
 }

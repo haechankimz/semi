@@ -81,17 +81,6 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.findPw(member);
 	}
 	
-	/*
-	 * // 아이디 찾기
-	 * 
-	 * @Override public int checkId(Member member) { return mapper.checkId(member);
-	 * }
-	 * 
-	 * // 비밀번호 찾기
-	 * 
-	 * @Override public int checkPw(Member member) { return mapper.checkPw(member);
-	 * }
-	 */
 
 }
 

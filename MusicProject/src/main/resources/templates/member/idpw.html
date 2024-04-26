@@ -71,14 +71,14 @@
                     
                     <div class="menu-content-row">
                         <label>ID(email)</label>
-                        <input type="text" class="inputs" name="memberEmail" id="memberEmail" placeholder="이메일을 입력해 주세요.">
+                        <input type="text" class="inputs" name="memberEmail" id="memberEmail" placeholder="이메일을 입력해 주세요." >
 
                         <button id="sendAuthKeyBtn" type="button">인증번호 받기</button>
                     </div>
 
                     <div class="menu-content-row">
                         <label>인증번호</label>
-                        <input type="text" name="authKey" id="authKey" placeholder="인증번호 6글자를 입력해 주세요.">
+                        <input type="text" name="authKey" id="authKey" placeholder="인증번호 6글자를 입력해 주세요." disabled>
 
                         <button id="checkAuthKeyBtn" type="button">인증하기</button>
                     </div>
@@ -96,6 +96,7 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
     <script src="/js/member/idpw.js"></script>
+    <script src="/js/main.js"></script>
     
 </body>
 </html>

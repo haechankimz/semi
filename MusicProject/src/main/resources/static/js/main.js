@@ -19,7 +19,7 @@ var swiper = new Swiper(".swiper-container", {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    this.document.body.style.overflow="hidden";
+    document.body.style.overflow="hidden";
 });
 
 const popupClose = document.querySelector("#popupClose");

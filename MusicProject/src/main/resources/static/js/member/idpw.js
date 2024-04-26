@@ -11,23 +11,6 @@ const idObj = {
 
 idForm.addEventListener("submit", e => {
 
-    const checkObj = {
-        "memberNickname": memberNickname,
-        "memberTel": memberTel
-    }
-
-    fetch("/member/findId", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(checkObj)
-    })
-    .then(resp => resp.json())
-    .then(result => {
-
-        if (result == 1) {}
-        else {}
-    })
-
     memberNickname.addEventListener("input", e => {
         const inputMemberNickname = e.target.value;
 
@@ -68,6 +51,7 @@ const pwForm = document.querySelector("#pwForm");
 const memberEmail = document.querySelector("#memberEmail");
 const pwBtn = document.querySelector("#pwBtn");
 
+
 const pwObj = {
     "memberNickname": false,
     "memberTel": false,
@@ -76,24 +60,6 @@ const pwObj = {
 }
 
 pwForm.addEventListener("submit", e => {
-
-    const checkObj = {
-        "memberNickname": memberNickname,
-        "memberTel" : memberTel,
-        "memberEmail" : memberEmail
-    }
-
-    fetch("/member/findPw", {
-        method : "POST",
-        headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify(checkObj)
-    })
-    .then(resp => resp.json())
-    .then(result => {
-
-        if(result == 1){}
-        else{}
-    })
 
 memberNickname.addEventListener("input", e => {
     const inputMemberNickname = e.target.value;
@@ -139,10 +105,8 @@ memberEmail.addEventListener("input", e => {
 
     for (let obj in pwObj) {
 
-      if (!pwObj[obj]) {
-            alert("작성된 정보를 확인해 주세요.");
+      if (pwObj[obj]) {
             document.getElementById(obj).focus();
-            e.preventDefault();
             return;
         }
     }
@@ -176,6 +140,8 @@ let sec = setSec;
 
 
 sendAuthKeyBtn.addEventListener("click", e => {
+
+    authKey.disabled = false;
 
     pwObj.authKey = false;
     authKeyMessage.innerText = "";
@@ -246,6 +212,8 @@ sendAuthKeyBtn.addEventListener("click", e => {
 
 /* 인증하기 버튼 클릭 시 */
 checkAuthKeyBtn.addEventListener("click", () => {
+    
+  
 
     if (min === 0 && sec === 0) {
         alert("인증 번호 입력 제한 시간을 초과 하였습니다.");
@@ -275,11 +243,12 @@ checkAuthKeyBtn.addEventListener("click", () => {
                 pwObj.authKey = false;
                 return;
             }
-
-            if (checkAuthSentStatus()) {
-                alert("새 인증번호를 입력해 주세요.");
-                return;
-            }
+            
+            checkAuthSentStatus();
+          /*   alert("새 인증번호를 입력해 주세요.");
+            pwObj.authKey = false;
+            return; */
+            
 
             clearInterval(timer);
 

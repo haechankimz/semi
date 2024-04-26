@@ -310,6 +310,8 @@ let sec = setSec;
 
 sendAuthKeyBtn.addEventListener("click", () => {
 
+    authKey.disabled = false;
+
     const inputMemberEmail = document.querySelector("#memberEmail").value;
 
     checkSignupObj.authKey = false;

@@ -80,6 +80,7 @@ public class MemberServiceImpl implements MemberService{
 	public String findPw(Member member) {
 		return mapper.findPw(member);
 	}
+	
 
 }
 

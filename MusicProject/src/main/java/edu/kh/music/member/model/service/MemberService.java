@@ -29,7 +29,7 @@ public interface MemberService {
 	 * @return
 	 */
 	int checkNickname(String memberNickname);
-
+	
 	/** 아이디 찾기
 	 * @param member
 	 * @return
@@ -41,6 +41,5 @@ public interface MemberService {
 	 * @return
 	 */
 	String findPw(Member member);
-
 
 }

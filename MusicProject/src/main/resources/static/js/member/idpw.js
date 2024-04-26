@@ -51,7 +51,7 @@ idForm.addEventListener("submit", e => {
 
     for(let obj in idObj) {
 
-        if(idObj[obj]){
+        if(!idObj[obj]){
             alert("이메일 또는 비밀번호를 확인해주세요.");
             document.getElementById(obj).focus();
             e.preventDefault();
@@ -129,7 +129,7 @@ pwForm.addEventListener("submit", e => {
 
     for(let obj in pwObj) {
 
-        if(pwObj[obj]){
+        if(!pwObj[obj]){
             alert("작성된 정보를 확인해 주세요.");
             document.getElementById(obj).focus();
             e.preventDefault();

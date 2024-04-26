@@ -65,3 +65,13 @@
     background-color: rgb(192, 190, 190);
     color: black;
 }
+
+.like-area {
+    margin-left: 30px;
+}
+
+#boardLike {
+    font-size: 1.5em;
+    color: red;
+    cursor: pointer;
+}

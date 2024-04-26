@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.music.board.model.dto.Board;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Mapper
 public interface BoardMapper {
@@ -21,7 +22,7 @@ public interface BoardMapper {
 	/** 카테고리 버튼 가져오기
 	 * @return
 	 */
-//	List<Map<String, Object>> selectCategoryList();
+	List<Map<String, Object>> selectCategoryList(int boardCode);
 	
 	/** 게시글 수 조회
 	 * @param boardCode
@@ -51,7 +52,16 @@ public interface BoardMapper {
 	Board selectOne(Map<String, Integer> map);
 
 
-	List<String> selectCategoryList(int boardCode);
+	/** 특정 카테고리의 게시글
+	 * @param boardCode
+	 * @param categoryNo
+	 * @return
+	 */
+//	Map<String, Object> categoryContent(int boardCode, int categoryNo);
+
+
+
+
 
 
 

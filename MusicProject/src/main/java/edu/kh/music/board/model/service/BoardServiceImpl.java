@@ -12,6 +12,7 @@ import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.board.model.dto.Pagination;
 import edu.kh.music.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Service
 @Transactional
@@ -29,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 카테고리 버튼
 	@Override
-	public List<String> selectCategoryList(int boardCode) {
+	public List<Map<String, Object>> selectCategoryList(int boardCode) {
 		return mapper.selectCategoryList(boardCode);
 	}
 	
@@ -58,7 +59,8 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
-	// 게시글에 카테고리 가져오기
+	
+	// 게시글에 하나하나에 카테고리 가져오기
 	@Override
 	public String getCategoryName(int categoryNo) {
 		return mapper.getCategoryName();
@@ -69,7 +71,6 @@ public class BoardServiceImpl implements BoardService {
 	public Board selectOne(Map<String, Integer> map) {
 		return mapper.selectOne(map);
 	}
-
 
 
 

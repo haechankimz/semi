@@ -56,6 +56,7 @@ a:hover {
 .list-table {
     width: 100%;
     padding: 20px;
+    cursor: default;
     border-collapse: collapse;
 }
 

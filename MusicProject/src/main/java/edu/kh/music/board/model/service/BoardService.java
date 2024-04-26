@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.kh.music.board.model.dto.Board;
+import oracle.jdbc.proxy.annotation.Post;
 
 public interface BoardService {
 	
@@ -14,7 +15,7 @@ public interface BoardService {
 	
 	
 	// 카테고리 버튼 가져오기
-	List<String> selectCategoryList(int boardCode);
+	List<Map<String, Object>> selectCategoryList(int boardCode);
 
 	/** 게시글 목록 조회
 	 * @param boardCode
@@ -36,6 +37,14 @@ public interface BoardService {
 	 * @return
 	 */
 	Board selectOne(Map<String, Integer> map);
+
+
+
+
+
+
+
+
 
 
 

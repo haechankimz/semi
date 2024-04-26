@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -17,11 +18,13 @@ import edu.kh.music.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequiredArgsConstructor
 @SessionAttributes({ "loginMember" })
 @RequestMapping("member")
+@Slf4j
 public class MemberController {
 
 	private final MemberService service;
@@ -107,17 +110,21 @@ public class MemberController {
 
 	// id 찾기
 	@PostMapping("findId")
-	public String findId(Member member, Model model, RedirectAttributes ra) {
-
+	public String findId(
+			Member member, 
+			Model model, 
+			RedirectAttributes ra) {
+		
 		String id = service.findId(member);
-
+		
 		if (id == null) {
 			ra.addFlashAttribute("message", "조회된 아이디(이메일)이 없습니다." + "\n" + "정확한 이메일 또는 전화번호를 입력해 주세요.");
 			return "redirect:/member/idpw";
 
 		} else {
+			
 			model.addAttribute("id", id);
-
+			model.addAttribute("memberNickname", member.getMemberNickname());
 			return "member/selectId"; // forward
 		}
 

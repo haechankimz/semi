@@ -70,6 +70,7 @@ main{
   width: 40%;
   height: 40px;
   border-radius: 24px;
+  background-color: white;
   font-size: 18px;
 }
 
@@ -147,4 +148,10 @@ main{
   right: 7px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.delete-image:active{
+  cursor: pointer;
+  user-select: none;
+  color: red;
 }

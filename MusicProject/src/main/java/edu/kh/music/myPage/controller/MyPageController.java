@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.dto.Comment;
 import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
@@ -34,15 +35,22 @@ public class MyPageController {
 	public String profile(
 		@SessionAttribute("loginMember") Member loginMember,
 		Model model) {
-	
-			
 		return "myPage/myPage-profile";
 	}
 	
 	
 	
 	@GetMapping("write")
-	public String write() {
+	public String write(
+		@SessionAttribute("loginMember") Member loginMember) {
+		
+		
+		
+		
+		
+		
+		
+		
 		return "myPage/myPage-write";
 	}
 	
@@ -165,7 +173,12 @@ public class MyPageController {
 		return service.selectBoard(map);
 	}
 	
-	
+	@ResponseBody
+	@PostMapping("selectComment")
+	public List<Comment> selectComment(
+		@RequestBody Map<String, Integer> map){
+		return service.selectComment(map);
+	}
 	
 	
 	

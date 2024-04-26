@@ -43,6 +43,13 @@
 	</select>
 	
 	
+	<select id="selectComment">
+		SELECT COMMENT_NO, COMMENT_CONTENT, BOARD_NO,
+			TO_CHAR(COMMENT_WRITE_DATE, 'YYYY-MM-DD') COMMENT_WRITE_DATE
+		FROM "COMMENT"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
 	
 	
 	

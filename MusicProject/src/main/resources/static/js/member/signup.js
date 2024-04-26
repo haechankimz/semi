@@ -27,88 +27,7 @@ const checkSignupObj = {
     "memberPwCheck" : false,
     "memberNickname" : false,
     "memberTel" : false,
-    "authKey" : false, /* 인증  */
-}
-
-
-/* 이메일 인증 */
-const sendAuthKeyBtn = document.querySelector("#sendAuthKeyBtn"); // 인증번호 받기 버튼
-const authKey = document.querySelector("#authKey"); // input 태그
-const checkAuthKeyBtn = document.querySelector("#checkAuthKeyBtn"); // 확인 버튼
-const authKeyMessage = document.querySelector("#authKeyMessage"); // 메시지 출력 span
-
-let timer;
-
-const setMin = 4;
-const setSec = 59;
-const setTime = "05:00";
-
-// 실제 시간 저장하는 변수
-let min = setMin;
-let sec = setSec;
-
-sendAuthKeyBtn.addEventListener("click", () => {
-
-    checkSignupObj.authKey = false;
-    authKeyMessage.innerText = "";
-
-    if(!checkSignupObj.memberEmail) {
-        alert("중복된 이메일 입니다.");
-        return;
-    }
-
-    min = setMin;
-    sec = setSec;
-
-    clearInterval(timer);
-
-    checkSignupObj.authKey = false;
-
-    fetch("/email/sendMail", {
-        method : "POST",
-        headers : {"Content-Type" : "application/json"},
-        body : memberEmail.value
-    })
-
-    .then(resp => resp.text())
-    .then(result => {
-
-        /* 인증 번호 발송 여부 */
-        if(result == 1) {}
-        else {}
-    })
-
-    authKeyMessage.innerText = setTime;
-    authKeyMessage.classList.remove('confirm', 'error');
-
-    alert("인증번호가 발송 되었습니다.");
-
-    timer = setInterval( () => {
-
-        authKeyMessage.innerText = `${zero(min)} : ${zero(sec)}`
-
-        if(min == 0 && sec == 0) {
-            checkSignupObj.authKey = false;
-            clearInterval.apply(setTime);
-            authKeyMessage.classList.add('error');
-            authKeyMessage.classList.remove('confirm');
-            return;
-        }
-
-        if(sec == 0) {
-            sec=60;
-            min--;
-        }
-
-        sec--;
-
-    }, 1000);
-});
-
-// 00:00 형식으로 출력되게 함
-const zero = (number) => {
-    if(number < 10 ) return "0" + number;
-    else return number;
+    "authKey" : false /* 인증  */
 }
 
 
@@ -330,23 +249,30 @@ memberTel.addEventListener("input", e => {
 
 /* 회원가입 폼 제출시 */
 const signupForm = document.querySelector("#signupForm");
+const agree = document.querySelector("#agree");
 
-authKey.addEventListener("submit", e => {
+signupForm.addEventListener("submit", e => {
 
     for(let obj in checkSignupObj){
 
+        if(!agree.checked){
+            alert("약관에 동의해 주세요.");
+            e.preventDefault();
+            return;
+        }
+        
         // checkSignupObj 가 false인 경우 
         if(!checkSignupObj[obj]) { 
 
             let message;
 
             switch(obj) {
-                case "memeberEmail" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberPw" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberPwCheck" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberNickname" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "memberTel" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
-                case "authKey" : message = "알맞은 형식으로 작성했는지 확인 해주세요.";
+                case "memberEmail" : message = "작성한 이메일을 확인해 주세요."; break;
+                case "memberPw" : message = "작성한 비밀번호를 확인해 주세요."; break;
+                case "memberPwCheck" : message = "작성한 비밀번호와 일치 하는지 확인해 주세요."; break;
+                case "memberNickname" : message = "작성한 닉네임을 확인해 주세요."; break;
+                case "memberTel" : message = "작성한 전화번호를 작성했는지 확인해 주세요."; break;
+                case "authKey" : message = "인증번호 인증 여부를 확인해 주세요."; break;
             }
 
             alert(message);
@@ -355,7 +281,107 @@ authKey.addEventListener("submit", e => {
             return;
         }
     }
+
 });
+
+const setAuthSentStatus = () => {
+    localStorage.setItem('authKey', 'true');
+}
+
+const checkAuthSentStatus = () => {
+    return localStorage.getItem('authKey') === 'true';
+}
+
+/* 이메일 인증 */
+const sendAuthKeyBtn = document.querySelector("#sendAuthKeyBtn"); // 인증번호 받기 버튼
+const authKey = document.querySelector("#authKey"); // input 태그
+const checkAuthKeyBtn = document.querySelector("#checkAuthKeyBtn"); // 확인 버튼
+const authKeyMessage = document.querySelector("#authKeyMessage"); // 메시지 출력 span
+
+let timer;
+
+const setMin = 4;
+const setSec = 59;
+const setTime = "05:00";
+
+// 실제 시간 저장하는 변수
+let min = setMin;
+let sec = setSec;
+
+sendAuthKeyBtn.addEventListener("click", () => {
+
+    authKey.disabled = false;
+
+    const inputMemberEmail = document.querySelector("#memberEmail").value;
+
+    checkSignupObj.authKey = false;
+    authKeyMessage.innerText = "";
+
+    if(inputMemberEmail.trim() === "") {
+        alert("이메일을 입력해 주세요.");
+        return;
+    }
+
+    if(!checkSignupObj.memberEmail) {
+        alert("중복된 이메일 입니다.");
+        return;
+    }
+
+    min = setMin;
+    sec = setSec;
+
+    clearInterval(timer);
+
+    checkSignupObj.authKey = false;
+
+    fetch("/email/sendMail", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : memberEmail.value
+    })
+
+    .then(resp => resp.text())
+    .then(result => {
+
+        /* 인증 번호 발송 여부 */
+        if(result == 1) {}
+        else {}
+    })
+
+    authKeyMessage.innerText = setTime;
+    authKeyMessage.classList.remove('confirm', 'error');
+
+    alert("인증번호가 발송 되었습니다.");
+
+    timer = setInterval( () => {
+
+        authKeyMessage.innerText = `${zero(min)} : ${zero(sec)}`
+
+        if(min == 0 && sec == 0) {
+            checkSignupObj.authKey = false;
+            clearInterval.apply(setTime);
+            authKeyMessage.classList.add('error');
+            authKeyMessage.classList.remove('confirm');
+            return;
+        }
+
+        if(sec == 0) {
+            sec=60;
+            min--;
+        }
+
+        sec--;
+
+    }, 1000);
+
+});
+
+// 00:00 형식으로 출력되게 함
+const zero = (number) => {
+    if(number < 10 ) return "0" + number;
+    else return number;
+}
+
 
 
 /* 인증하기 버튼 클릭 시 */
@@ -396,7 +422,15 @@ checkAuthKeyBtn.addEventListener("click", () => {
         authKeyMessage.classList.add('confirm');
         authKeyMessage.classList.remove('error');
         checkSignupObj.authKey = true;
+
+        if(checkAuthSentStatus()) {
+            alert("새 인증번호를 입력해 주세요.");
+            return;
+        }
     })
 
+    setAuthSentStatus();
+
 });
+
 

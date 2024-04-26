@@ -226,7 +226,9 @@ myBoard.addEventListener("click", () => {
   .then( list => {
     console.log(list);
 
-    if(list != null){
+    if(list){
+
+      writeList.innerText= "";
 
       for(let board of list){
         const tr = document.createElement("tr");
@@ -234,21 +236,63 @@ myBoard.addEventListener("click", () => {
   
         for(let key of arr){
           const td = document.createElement("td");
+          
+          if(key === 'boardTitle'){
+            const a = document.createElement("a");
+            a.innerText = board[key];
+            a.href = "#";
+            td.append(a);
+            tr.append(td);
+            continue;
+          }
+          
           td.innerText = board[key];
           tr.append(td);
         }
         writeList.append(tr);
       }
     } else{
-      const h3 = document.createElement("h3")
-      h3.innerText = "작성한 글이 존재하지 않습니다.";
-      listMain.append(h3);
+      alert("작성한 댓글이 없습니다.");
     }
-
-
   });
 })
 
 
+myComment.addEventListener("click", () => {
+
+  const obj = { "memberNo" : loginMemberNo };
+
+  fetch("/myPage/selectComment", {
+    method : "POST",
+    headers : {"Content-Type" : "application/json"},
+    body : JSON.stringify(obj)
+  })
+  .then( response => response.json())
+  .then( list => {
+
+    if(!list){
+
+      writeList.innerText= "";
+
+      for(let comment of list){
+        const tr = document.createElement("tr");
+        const arr = ['commentNo', 'commentContent', 'boardNo', 'commentWriteDate'];
+        
+        for(let key of arr){
+          const td = document.createElement("td");
+
+          td.innerText = comment[key];
+          tr.append(td);
+        }
+        writeList.append(tr);
+      }
+    } else{
+      alert("작성한 댓글이 없습니다.");
+    }
+    
+    
+  })
+  
+});
 
 

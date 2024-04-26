@@ -43,6 +43,28 @@
 		AND AUTHORITY = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	</select>
-  
+	
+  	<!-- 아이디 찾기 -->
+  	<select id="findId">
+  		SELECT MEMBER_EMAIL 
+		FROM "MEMBER"
+		WHERE MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_TEL = #{memberTel}
+		AND MEMBER_DEL_FL = 'N'
+		AND AUTHORITY = 'N'
+  	</select>
+  	
+  	
+  	<!-- 비밀번호 찾기 -->
+  	<select id="findPw">
+  		SELECT MEMBER_PW
+		FROM "MEMBER"
+		WHERE MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_TEL = #{memberTel}
+		AND MEMBER_EMAIL = #{memberEmail}
+		AND MEMBER_DEL_FL = 'N'
+		AND AUTHORITY = 'N'
+  	</select>
+
   
 </mapper>

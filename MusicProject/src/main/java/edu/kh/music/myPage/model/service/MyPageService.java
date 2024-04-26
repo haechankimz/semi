@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.dto.Comment;
 import edu.kh.music.member.model.dto.Member;
 
 public interface MyPageService {
@@ -23,6 +24,9 @@ public interface MyPageService {
 
 	// 내가 쓴 글 조회
 	List<Board> selectBoard(Map<String, Integer> map);
+
+	// 내가 쓴 댓글 조회
+	List<Comment> selectComment(Map<String, Integer> map);
 
 
 

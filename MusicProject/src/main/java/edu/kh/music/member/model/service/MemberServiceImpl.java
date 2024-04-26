@@ -66,6 +66,21 @@ public class MemberServiceImpl implements MemberService{
 	public int checkNickname(String memberNickname) {
 		return mapper.checkNickname(memberNickname);
 	}
+	
+	
+	// 아이디 찾기
+	@Override
+	public String findId(Member member) {
+		return mapper.findId(member);
+	}
+	
+	
+	// 비밀번호 찾기
+	@Override
+	public String findPw(Member member) {
+		return mapper.findPw(member);
+	}
+	
 
 }
 

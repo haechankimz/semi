@@ -16,3 +16,11 @@ categoryBtn.forEach(categoryBtn => {
 
 
 /* 글쓰기 버튼 / 검색 요소 */
+const insertBtn = document.querySelector("#insertBtn");
+
+
+insertBtn.addEventListener("click", () => {
+
+  location.href = `/editBoard/${boardCode}/insert`;
+
+});

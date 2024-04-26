@@ -32,5 +32,18 @@ public interface MemberMapper {
 	 * @return
 	 */
 	int checkNickname(String memberNickname);
+	
+	/** 아이디 찾기
+	 * @param member
+	 * @return
+	 */
+	String findId(Member member);
+
+	/** 비밀번호 찾기
+	 * @param member
+	 * @return
+	 */
+	String findPw(Member member);
+
 
 }

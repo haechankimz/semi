@@ -21,11 +21,12 @@
 	</select>
 	
 	<!-- 카테고리 버튼 가져오기 -->		
-	<select id="selectCategoryList" resultType="String">
-		SELECT CATEGORY_NAME
+	<select id="selectCategoryList">
+		SELECT CATEGORY_NAME, CATEGORY_NO
 		FROM CATEGORY
 		WHERE BOARD_CODE = #{boardCode}
 	</select>
+	
 	
 	<!-- 게시글 수 조회 -->
 	<select id="getListCount">
@@ -35,11 +36,11 @@
 		AND BOARD_CODE = #{boardCode}
 	</select>
 	
-	<!-- 게시글에 카테고리 가져오기 -->
+	<!-- 게시글 리스트 부분에 카테고리 가져오기 -->
 	<select id="getCategoryName">
 		SELECT CATEGORY_NO "categoryNo", CATEGORY_NAME "categoryName"
 		FROM CATEGORY
-		ORDER BY CATEGORY_NO	
+		ORDER BY CATEGORY_NO
 	</select>
 
 	<!-- 게시글 목록 조회 -->

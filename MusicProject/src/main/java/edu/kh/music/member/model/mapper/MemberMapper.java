@@ -45,5 +45,16 @@ public interface MemberMapper {
 	 */
 	String findPw(Member member);
 
+	/** 비밀번호 변경
+	 * @param map
+	 * @return
+	 */
+	int updatePw(Map<String, Object> map);
+
+	int selectMember(int memberNo);
+
+	
+	
+
 
 }

@@ -22,6 +22,7 @@ if(updatePwForm.addEventListener("submit", e => {
             return;
         }
     });
+
 }));
 
 const checkObj = {

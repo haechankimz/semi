@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 const popupClose = document.querySelector("#popupClose");
 const popupLayer = document.querySelector("#popupLayer");
-const loginForm = document.querySelector("#loginForm")
+const loginForm = document.querySelector("#loginForm");
+const background = document.querySelector("#modalBackground");
 
 if(loginForm != null) {
     popupClose.addEventListener("click", () => {

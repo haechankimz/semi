@@ -177,7 +177,7 @@ public class MemberController {
 			path = "/";
 			
 		} else {
-			message = "변경 실패";
+			message = "새 비밀번호를 알맞게 입력했는지 확인 해주세요.";
 			path = "updatePw";
 		}
 		

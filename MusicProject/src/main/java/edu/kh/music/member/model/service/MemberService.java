@@ -42,4 +42,14 @@ public interface MemberService {
 	 */
 	String findPw(Member member);
 
+	/** 비밀번호 변경
+	 * @param newPw
+	 * @param member
+	 * @param memberNickname 
+	 * @param member 
+	 * @return
+	 */
+	int updatePw(String newPw, Member member);
+
+
 }

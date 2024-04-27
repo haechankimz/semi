@@ -1,5 +1,8 @@
 package edu.kh.music.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.member.model.service.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -132,7 +136,9 @@ public class MemberController {
 
 	// pw 찾기
 	@PostMapping("findPw")
-	public String findPw(Member member, RedirectAttributes ra) {
+	public String findPw(
+			Member member, 
+			RedirectAttributes ra) {
 
 		String id = service.findPw(member);
 
@@ -144,6 +150,39 @@ public class MemberController {
 			return "member/updatePw";
 		}
 	}
-
+	
+	
+	@GetMapping("updatePw")
+	public String updatePw() {
+		
+		return "member/updatePw";
+	}
+	
+	
+	// 비밀번호 변경
+	@PostMapping("updatePw")
+	public String updatePw(
+			Member member,
+			@RequestParam("newPw") String newPw,
+			RedirectAttributes ra) {
+		
+		int result = service.updatePw(newPw, member);
+		
+		String path;
+		String message;
+		
+		// 변경 성공
+		if(result > 0) {
+			message = "새 비밀번호로 변경 되었습니다." + "\n" + "로그인 후 이용해 주세요.";
+			path = "/";
+			
+		} else {
+			message = "새 비밀번호를 알맞게 입력했는지 확인 해주세요.";
+			path = "updatePw";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		return "redirect:" + path;
+	}
 	
 }

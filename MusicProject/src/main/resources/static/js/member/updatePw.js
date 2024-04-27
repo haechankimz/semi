@@ -2,28 +2,6 @@ const updatePwForm = document.querySelector("#updatePwForm");
 const newPw = document.querySelector("#newPw");
 const newPwCheck = document.querySelector("#newPwCheck");
 
-/* input 태그에 입력된 값이 없는 경우 제출 막음 */
-if(updatePwForm.addEventListener("submit", e => {
-
-    newPw.addEventListener("input", e => {
-        const inputNewPw = e.target.value;
-
-        if(inputNewPw.trim().length === 0) {
-            e.preventDefault();
-            return;
-        }
-    }); 
-
-    newPwCheck.addEventListener("input", e => {
-        const inputNewPwCheck = e.target.value;
-
-        if(inputNewPwCheck.trim().length === 0) {
-            e.preventDefault();
-            return;
-        }
-    });
-}));
-
 const checkObj = {
     "newPw" : false,
     "newPwCheck" : false
@@ -38,7 +16,7 @@ const checkPw = () => {
         pwMessage.innerText = "비밀번호가 일치합니다.";
         pwMessage.classList.add('confirm');
         pwMessage.classList.remove('error');
-        checkObj.newPwCheck = false;
+        checkObj.newPwCheck = true;
         return;
     }
 
@@ -100,5 +78,24 @@ newPwCheck.addEventListener("input", e => {
     }
 
     checkObj.newPwCheck = false;
+});
 
+updatePwForm.addEventListener("submit", e => {
+
+    for(let obj in checkObj) {
+        if(!checkObj[obj]){
+            
+            let str;
+
+            switch(obj){
+                case "newPw" : str = "새 비밀번호를 작성해 주세요."; break;
+                case "newPwCheck" : str = "비밀번호 확인을 위해 작성해 주세요."; break;
+            }
+
+            alert(str);
+            document.getElementById(obj).focus();
+            e.preventDefault();
+            return;
+        }
+    }
 });

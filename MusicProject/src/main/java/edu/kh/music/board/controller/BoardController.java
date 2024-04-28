@@ -43,6 +43,7 @@ public class BoardController {
 	@GetMapping("{boardCode:[0-9]+}")
 	public String selectBoardList(
 		@PathVariable("boardCode") int boardCode,
+		@RequestParam(value="categoryNo", required=false) Integer categoryNo,
 		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 		Model model,
 		@RequestParam Map<String, Object> paramMap) {
@@ -51,20 +52,14 @@ public class BoardController {
 		// 카테고리 버튼이름 가져오기
 		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
 		
-//		List<String> cateName = new ArrayList<>();
-////		List<Integer> cateNo = new ArrayList<>();
-//		
-//		for (Map<String, Object> category : categoryList) {
-//			String categoryName = (String) category.get("categoryName");
-////			int  categoryNo = (int) category.get("categoryNo");
-//			cateName.add(categoryName);
-////			cateNo.add(categoryNo);
-//		}
-		
 		Map<String, Object> map = null;
+
+
+
 		
 		if(paramMap.get("key") == null) {
 			map = service.selectBoardList(boardCode, cp);
+			
 			
 			List<Board> boardList = (List<Board>) map.get("boardList");
 			for(Board board : boardList) {
@@ -72,6 +67,7 @@ public class BoardController {
 					String categoryName = service.getCategoryName(boardCode);
 					board.setCategoryName(categoryName);
 				}
+					
 
 			}
 			
@@ -80,8 +76,54 @@ public class BoardController {
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 		model.addAttribute("categoryList", categoryList);
-//		model.addAttribute("cateName", cateName);
-//		model.addAttribute("cateNo", cateNo);
+		
+		
+		return "board/boardList";
+	}
+	
+	
+	/** 특정 카테고리 게시글 목록 조회
+	 * @param boardCode
+	 * @param categoryNo
+	 * @param cp
+	 * @param model
+	 * @param paramMap
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/category/{categoryNo:[0-9]+}")
+	public String selectCategoryBoardList(
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("categoryNo") int categoryNo,
+			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+			Model model,
+			@RequestParam Map<String, Object> paramMap) {
+		
+		
+		// 카테고리 버튼이름 가져오기
+		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
+		
+		Map<String, Object> map = null;
+		
+		
+		if(paramMap.get("key") == null) {
+			map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
+			
+			
+			List<Board> boardList = (List<Board>) map.get("boardList");
+			for(Board board : boardList) {
+				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
+					String categoryName = service.getCategoryName(boardCode);
+					board.setCategoryName(categoryName);
+				}
+				
+				
+			}
+			
+		}
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("categoryList", categoryList);
 		
 		
 		return "board/boardList";

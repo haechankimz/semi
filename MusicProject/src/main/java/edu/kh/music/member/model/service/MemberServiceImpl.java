@@ -97,6 +97,20 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.updatePw(map);
 	}
 
+	
+	// 빠른 로그인
+	@Override
+	public Member quickLogin(String memberEmail) {
+Member loginMember = mapper.login(memberEmail);
+		
+		// 탈퇴 또는 없는 회원
+		if(loginMember == null) return null;
+		
+		// 조회된 비밀번호 null 변경
+		loginMember.setMemberPw(null);
+		
+		return loginMember;
+	}
 }
 
 

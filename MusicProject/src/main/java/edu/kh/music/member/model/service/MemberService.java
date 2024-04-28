@@ -51,5 +51,11 @@ public interface MemberService {
 	 */
 	int updatePw(String newPw, Member member);
 
+	/** 빠른 로그인
+	 * @param ㅓmemberEmail
+	 * @return
+	 */
+	Member quickLogin(String memberEmail);
+
 
 }

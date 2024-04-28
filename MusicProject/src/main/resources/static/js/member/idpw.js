@@ -63,7 +63,6 @@ pwForm.addEventListener("submit", e => {
 
 memberNickname.addEventListener("input", e => {
     
-    checkAuthKeyBtn.disabled = false;
     
     const inputMemberNickname = e.target.value;
 
@@ -91,7 +90,6 @@ memberTel.addEventListener("input", e => {
 });
 
 memberEmail.addEventListener("input", e => {
-    checkAuthKeyBtn.disabled = false;
     
     const inputMemberEmail = e.target.value;
 

@@ -102,7 +102,6 @@ boardWrite.addEventListener("submit", e =>{
     return;
   }
 
-  e.preventDefault();
 });
 
 

@@ -185,4 +185,29 @@ public class MemberController {
 		return "redirect:" + path;
 	}
 	
+	// 로그인 페이지로 전환
+	@GetMapping("login")
+	public String login() {
+		return "member/login";
+	}
+	
+	
+	// 빠른 로그인
+	@GetMapping("quickLogin")
+	public String quickLogin(
+			@RequestParam("memberEmail") String memberEmail,
+			Model model, 
+			RedirectAttributes ra) {
+		
+		Member loginMember = service.quickLogin(memberEmail);
+		
+		if(loginMember == null) {
+			ra.addAttribute("message", "해당 이메일 회원이 존재하지 않습니다.");
+		} else {
+			model.addAttribute("loginMember", loginMember);
+		}
+		
+		return "redirect:/";
+	}
+	
 }

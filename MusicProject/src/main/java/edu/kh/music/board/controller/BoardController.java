@@ -201,6 +201,7 @@ public class BoardController {
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					
 					Date a = new Date();
+				
 					Date temp = new Date(cal.getTimeInMillis());
 					Date b = sdf.parse(sdf.format(temp));
 					long diff = (b.getTime() - a.getTime()) / 1000;
@@ -221,7 +222,7 @@ public class BoardController {
 					
 				}
 				
-//			}
+
 		
 		return path;
 		

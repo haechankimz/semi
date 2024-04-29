@@ -62,6 +62,8 @@ const pwObj = {
 pwForm.addEventListener("submit", e => {
 
 memberNickname.addEventListener("input", e => {
+    
+    
     const inputMemberNickname = e.target.value;
 
     if (inputMemberNickname.trim().length === 0) {
@@ -88,6 +90,7 @@ memberTel.addEventListener("input", e => {
 });
 
 memberEmail.addEventListener("input", e => {
+    
     const inputMemberEmail = e.target.value;
 
     pwObj.authKey = false;
@@ -212,8 +215,6 @@ sendAuthKeyBtn.addEventListener("click", e => {
 
 /* 인증하기 버튼 클릭 시 */
 checkAuthKeyBtn.addEventListener("click", () => {
-    
-  
 
     if (min === 0 && sec === 0) {
         alert("인증 번호 입력 제한 시간을 초과 하였습니다.");

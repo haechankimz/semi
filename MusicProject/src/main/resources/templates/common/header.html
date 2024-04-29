@@ -28,6 +28,10 @@
         <!-- 마이 페이지, 로그인 드롭다운 -->
 
         <div class="top-menu">
+
+            <h3>빠른 로그인</h3>
+            <button class="quick-login">ijisu8022@gmail.com</button>
+
     
             <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정) -->
     
@@ -36,7 +40,7 @@
             </th:block>
             
             <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃 드롭박스 예정)  -->
-            <th:block th:unless="${session.loginMember == null}">
+            <th:block th:if="${session.loginMember != null}">
                 <label for="menuToggle" id="menuToggle">
                     <!-- <i class="fa-solid fa-user"></i> -->
                    
@@ -87,7 +91,6 @@
     </section>
 
 </form>
-
 
 <!-- navigator(게시판 종류 나열) -->
 <nav>

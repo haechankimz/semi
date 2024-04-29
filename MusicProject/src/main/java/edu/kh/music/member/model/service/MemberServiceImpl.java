@@ -1,7 +1,6 @@
 package edu.kh.music.member.model.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,6 +81,36 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 
+	// 비밀번호 변경	
+	@Override
+	public int updatePw(String newPw, Member member) {
+		
+		String bcryptPw = bcrypt.encode(newPw);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberNo", member.getMemberNo());
+		map.put("memberEmail", member.getMemberEmail());
+		map.put("memberNickname", member.getMemberNickname());
+		map.put("memberTel", member.getMemberTel());
+		map.put("newPw", bcryptPw);
+		
+		return mapper.updatePw(map);
+	}
+
+	
+	// 빠른 로그인
+	@Override
+	public Member quickLogin(String memberEmail) {
+		Member loginMember = mapper.login(memberEmail);
+		
+		// 탈퇴 또는 없는 회원
+		if(loginMember == null) return null;
+		
+		// 조회된 비밀번호 null 변경
+		loginMember.setMemberPw(null);
+		
+		return loginMember;
+	}
 }
 
 

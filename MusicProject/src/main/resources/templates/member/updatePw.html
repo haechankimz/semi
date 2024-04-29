@@ -17,7 +17,7 @@
         <section class="signup-content">
 
 
-            <form action="#" method="POST" name="signupForm" id="signupForm">
+            <form action="/member/updatePw" method="POST" name="updatePwForm" id="updatePwForm">
                 
                 <label for="newPw">
                     <span class="required">*</span> 새 비밀번호
@@ -37,15 +37,15 @@
                 </div>
 
                 
-                <button id="signupBtn">변경하기</button>
+                <button id="updateBtn">변경하기</button>
                 
             </form>
         </section>
     </main>
     
     <th:block th:replace="~{common/footer}"></th:block>
-    <script src="/js/member/udpatePw.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/member/updatePw.js"></script>
 
 </body>
 </html>

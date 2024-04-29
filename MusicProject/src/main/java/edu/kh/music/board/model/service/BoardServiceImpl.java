@@ -12,6 +12,7 @@ import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.board.model.dto.Pagination;
 import edu.kh.music.board.model.mapper.BoardMapper;
 import lombok.RequiredArgsConstructor;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Service
 @Transactional
@@ -29,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 카테고리 버튼
 	@Override
-	public List<String> selectCategoryList(int boardCode) {
+	public List<Map<String, Object>> selectCategoryList(int boardCode) {
 		return mapper.selectCategoryList(boardCode);
 	}
 	
@@ -47,7 +48,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		
 		List<Board> boardList = mapper.selectBoardList(boardCode, rowBounds);
 		
 		Map<String, Object> map = new HashMap<>();
@@ -58,7 +58,31 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 
-	// 게시글에 카테고리 가져오기
+	
+	// 특정 카테고리의 게시글 
+	@Override
+	public Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo) {
+		
+		int listCount = mapper.getListCount(boardCode);
+		
+		Pagination pagination = new Pagination(cp, listCount);
+		
+		int limit = pagination.getLimit();
+		int offset = (cp-1) * limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Board> boardList = mapper.selectCategoryBoardList(boardCode, categoryNo, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+		
+		return map;
+	}
+	
+	// 게시글에 하나하나에 카테고리 가져오기
 	@Override
 	public String getCategoryName(int categoryNo) {
 		return mapper.getCategoryName();
@@ -69,6 +93,7 @@ public class BoardServiceImpl implements BoardService {
 	public Board selectOne(Map<String, Integer> map) {
 		return mapper.selectOne(map);
 	}
+
 
 
 

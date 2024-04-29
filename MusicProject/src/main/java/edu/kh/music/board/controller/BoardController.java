@@ -1,5 +1,6 @@
 package edu.kh.music.board.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,6 @@ import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.board.model.service.BoardService;
 import edu.kh.music.member.model.dto.Member;
 import jakarta.mail.internet.ParseException;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -42,28 +42,80 @@ public class BoardController {
 	 */
 	@GetMapping("{boardCode:[0-9]+}")
 	public String selectBoardList(
-		
 		@PathVariable("boardCode") int boardCode,
+		@RequestParam(value="categoryNo", required=false) Integer categoryNo,
 		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 		Model model,
 		@RequestParam Map<String, Object> paramMap) {
 		
+		
 		// 카테고리 버튼이름 가져오기
-		List<String> categoryNames = service.selectCategoryList(boardCode);
+		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
 		
 		Map<String, Object> map = null;
+
+
+
 		
 		if(paramMap.get("key") == null) {
 			map = service.selectBoardList(boardCode, cp);
 			
+			
 			List<Board> boardList = (List<Board>) map.get("boardList");
 			for(Board board : boardList) {
-				int categoryNo = board.getCategoryNo();
-
 				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
-					String categoryName = service.getCategoryName(categoryNo);
+					String categoryName = service.getCategoryName(boardCode);
 					board.setCategoryName(categoryName);
 				}
+					
+
+			}
+			
+		}
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("categoryList", categoryList);
+		
+		
+		return "board/boardList";
+	}
+	
+	
+	/** 특정 카테고리 게시글 목록 조회
+	 * @param boardCode
+	 * @param categoryNo
+	 * @param cp
+	 * @param model
+	 * @param paramMap
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/category/{categoryNo:[0-9]+}")
+	public String selectCategoryBoardList(
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("categoryNo") int categoryNo,
+			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+			Model model,
+			@RequestParam Map<String, Object> paramMap) {
+		
+		
+		// 카테고리 버튼이름 가져오기
+		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
+		
+		Map<String, Object> map = null;
+		
+		
+		if(paramMap.get("key") == null) {
+			map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
+			
+			
+			List<Board> boardList = (List<Board>) map.get("boardList");
+			for(Board board : boardList) {
+				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
+					String categoryName = service.getCategoryName(boardCode);
+					board.setCategoryName(categoryName);
+				}
+				
 				
 			}
 			
@@ -71,7 +123,8 @@ public class BoardController {
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
-		model.addAttribute("categoryNames", categoryNames);
+		model.addAttribute("categoryList", categoryList);
+		
 		
 		return "board/boardList";
 	}

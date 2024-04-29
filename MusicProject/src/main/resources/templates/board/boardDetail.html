@@ -63,8 +63,10 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
-    <script th:inlink="javascript">
-        const loginMember = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+    <script th:inline="javascript">
+        const loginMemberNo = /*[[${session.loginMember?.memberNo}]]*/ "로그인 회원 번호";
+
+        const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
 
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부";
 

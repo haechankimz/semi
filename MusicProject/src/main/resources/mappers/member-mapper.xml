@@ -57,7 +57,7 @@
   	
   	<!-- 비밀번호 찾기 -->
   	<select id="findPw">
-  		SELECT MEMBER_PW
+  		SELECT MEMBER_NO
 		FROM "MEMBER"
 		WHERE MEMBER_NICKNAME = #{memberNickname}
 		AND MEMBER_TEL = #{memberTel}
@@ -71,9 +71,8 @@
     	UPDATE "MEMBER" 
     	SET MEMBER_PW = #{newPw}
 		WHERE MEMBER_NO = #{memberNo}
-		AND MEMBER_TEL = #{memberTel}
-		AND MEMBER_EMAIL = #{memberEmail}
-		AND MEMBER_NICKNAME = #{memberNickname}
+		AND MEMBER_DEL_FL = 'N'
+		AND AUTHORITY = 'N'
     </update>
 
 </mapper>

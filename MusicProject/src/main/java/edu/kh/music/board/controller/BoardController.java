@@ -185,7 +185,7 @@ public class BoardController {
 //					}
 //				}
 				
-				path = "board/boardDetail";
+				path = "/board/boardDetail";
 				
 				model.addAttribute("board", board);
 				

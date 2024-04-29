@@ -28,5 +28,30 @@
 			SELECT NEXT_IMG_NO(), #{img.imgPath}, #{img.imgOriginalName}, #{img.imgRename}, #{img.imgOrder}, #{img.boardNo} FROM DUAL
 		</foreach>
 	</insert>
+	
+	
+	<update id="deleteBoard">
+		UPDATE "BOARD" SET
+		BOARD_DEL_FL = 'Y'
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>

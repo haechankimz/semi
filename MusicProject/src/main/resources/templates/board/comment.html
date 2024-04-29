@@ -3,7 +3,10 @@
     <div class="comment-list-area">
         
         <ul id="commentList">
-            <li class="comment-row">
+            <li class="comment-row"
+                th:each="comment : ${board.commentList}"
+                th:object="${comment}"
+                th:classappend="${comment.parentCommentNo} != 0 ? child-comment"></li>
 
                 <th:block th:if="*{commentDelFl} == 'Y'">
                     삭제된 댓글 입니다.
@@ -19,6 +22,22 @@
                     <span class="comment-date" th:text="*{commentWriterDate}">댓글 작성일</span>
                 </p> 
 
+                <p class="comment-content" th:text="${conmmentContent}">댓글 내용</p>
+
+                <!-- 버튼  -->
+                <div class="comment-btn-area">
+                    <button th:onclick="|showInsertComment(*{commnetNo},this)|"></button>
+
+                    <!-- 로그인 회원 == 작성자인 경우-->
+                    <th:block th:if="${session.loginMember != null
+                                       and session.loginMember.memberNo == comment.memberNo}">
+
+                    <button th:onclick="|showInsertComment(*{commnetNo},this)|">삭제</button> 
+                    <button th:onclick="|deleteComment(*{commnetNo},this)|">수정</button>
+
+                    </th:block>
+
+                </div>
 
             </li>
         </ul>

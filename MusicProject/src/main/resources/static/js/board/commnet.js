@@ -9,21 +9,21 @@ const selectCommentList = () => {
         /* 조회된 댓글 출력 */
         for(let comment of commentList) {
 
-            const commnentRow = document.createElement("li");
-            commnentRow.classList.add("comment-row");
+            const commentRow = document.createElement("li");
+            commentRow.classList.add("comment-row");
 
             // 대댓글인 경우 child-comment 클래스 추가
-            if(comment.parentCommentNo != 0) commnentRow.classList.add("child-comment");
+            if(comment.parentCommentNo != 0) commentRow.classList.add("child-comment");
             
             // 삭제된 댓글이지만 대댓글은 존재하는 경우
-            if(comment.commentDelFl = 'Y') commnentRow.innerText = "삭제된 댓글 입니다.";
+            if(comment.commentDelFl == 'Y') commentRow.innerText = "삭제된 댓글 입니다.";
 
             // 댓글 존재
             else{
 
                 // 회원 정보
                 const commentWriter = document.createElement("p");
-                commentWriter.classList.add("commnet-writer");
+                commentWriter.classList.add("comment-writer");
 
                 const profileImg = document.createElement("img");
 
@@ -35,16 +35,16 @@ const selectCommentList = () => {
 
                 const commentDate = document.createElement("span");
                 commentDate.classList.add("comment-date");
-                commentDate.innerText = comment,commentWriterDate;
+                commentDate.innerText = comment.commentWriterDate;
 
-                commentWriter.append(profileImg. nickname, commentDate);
-                commnentRow.append(commentWriter);
+                commentWriter.append(profileImg, nickname, commentDate);
+                commentRow.append(commentWriter);
 
                 // 댓글 내용
                 const content = document.createElement("p");
                 content.classList.add("comment-content");
                 content.innerText = comment.commentContent;
-                commnentRow.append(content);
+                commentRow.append(content);
 
                 // ---- 버튼 -----
 
@@ -74,10 +74,10 @@ const selectCommentList = () => {
                     commentBtnArea.append(updateBtn, deleteBtn);
                 }
 
-                commnentRow.append(commentBtnArea);
+                commentRow.append(commentBtnArea);
             }
 
-            ul.append(commnentRow);
+            ul.append(commentRow);
         }
 
     });
@@ -105,7 +105,7 @@ addContent.addEventListener("click", () => {
     const dataObj = {
         "commentContent" : commentContent.value,
         "boardNo" : boardNo,
-        "memberNo" : memberNo
+        "memberNo" : loginMemberNo
     };
 
     fetch("/comment", {
@@ -128,4 +128,11 @@ addContent.addEventListener("click", () => {
     .catch(e => {
         console.log(e);
     })
-})
+});
+
+// 대댓글 작성 화면
+const showInserComment = (parentCommentNo, btn) => {
+
+    const temp = document.getElementsByClassName("commentInsertContent");
+}
+

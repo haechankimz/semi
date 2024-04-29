@@ -106,3 +106,15 @@ quickLoginBtn.addEventListener("click", () => {
     location.href = "/member/quickLogin?memberEmail=" + email;
 
 });
+
+
+
+// 위젯 
+// const domain = document.querySelector("#domain");
+// const international = document.getElementById("international");
+// const free = document.getElementById("free");
+// const notice = document.getElementById("notice");
+
+// domain.addEventListener("click", () => {
+//    location.href="/board/1"; 
+// });

@@ -75,7 +75,7 @@
             </div>
 
             <div class="btn-area">
-                <button id="insertBtn">글쓰기</button>
+                <button id="insertBtn" th:if="${session.loginMember}">글쓰기</button>
             </div>
 
             <!-- ***** pagination ***** -->

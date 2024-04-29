@@ -3,14 +3,11 @@ const categoryBtn = document.querySelectorAll(".category-btn");
 
 categoryBtn.forEach(categoryBtn => {
     categoryBtn.addEventListener("click", () => {
-        const boardCode = categoryBtn.getAttribute("boardCode");
-        const categoryNo = categoryBtn.getAttribute("categoryNo")
+        const boardCode = window.location.pathname.split("/")[2];
+        const categoryNo = categoryBtn.dataset.categoryNo;
         location.href = `/board/${boardCode}/category/${categoryNo}`;
     });
 });
-
-
-
 
 
 

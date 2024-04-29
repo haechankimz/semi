@@ -1,6 +1,8 @@
 package edu.kh.music.board.controller;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -92,11 +97,11 @@ public class BoardController {
 	 */
 	@GetMapping("{boardCode:[0-9]+}/category/{categoryNo:[0-9]+}")
 	public String selectCategoryBoardList(
-			@PathVariable("boardCode") int boardCode,
-			@PathVariable("categoryNo") int categoryNo,
-			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
-			Model model,
-			@RequestParam Map<String, Object> paramMap) {
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("categoryNo") int categoryNo,
+		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		Model model,
+		@RequestParam Map<String, Object> paramMap) {
 		
 		
 		// 카테고리 버튼이름 가져오기
@@ -115,7 +120,6 @@ public class BoardController {
 					String categoryName = service.getCategoryName(boardCode);
 					board.setCategoryName(categoryName);
 				}
-				
 				
 			}
 			
@@ -140,7 +144,7 @@ public class BoardController {
 		RedirectAttributes ra,
 		@SessionAttribute(value="loginMember", required=false) Member loginMember,
 		HttpServletRequest req,
-		HttpServletResponse resp) throws ParseException {
+		HttpServletResponse resp) throws ParseException, Exception {
 		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("boardCode", boardCode);
@@ -156,7 +160,7 @@ public class BoardController {
 		
 		if(board == null) {
 			path = "redirect:/board/" + boardCode;
-			ra.addAttribute("message", "게시글이 존재하지 않습니다.");
+			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
 			
 		} else {
 			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
@@ -173,31 +177,64 @@ public class BoardController {
 				
 				int result = 0;
 				
-//				if(c == null) {
-//					c = new Cookie("readBoardNo", "[" + boardNo + "]");
-//					result = service.updateReadCount(boardNo);
-//				}
-//				
-//				else {
-//					if(c.getValue().indexOf("[" + boardNo +"]") == -1) {
-//						c.setValue(c.getValue() + "[" + boardNo + "]");
-//						result = service.updateReadCount(boardNo);
-//					}
-//				}
+				if(c == null) {
+					c = new Cookie("readBoardNo", "[" + boardNo + "]");
+					result = service.updateReadCount(boardNo);
+				}
+				
+				else {
+					if(c.getValue().indexOf("[" + boardNo +"]") == -1) {
+						c.setValue(c.getValue() + "[" + boardNo + "]");
+						result = service.updateReadCount(boardNo);
+					}
+				}
+				
+				if(result > 0) {
+					board.setReadCount(result);
+					
+					c.setPath("/");
+					
+					Calendar cal = Calendar.getInstance();
+					cal.add(cal.DATE, 1);
+					
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					
+					Date a = new Date();
+					
+					Date temp = new Date(cal.getTimeInMillis());
+					Date b = sdf.parse(sdf.format(temp));
+					long diff = (b.getTime() - a.getTime()) / 1000;
+					
+					c.setMaxAge((int)diff);
+					resp.addCookie(c);
+				}
 				
 				path = "/board/boardDetail";
 				
 				model.addAttribute("board", board);
 				
 				
+				
+				
+				
+				//// 이미지 있을 경우 추가 부분 /////
+					
+				}
+				
 			}
-		}
+		
 		return path;
 		
 	}
 	
 	
-	
+	@ResponseBody
+	@PostMapping("like")
+	public int boardLike(
+		@RequestBody Map<String, Integer> map) {
+		
+		return service.boardLike(map);
+	}
 	
 	
 	

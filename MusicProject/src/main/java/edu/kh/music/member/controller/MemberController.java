@@ -126,7 +126,6 @@ public class MemberController {
 			return "redirect:/member/idpw";
 
 		} else {
-			
 			model.addAttribute("id", id);
 			model.addAttribute("memberNickname", member.getMemberNickname());
 			return "member/selectId"; // forward

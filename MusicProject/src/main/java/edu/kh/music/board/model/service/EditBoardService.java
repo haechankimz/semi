@@ -16,5 +16,8 @@ public interface EditBoardService {
 	// 게시글 삭제
 	int deleteBoard(Board board);
 
+	// 게시글 수정
+	int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrder)  throws IllegalStateException, IOException;
+
 
 }

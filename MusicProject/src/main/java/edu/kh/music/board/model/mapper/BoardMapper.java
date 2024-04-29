@@ -100,6 +100,21 @@ public interface BoardMapper {
 	int selectLikeCount(int temp);
 
 
+	/** 선택 카테고리 게시물의 수
+	 * @param paramMap
+	 * @return
+	 */
+	int getCategoryCount(Map<String, Object> paramMap);
+
+
+	/** 특정 카테고리 cp
+	 * @param paramMap
+	 * @param rowBounds
+	 * @return
+	 */
+//	List<Board> categoryListCp(Map<String, Object> paramMap, RowBounds rowBounds);
+
+
 
 
 

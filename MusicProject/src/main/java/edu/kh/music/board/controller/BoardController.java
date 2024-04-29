@@ -114,18 +114,23 @@ public class BoardController {
 		
 		if(paramMap.get("key") == null) {
 			map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
+		} 
+//		else {
+//			paramMap.put("boardCode", boardCode);
+//			paramMap.put("categoryNo", categoryNo);
+//			
+//			map = service.categoryListCp(paramMap, cp);
+//		}
 			
-			
-			List<Board> boardList = (List<Board>) map.get("boardList");
-			for(Board board : boardList) {
-				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
-					String categoryName = service.getCategoryName(boardCode);
-					board.setCategoryName(categoryName);
-				}
-				
+		List<Board> boardList = (List<Board>) map.get("boardList");
+		for(Board board : boardList) {
+			if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
+				String categoryName = service.getCategoryName(boardCode);
+				board.setCategoryName(categoryName);
 			}
 			
 		}
+			
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));

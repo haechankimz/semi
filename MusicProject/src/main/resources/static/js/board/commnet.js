@@ -308,7 +308,7 @@ const updateComment = (commentNo, btn) => {
     fetch("/comment/update", {
         method : "POST", 
         headers : {"Content-Type" : "application/json"},
-        body : JSON.stringify(updateObj);
+        body : JSON.stringify(updateObj)
     })
     .then(resp => resp.text())
     .then(result => {

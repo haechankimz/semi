@@ -101,7 +101,7 @@ public class MemberServiceImpl implements MemberService{
 	// 빠른 로그인
 	@Override
 	public Member quickLogin(String memberEmail) {
-Member loginMember = mapper.login(memberEmail);
+		Member loginMember = mapper.login(memberEmail);
 		
 		// 탈퇴 또는 없는 회원
 		if(loginMember == null) return null;

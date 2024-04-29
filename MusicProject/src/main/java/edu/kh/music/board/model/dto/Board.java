@@ -1,5 +1,7 @@
 package edu.kh.music.board.model.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +32,8 @@ public class Board {
 	private int categoryNo;
 	private String categoryName;
 	
+	
+	private List<BoardImg> imageList;
 	
 	private int commentCount;
 	private int likeCount;

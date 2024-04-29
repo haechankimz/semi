@@ -154,6 +154,7 @@
 		AND BOARD_NO = #{boardNo}
 	</select>
 	
+
 	<!-- 조회수 증가 -->
 	<update id="updateReadCount">
 		UPDATE "BOARD" SET
@@ -188,6 +189,7 @@
 		FROM "BOARD_LIKE"
 		WHERE BOARD_NO = #{boardNo}
 	</select>
+
   
   
   	<!-- 댓글 조회 -->

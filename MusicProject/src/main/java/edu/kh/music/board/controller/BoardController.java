@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.dto.BoardImg;
 import edu.kh.music.board.model.service.BoardService;
 import edu.kh.music.member.model.dto.Member;
 import jakarta.mail.internet.ParseException;
@@ -214,6 +215,7 @@ public class BoardController {
 				
 				model.addAttribute("board", board);
 				
+				model.addAttribute("start", 0);
 				
 				
 				

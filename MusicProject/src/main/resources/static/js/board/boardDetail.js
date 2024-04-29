@@ -20,3 +20,24 @@ goListBtn.addEventListener("click", () => {
 //         window.location.href = url;
 //     });
 // });
+
+const deleteBtn = document.querySelector("#deleteBtn");
+
+deleteBtn.addEventListener("click", () => {
+
+    if(confirm("삭제 하시겠습니까?")){
+        location.href = `editBoard/${boardCode}/${boardNo}/delete`;
+    }else{
+        alert("취소 되었습니다.");
+    }
+});
+
+
+const updateBtn = document.querySelector("#updateBtn");
+
+if(updateBtn != null){
+    updateBtn.addEventListener("click", () => {
+        location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
+    });
+    
+}

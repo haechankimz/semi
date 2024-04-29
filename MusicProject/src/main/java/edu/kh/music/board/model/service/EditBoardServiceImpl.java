@@ -3,9 +3,7 @@ package edu.kh.music.board.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -38,12 +36,11 @@ public class EditBoardServiceImpl implements EditBoardService {
 	@Override
 	public int boardInsert(Board inputBoard, List<MultipartFile> images) throws IllegalStateException, IOException {
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("inputBoard", inputBoard);
-		
 		int result = mapper.boardInsert(inputBoard);
 		
 		if(result == 0) return 0;
+		
+		//-----------------------------------------------------------------
 		
 		int boardNo = inputBoard.getBoardNo();
 		
@@ -72,10 +69,10 @@ public class EditBoardServiceImpl implements EditBoardService {
 		if(uploadList.isEmpty()) {
 			return boardNo;
 		}
-		
+		//-----------------------------------------------------------------------
 		result = mapper.insertUploadList(uploadList);
 		
-		try {
+		
 			if(result == uploadList.size()) {
 				for( BoardImg img : uploadList) {
 					img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
@@ -83,10 +80,29 @@ public class EditBoardServiceImpl implements EditBoardService {
 			}else {
 				throw new BoardInserException("이미지가 정상 삽입되지 않음");
 			}
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-		}
 		
 		return boardNo;
 	}
+	
+	
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(Board board) {
+		return mapper.deleteBoard(board);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

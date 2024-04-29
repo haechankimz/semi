@@ -33,6 +33,8 @@ public class Board {
 	private String categoryName;
 	
 	
+	private List<BoardImg> imageList;
+	
 	private int commentCount;
 	private int likeCount;
 	

@@ -32,6 +32,7 @@ public class EditBoardController {
 	}
 	
 	
+
 	@PostMapping("/{boardCode:[0-9]+}/insert")
 	public String boardInsert(
 		@PathVariable("boardCode") int boardCode,
@@ -69,5 +70,5 @@ public class EditBoardController {
 	
 	
 	
-	
+
 }

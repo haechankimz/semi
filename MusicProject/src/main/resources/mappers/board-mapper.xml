@@ -153,6 +153,8 @@
 		AND BOARD_CODE = #{boardCode}
 		AND BOARD_NO = #{boardNo}
 	</select>
+	
+	
   
   
   	<!-- 댓글 조회 -->

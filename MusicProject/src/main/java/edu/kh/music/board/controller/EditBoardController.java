@@ -68,6 +68,28 @@ public class EditBoardController {
 		return "redirect:" + path;
 	}
 	
+	// 게시글 삭제
+	@GetMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+	public String deleteBoard(
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("boardNo") int boardNo,
+		Board board) {
+		
+		int result = service.deleteBoard(board);
+		
+		String path = null;
+		
+		if(result > 0) {
+			path = "/board/" + boardCode;
+		}else {
+			path = "/editBoard/" + boardCode + "/" + boardNo;
+		}
+		
+		return "redirect:" + path;
+	}
+	
+	
+	
 	
 	// 게시글 수정 화면 전환
 	@GetMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
@@ -113,42 +135,6 @@ public class EditBoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
-	public String deleteBoard(
-		@PathVariable("boardCode") int boardCode,
-		@PathVariable("boardNo") int boardNo,
-		Board board) {
-		
-		int result = service.deleteBoard(board);
-		
-		String path = null;
-		
-		if(result > 0)	path = "/board/" + boardCode;
-		else			path = "/editBoard/" + boardCode + "/" + boardNo;
-		
-		return "redirect:" + path;
-	}
 	
 	
 	

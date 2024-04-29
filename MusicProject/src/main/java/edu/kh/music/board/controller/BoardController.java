@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.board.model.dto.Board;
@@ -163,7 +164,7 @@ public class BoardController {
 			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
 			
 		} else {
-			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
+//			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
 				
 				Cookie[] cookies = req.getCookies();
 				Cookie c = null;
@@ -221,7 +222,7 @@ public class BoardController {
 					
 				}
 				
-			}
+//			}
 		
 		return path;
 		

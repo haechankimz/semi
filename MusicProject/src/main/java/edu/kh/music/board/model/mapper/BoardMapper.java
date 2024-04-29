@@ -5,13 +5,19 @@ import java.util.Locale.Category;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.music.board.model.dto.Board;
 import oracle.jdbc.proxy.annotation.Post;
 
+/**
+ * 
+ */
 @Mapper
 public interface BoardMapper {
+	
+	
 
 	/** 게시판 종류
 	 * @return
@@ -38,6 +44,13 @@ public interface BoardMapper {
 	 */
 	List<Board> selectBoardList(int boardCode, RowBounds rowBounds);
 
+	/** 특정 카테고리의 게시글
+	 * @param boardCode
+	 * @param categoryNo
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Board> selectCategoryBoardList(@Param("boardCode") int boardCode, @Param("categoryNo") int categoryNo, RowBounds rowBounds);
 
 	/** 게시글에 카테고리 이름 가져오기
 	 * @param categoryNo
@@ -52,12 +65,14 @@ public interface BoardMapper {
 	Board selectOne(Map<String, Integer> map);
 
 
-	/** 특정 카테고리의 게시글
-	 * @param boardCode
-	 * @param categoryNo
-	 * @return
-	 */
-//	Map<String, Object> categoryContent(int boardCode, int categoryNo);
+
+
+
+
+
+
+
+
 
 
 

@@ -22,7 +22,7 @@
 	
 	<!-- 카테고리 버튼 가져오기 -->		
 	<select id="selectCategoryList">
-		SELECT CATEGORY_NAME "categoryName", CATEGORY_NO "categoryNo"
+		SELECT CATEGORY_NAME "categoryName", CATEGORY_NO "categoryNo", BOARD_CODE "boardCode"
 		FROM CATEGORY
 		WHERE BOARD_CODE = #{boardCode}
 	</select>
@@ -42,6 +42,7 @@
 		FROM CATEGORY
 		ORDER BY CATEGORY_NO
 	</select>
+	
 
 	<!-- 게시글 목록 조회 -->
 	<select id="selectBoardList">
@@ -77,6 +78,43 @@
 		AND BOARD_CODE = #{boardCode}
 		ORDER BY BOARD_NO DESC
 	</select>
+	
+	<!-- 특정 카테고리의 게시글 -->
+	<select id="selectCategoryBoardList" parameterType="map">
+		SELECT BOARD_NO, 
+			(SELECT CATEGORY_NAME FROM CATEGORY C 
+		 	 WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, 
+			BOARD_TITLE,
+			(SELECT COUNT(*) FROM "COMMENT" C
+			 WHERE C.BOARD_NO = B.BOARD_NO
+			 AND COMMENT_DEL_FL='N') COMMENT_COUNT, 
+			MEMBER_NICKNAME, 
+			<![CDATA[
+			CASE
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60 * 60) || '초 전'
+				
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+				
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+				
+				ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+			END BOARD_WRITE_DATE
+			]]>,
+			BOARD_WRITE_DATE, 
+			READ_COUNT,
+			(SELECT COUNT(*) FROM BOARD_LIKE L WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+			
+		FROM BOARD B
+		JOIN MEMBER USING (MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		AND CATEGORY_NO = #{categoryNo}
+		ORDER BY BOARD_NO DESC
+	</select>
+	
 	
 	<!-- 게시글 상세 조회 -->
 	<select id="selectOne">

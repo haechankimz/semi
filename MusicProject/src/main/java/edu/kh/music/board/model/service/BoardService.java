@@ -24,6 +24,13 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardList(int boardCode, int cp);
 
+	/** 특정 카테고리 게시글 목록
+	 * @param boardCode
+	 * @param cp
+	 * @param categoryNo
+	 * @return
+	 */
+	Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo);
 
 	/** 게시글에 카테고리 가져오기
 	 * @param categoryNo
@@ -37,6 +44,14 @@ public interface BoardService {
 	 * @return
 	 */
 	Board selectOne(Map<String, Integer> map);
+
+
+
+
+
+
+
+
 
 
 

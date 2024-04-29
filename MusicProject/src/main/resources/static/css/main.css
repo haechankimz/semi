@@ -132,11 +132,9 @@ header {
 
 #menuToggle {
     display: none;
-}
-
-#menuToggle {
     cursor: pointer;
     user-select: none;
+    color: black;
 }
 
 #menuToggle:hover {
@@ -153,9 +151,6 @@ header {
 
 #menuToggle + div {
     display: none;
-}
-
-#menuToggle + div {
     display: block;
 }
 

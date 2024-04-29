@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 비밀번호 찾기
 	@Override
-	public String findPw(Member member) {
+	public int findPw(Member member) {
 		return mapper.findPw(member);
 	}
 	
@@ -89,9 +89,6 @@ public class MemberServiceImpl implements MemberService{
 		
 		Map<String, Object> map = new HashMap<>();
 		map.put("memberNo", member.getMemberNo());
-		map.put("memberEmail", member.getMemberEmail());
-		map.put("memberNickname", member.getMemberNickname());
-		map.put("memberTel", member.getMemberTel());
 		map.put("newPw", bcryptPw);
 		
 		return mapper.updatePw(map);

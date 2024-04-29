@@ -66,7 +66,7 @@
         </section>
 
         <!-- 댓글 -->
-        <th:block th:replace="~{board/comment}"></th:block>
+        <!-- <th:block th:replace="~{board/comment}"></th:block> -->
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
@@ -79,8 +79,6 @@
         let likeCheck = /*[[${board.likeCheck}]]*/ "좋아요 여부";
 
         const boardCode = /*[[${board.boardCode}]]*/ "게시글 코드";
-
-        const boardNo = /*[[${board.boardNo}]]*/ "게시글 번호";
 
         const userDefaultImage = /*[[#{user.default.image}]]*/ "기본 이미지";
     </script>

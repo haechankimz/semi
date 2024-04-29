@@ -2,18 +2,18 @@ package edu.kh.music.board.controller;
 
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import edu.kh.music.board.model.dto.Comment;
 import edu.kh.music.board.model.service.CommentService;
 import lombok.RequiredArgsConstructor;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("comment")
 public class CommentController {
@@ -38,6 +38,12 @@ public class CommentController {
 	@PostMapping("delete")
 	public int deleteComment(@RequestBody Comment comment) {
 		return service.deletecomment(comment);
+	}
+	
+	// 댓글 수정
+	@PostMapping("update")
+	public int updateComment(@RequestBody Comment comment) {
+		return service.updateComment(comment);
 	}
 
 }

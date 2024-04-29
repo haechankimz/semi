@@ -27,7 +27,7 @@ const selectCommentList = () => {
 
                 const profileImg = document.createElement("img");
 
-                if(comment.profileImg = null) profileImg.src = userDefaultImg;
+                if(comment.profileImg == null) profileImg.src = userDefaultImg;
                 else profileImg.src = comment.profileImg;
 
                 const nickname = document.createElement("span");
@@ -55,7 +55,7 @@ const selectCommentList = () => {
                 // 답글 버튼
                 const childCommentBtn = document.createElement("button");
                 childCommentBtn.innerText = "댓글";
-                childCommentBtn.setAttribute("onclick", `showInsertComment(${comment.commentNo}, this)`);
+                childCommentBtn.setAttribute("id", "childCommentBtn");
                 commentBtnArea.append(childCommentBtn);
 
                 // 로그인한 회원 == 작성자
@@ -64,12 +64,12 @@ const selectCommentList = () => {
                     // 수정 버튼
                     const updateBtn = document.createElement("button");
                     updateBtn.innerText = "수정";
-                    updateBtn.setAttribute("onclick", `showInsertComment(${comment.commentNo}, this)`);
+                    updateBtn.setAttribute("id","updateBtn");
                
                     // 삭제 버튼
                     const deleteBtn = document.createElement("button");
                     deleteBtn.innerText = "삭제";
-                    deleteBtn.setAttribute("onclick", `deleteComment(${comment.commentNo}, this)`);
+                    deleteBtn.setAttribute("id", "deleteBtn");
 
                     commentBtnArea.append(updateBtn, deleteBtn);
                 }
@@ -85,10 +85,10 @@ const selectCommentList = () => {
 
 
 /*  댓글 등록 */
-const addContent = document.querySelector("#addComment"); // 버튼
+const addComment = document.querySelector("#addComment"); // 버튼
 const commentContent = document.querySelector("#commentContent");
 
-addContent.addEventListener("click", () => {
+addComment.addEventListener("click", () => {
 
     // 로그인 X
     if(loginMemberNo == null) {
@@ -97,7 +97,7 @@ addContent.addEventListener("click", () => {
     }
 
     // 로그인 O
-    if(commentContent.value.trim().length = 0) {
+    if(commentContent.value.trim().length == 0) {
         alert("내용을 작성해 주세요.");
         return;
     }
@@ -152,15 +152,15 @@ const showInserComment = (parentCommentNo, btn) => {
     btn.parantElement.after(textarea);
 
     const commentBtnArea = document.createElement("div");
-    commentBtnArea.classList.add("comment-brn-area");
+    commentBtnArea.classList.add("comment-btn-area");
 
     const insertBtn = document.createElement("button");
     insertBtn.innerText="등록";
-    insertBtn.setAttribute("onclick", "insertChildComment(" + parentCommentNo + ", this");
+    insertBtn.setAttribute("id", "insertBtn");
 
     const cancelBtn = document.createElement("button");
     cancelBtn.innerText = "취소";
-    cancelBtn.setAttribute("onclick", "insertCancle(this)");
+    cancelBtn.setAttribute("id", "cancelBtn");
 
     commentBtnArea.append(insertBtn, cancelBtn);
 
@@ -269,11 +269,11 @@ const showUpdateComment = (commentNo, btn) => {
 
     const updateBtn = document.createElement("button");
     updateBtn.innerText = "수정";
-    updateBtn.setAttribute("onclick", `updateComment(${boardNo}, this)`);
+    updateBtn.setAttribute("id", "updateBtn");
 
     const cancelBtn = document.createElement("button");
     cancelBtn.innerText = "삭제";
-    cancelBtn.setAttribute("onclick", "updateCancel(this)");
+    cancelBtn.setAttribute("id", "cancelBtnx");
 
     commentBtnArea.append(updateBtn, cancelBtn);
     commentRow.append(commentBtnArea);

@@ -19,6 +19,28 @@
 		 CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
 		 ORDER SIBLINGS BY COMMENT_NO
 	</select>
+	
+	
+	<!-- 댓글 작성 -->
+	<insert id="insertComment">
+		INSERT INTO "COMMENT" 
+		VALUES( SEQ_COMMENT_NO.NEXTVAL,
+				#{commentContent},
+				DEFAULT, 
+				DEFAULT,
+				#{memberNo},
+				#{boardNo},
+				
+		<if test="parentCommentNo != 0">
+			#{parentCommentNo}
+		</if>
+		
+		<if test="parentCommentNo == 0">
+			NULL
+		</if>
+		)
+	
+	</insert>
 
 
 </mapper>

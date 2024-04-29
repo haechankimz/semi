@@ -12,4 +12,10 @@ public interface CommentService {
 	 */
 	List<Comment> select(int boardNo);
 
+	/** 댓글 작성
+	 * @param comment
+	 * @return
+	 */
+	int insertComment(Comment comment);
+
 }

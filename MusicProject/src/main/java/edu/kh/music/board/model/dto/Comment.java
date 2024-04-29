@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Comment {
 
 	private int commentNo;
@@ -23,6 +25,7 @@ public class Comment {
 	private int parentCommentNo;
 	
 	private String memberNickname;
+	private String profileImg;
 	
 
 }

@@ -398,7 +398,7 @@ label {
 }
 
 .hotBoard {
-    display: inline-block;
+    display: flex;
     padding: 26px;
     margin-right: 200px;
     width: 400px;

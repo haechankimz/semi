@@ -126,6 +126,41 @@ public class EditBoardController {
 	
 	
 	
+	@PostMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	public String boardUpdate(
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("boardNo") int boardNo,
+		Board inputBoard,
+		@SessionAttribute("loginMember") Member loginMember,
+		@RequestParam("images") List<MultipartFile> images,
+		@RequestParam(value="deleteOrder", required=false) String deleteOrder,
+		@RequestParam(value="querystring", required=false, defaultValue="") String querystring,
+		RedirectAttributes ra
+		) throws IllegalStateException, IOException {
+		
+		inputBoard.setBoardCode(boardCode);
+		inputBoard.setBoardNo(boardNo);
+		inputBoard.setMemberNo(loginMember.getMemberNo());
+		
+		int result = service.boardUpdate(inputBoard, images, deleteOrder);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			message = "게시글이 수정 되었습니다.";
+			path = String.format("/board/%d/%d%s", boardCode, boardNo, querystring);
+		} else {
+			message = "수정 실패";
+			path = "update";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
+	
+	
 	
 	
 	

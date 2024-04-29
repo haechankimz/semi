@@ -326,11 +326,30 @@ BEGIN
 						DEFAULT, DEFAULT,
 						3,
 						CEIL ( DBMS_RANDOM.VALUE(0, 2000) ),
-						NULL -- 부모 댓글 번호
+						NULL, -- 부모 댓글 번호
+						SEQ_CATEGORY_CODE.NEXTVAL
 		);
 	END LOOP;
 END;
 
-SELECT * FROM "COMMENT";
+SELECT * FROM "BOARD";
+
+CREATE SEQUENCE SEQ_CATEGORY_CODE NOCACHE;
+
+
+SELECT CATEGORY_NO  
+FROM "CATEGORY";
+
+
+
+
+
+
+
+
+
+
+
+
 
 

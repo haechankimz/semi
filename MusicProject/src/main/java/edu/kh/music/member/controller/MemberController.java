@@ -138,25 +138,20 @@ public class MemberController {
 	@PostMapping("findPw")
 	public String findPw(
 			Member member, 
-			RedirectAttributes ra) {
+			RedirectAttributes ra, HttpSession session) {
 
-		String id = service.findPw(member);
+		int id = service.findPw(member);
 
-		if (id == null) {
+		if (id == 0) {
 			ra.addFlashAttribute("message", "조회된 결과가 없습니다. 정확한 정보를 입력 해주세요.");
 			return "redirect:/member/idpw";
 
 		} else {
+			session.setAttribute("id", id);
 			return "member/updatePw";
 		}
 	}
 	
-	
-	@GetMapping("updatePw")
-	public String updatePw() {
-		
-		return "member/updatePw";
-	}
 	
 	
 	// 비밀번호 변경
@@ -164,7 +159,9 @@ public class MemberController {
 	public String updatePw(
 			Member member,
 			@RequestParam("newPw") String newPw,
-			RedirectAttributes ra) {
+			RedirectAttributes ra,  HttpSession session) {
+		
+		member.setMemberNo((int)session.getAttribute("id"));
 		
 		int result = service.updatePw(newPw, member);
 		
@@ -173,6 +170,7 @@ public class MemberController {
 		
 		// 변경 성공
 		if(result > 0) {
+			session.removeAttribute("id");
 			message = "새 비밀번호로 변경 되었습니다." + "\n" + "로그인 후 이용해 주세요.";
 			path = "/";
 			
@@ -184,6 +182,12 @@ public class MemberController {
 		ra.addFlashAttribute("message", message);
 		return "redirect:" + path;
 	}
+	
+	@GetMapping("updatePw")
+	public String updatePw() {
+		return "member/updatePw";
+	}
+	
 	
 	// 로그인 페이지로 전환
 	@GetMapping("login")

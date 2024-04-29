@@ -2,8 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.kh.music.board.model.mapper.BoardMapper">
 
-<!-- 	<resultMap type="Board" id="board_rm">
+	<resultMap type="Board" id="board_rm">
 		<id property="boardNo" column="BOARD_NO"/>
+		
+		<collection 
+			property="imageList"
+			select="selectImageList"
+			column="BOARD_NO"
+			javaType="java.util.ArrayList"
+			ofType="BoardImg"/>
+		
 		
 		<collection 
 			property="commentList"
@@ -11,7 +19,8 @@
 			column="BOARD_NO"
 			javaType="java.util.ArrayList"
 			ofType="Comment" />
-	</resultMap> -->
+			
+	</resultMap> 
 
 	<!-- 게시판 종류 -->
 	<select id="selectBoardTypeList">
@@ -117,7 +126,7 @@
 	
 	
 	<!-- 게시글 상세 조회 -->
-	<select id="selectOne">
+	<select id="selectOne" resultMap="board_rm">
 		SELECT BOARD_NO, BOARD_TITLE, BOARD_CONTENT, BOARD_CODE, READ_COUNT,
 			MEMBER_NO, MEMBER_NICKNAME,
 			
@@ -178,6 +187,33 @@
 		SELECT COUNT(*)
 		FROM "BOARD_LIKE"
 		WHERE BOARD_NO = #{boardNo}
+	</select>
+  
+  
+  	<!-- 댓글 조회 -->
+	<select id="selectCommentList" resultType="Comment">
+		SELECT LEVEL, C.* FROM
+			(SELECT COMMENT_NO, COMMENT_CONTENT,
+			    TO_CHAR(COMMENT_WRITE_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') COMMENT_WRITE_DATE,
+			    BOARD_NO, MEMBER_NO, MEMBER_NICKNAME, PROFILE_IMG, PARENT_COMMENT_NO, COMMENT_DEL_FL
+			 FROM "COMMENT"
+			 JOIN MEMBER USING(MEMBER_NO)
+			 WHERE BOARD_NO = #{boardNo}) C
+		 WHERE COMMENT_DEL_FL = 'N'
+		 OR 0 != (SELECT COUNT(*) FROM "COMMENT" SUB
+						 WHERE SUB.PARENT_COMMENT_NO = C.COMMENT_NO
+						 AND COMMENT_DEL_FL = 'N')
+		 START WITH PARENT_COMMENT_NO IS NULL
+		 CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+		 ORDER SIBLINGS BY COMMENT_NO
+	</select>
+	
+	<!-- 상세 조회한 게시글의 이미지 목록 조회 -->
+	<select id="selectImageList" resultType="boardImg">
+		SELECT *
+		FROM "BOARD_IMG"
+		WHERE BOARD_NO = #{boardNo}
+		ORDER BY IMG_ORDER
 	</select>
   
 </mapper>

@@ -14,11 +14,6 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
 
-        <!-- 임시 content 너비 지정 -->
-        <!-- <div style="height: 500px;">
-            
-        </div> -->
-
         <!-- banner swiper -->
         <div class="swiper-container">
             <div class="swiper-wrapper">
@@ -61,66 +56,60 @@
             <container class="widget">
                 <!-- 미니 게시판 -->
                 <div class="miniBoard" style="border: 1px solid black;">
-                    <h3 style="display: inline;">  
+                    <h3>  
                         [
-                        <a id="domestic">국내</a>
-                        <a id="international">국외</a>
-                        <a id="free">자유</a>
-                        <a id="notice">공지</a>
+                        <a href="/board/2/2026" id="domestic">국내</a>
+                        <a href="/board/2/2026?cp=1" id="international">국외</a>
+                        <a href="/board/*{boardCode}/*{boardNo}" id="free">자유</a>
+                        <a href="/board/2/2026" id="notice">공지</a>
                         ]
                     </h3>
 
-                    <div class="widgetContent">
-                        <ul>
-                            <li>
+                    <span class="widgetContent">
+                        <ul> <br>
+                            <li> 
                                 <a target="_self">
-                                    <span class="category" th:text="*{categoryName}">카테고리</span>
-                                    <span class="title" th:text="*{boardTitle}"></span>
-                                    <span class="comment" th:text="*{commentCount}"></span>
+                                    <span class="category">힙합</span>
+                                    <span class="title">이것은 제목</span>
+                                    <span class="comment">[5]</span>
                                 </a>
                             </li>
-                            <li>
+                            <li> 
                                 <a target="_self">
-                                    <span class="category" th:text="*{categoryName}">카테고리</span>
-                                    <span class="title" th:text="*{boardTitle}"></span>
-                                    <span class="comment" th:text="*{commentCount}"></span>
-                                    <span>dkdkdk</span>
+                                    <span class="category">힙합</span>
+                                    <span class="title">이것은 제목</span>
+                                    <span class="comment">[5]</span>
                                 </a>
                             </li>
+                            <li> 
+                                <a target="_self">
+                                    <span class="category">힙합</span>
+                                    <span class="title">이것은 제목</span>
+                                    <span class="comment">[5]</span>
+                                </a>
+                            </li>
+                            <li> 
+                                <a target="_self">
+                                    <span class="category">힙합</span>
+                                    <span class="title">이것은 제목</span>
+                                    <span class="comment">[5]</span>
+                                </a>
+                            </li>
+                            <li> 
+                                <a target="_self">
+                                    <span class="category">힙합</span>
+                                    <span class="title">이것은 제목</span>
+                                    <span class="comment">[5]</span>
+                                </a>
+                            </li>
+
                         </ul>
-                    </div>
+                    </span>
                       
                 </div>
-
-                <!-- <div class="hotBoard">
-                    <div id="miniBoard-content">
-                        <table>
-                            <tr>
-                                <th>1</th>
-                                <td>최고의 인기</td>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <td>최고의 인기</td>
-                            </tr>
-                            <tr>
-                                <th>3</th>
-                                <td>최고의 인기</td>
-                            </tr>
-                            <tr>
-                                <th>4</th>
-                                <td>최고의 인기</td>
-                            </tr>
-                            <tr>
-                                <th>5</th>
-                                <td>최고의 인기</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div> -->
         
                 <div class="hotBoard" style="border: 1px solid black;">
-                    <h3 style="display: inline;">실시간 인기글</h3>
+                    <h3>실시간 인기글</h3>
                     <table>
                         <tr>
                             <th>1</th>

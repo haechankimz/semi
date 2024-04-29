@@ -29,4 +29,10 @@ public class CommentServiceImpl implements CommentService{
 		return mapper.insertComment(comment);
 	}
 
+	// 댓글 삭제
+	@Override
+	public int deletecomment(Comment comment) {
+		return mapper.deleteComment(comment);
+	}
+
 }

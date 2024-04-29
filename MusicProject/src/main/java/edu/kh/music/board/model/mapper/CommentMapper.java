@@ -21,4 +21,10 @@ public interface CommentMapper {
 	 */
 	int insertComment(Comment comment);
 
+	/** 댓글 삭제
+	 * @param comment
+	 * @return
+	 */
+	int deleteComment(Comment comment);
+
 }

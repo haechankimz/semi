@@ -82,6 +82,7 @@ public class BoardServiceImpl implements BoardService {
 		return map;
 	}
 	
+	
 	// 게시글에 하나하나에 카테고리 가져오기
 	@Override
 	public String getCategoryName(int categoryNo) {

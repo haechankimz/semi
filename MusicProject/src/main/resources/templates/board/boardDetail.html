@@ -31,7 +31,7 @@
                 <span class="like-area"> 
                     <i class="fa-heart" id="boardLike"
                         th:classappend="*{likeCheck == 1} ? fa-solid : fa-regular"></i>
-                    <span th:text="|좋아요 *{likeCount}|">좋아요</span>
+                    <span th:text="| *{likeCount}|">좋아요</span>
                 </span>
                 
             </p>

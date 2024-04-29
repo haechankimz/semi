@@ -14,47 +14,41 @@
   <th:block th:replace="~{common/header}"></th:block>
   <main>
 
-    <form th:action="@{insert}" method="POST" class="board-write" id="boardWrite" enctype="multipart/form-data">
+    <form th:action="@{update}" method="POST" class="board-write" id="boardWrite" enctype="multipart/form-data">
 
       <h1 class="board-title" th:text="${boardName}">게시판</h1>
 
       <div class="input-area">
-        
-        <th:block th:if="${boardCode == 1}">
-          <select name="categoryNo" id="selectCategory" >
-            <option value="0">카테고리 입력</option>
-            <option value="28">힙합</option>
-            <option value="29">발라드</option>
-            <option value="30">댄스</option>
-            <option value="31">재즈</option>
-            <option value="32">팝</option>
-            <option value="33">록</option>
-            <option value="34">EDM</option>
-            <option value="35">인디</option>
-            <option value="36">R&B</option>
-          </select>
-        </th:block>
+        <select name="categoryNo" id="selectCategory" th:if="${boardCode == 1}">
+          <option value="0">카테고리 입력</option>
+          <option value="28">힙합</option>
+          <option value="29">발라드</option>
+          <option value="30">댄스</option>
+          <option value="31">재즈</option>
+          <option value="32">팝</option>
+          <option value="33">록</option>
+          <option value="34">EDM</option>
+          <option value="35">인디</option>
+          <option value="36">R&B</option>
+        </select>
 
-        <th:block th:if="${boardCode == 2}">
-          <select name="categoryNo" id="selectCategory">
-            <option value="0">카테고리 입력</option>
-            <option value="21">힙합</option>
-            <option value="22">댄스</option>
-            <option value="23">재즈</option>
-            <option value="24">팝</option>
-            <option value="25">록</option>
-            <option value="26">EDM</option>
-            <option value="27">R&B</option>
-          </select>
-        </th:block>
+        <select name="categoryNo" id="selectCategory" th:if="${boardCode == 2}">
+          <option value="21">힙합</option>
+          <option value="22">댄스</option>
+          <option value="23">재즈</option>
+          <option value="24">팝</option>
+          <option value="25">록</option>
+          <option value="26">EDM</option>
+          <option value="27">R&B</option>
+        </select>
 
-        <input type="text" name="boardTitle" placeholder="제목을 입력해주세요.">
+        <input type="text" name="boardTitle" placeholder="제목을 입력해주세요." th:text="${boardTitle}">
       </div>
 
       <h2 class="content">내용</h2>
 
       <div class="board-content">
-        <textarea name="boardContent"></textarea>
+        <textarea name="boardContent" th:text="${boardContent}"></textarea>
       </div>
 
       <h2 class="image">이미지</h2>
@@ -96,7 +90,7 @@
       
 
       <div class="insert-btn-area">
-        <button type="submit" id="insertBoard">등록</button>
+        <button type="submit" id="insertBoard">수정하기</button>
       </div>
 
     </form>

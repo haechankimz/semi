@@ -43,7 +43,7 @@ public interface MemberMapper {
 	 * @param member
 	 * @return
 	 */
-	String findPw(Member member);
+	int findPw(Member member);
 
 	/** 비밀번호 변경
 	 * @param map

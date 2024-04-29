@@ -209,7 +209,7 @@ public class BoardController {
 					resp.addCookie(c);
 				}
 				
-				path = "board/boardDetail";
+				path = "/board/boardDetail";
 				
 				model.addAttribute("board", board);
 				

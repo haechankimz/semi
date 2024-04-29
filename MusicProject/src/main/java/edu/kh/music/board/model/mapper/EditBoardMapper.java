@@ -16,4 +16,7 @@ public interface EditBoardMapper {
 	// 게시글 모두 삽입
 	int insertUploadList(List<BoardImg> uploadList);
 
+	// 게시글 삭제
+	int deleteBoard(Board board);
+
 }

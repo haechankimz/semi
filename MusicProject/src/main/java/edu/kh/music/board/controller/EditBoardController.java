@@ -1,9 +1,12 @@
 package edu.kh.music.board.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.music.board.model.dto.Board;
+import edu.kh.music.board.model.service.BoardService;
 import edu.kh.music.board.model.service.EditBoardService;
 import edu.kh.music.member.model.dto.Member;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 public class EditBoardController {
 
 	private final EditBoardService service;
+	
+	private final BoardService boardService;
 	
 	@GetMapping("/{boardCode:[0-9]+}/insert")
 	public String insertBoard(
@@ -62,6 +68,87 @@ public class EditBoardController {
 		return "redirect:" + path;
 	}
 	
+	
+	// 게시글 수정 화면 전환
+	@GetMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
+	public String boardUpdate(
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("boardNo") int boardNo,
+		@SessionAttribute("loginMember") Member loginMember,
+		Model model, RedirectAttributes ra) {
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+	
+		Board board = boardService.selectOne(map);
+		
+		String path = null;
+		String message = null;
+		
+		if(board == null) {
+			message = "해당 게시글이 존재하지 않습니다.";
+			path = "redirect:/";
+			ra.addFlashAttribute("message", message);
+		} else if(board.getMemberNo() != loginMember.getMemberNo()) {
+			message = "자신이 작성한 글만 수정할 수 있습니다.";
+			path = "redirect:/board/" + boardCode + "/" + boardNo;
+			ra.addFlashAttribute("message", message);
+		} else {
+			path = "board/boardUpdate";
+			model.addAttribute("board", board);
+		}
+		
+		return path;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+	public String deleteBoard(
+		@PathVariable("boardCode") int boardCode,
+		@PathVariable("boardNo") int boardNo,
+		Board board) {
+		
+		int result = service.deleteBoard(board);
+		
+		String path = null;
+		
+		if(result > 0)	path = "/board/" + boardCode;
+		else			path = "/editBoard/" + boardCode + "/" + boardNo;
+		
+		return "redirect:" + path;
+	}
 	
 	
 	

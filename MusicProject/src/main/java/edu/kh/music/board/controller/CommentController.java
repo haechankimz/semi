@@ -29,9 +29,15 @@ public class CommentController {
 	}
 	
 	// 댓글 작성
-	@PostMapping("")
+	@PostMapping("insert")
 	public int insertComment(@RequestBody Comment comment) {
 		return service.insertComment(comment);
+	}
+	
+	// 댓글 삭제
+	@PostMapping("delete")
+	public int deleteComment(@RequestBody Comment comment) {
+		return service.deletecomment(comment);
 	}
 
 }

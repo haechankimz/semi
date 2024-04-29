@@ -165,7 +165,7 @@ public class BoardController {
 			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
 			
 		} else {
-//			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
+			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
 				
 				Cookie[] cookies = req.getCookies();
 				Cookie c = null;
@@ -224,7 +224,7 @@ public class BoardController {
 					
 				}
 				
-
+		}
 		
 		return path;
 		

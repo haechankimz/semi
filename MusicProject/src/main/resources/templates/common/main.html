@@ -58,18 +58,41 @@
         <hr>
         <p id="community">COMMUNITY</p>
 
-            <container class="mainBoard">
+            <container class="widget">
                 <!-- 미니 게시판 -->
                 <div class="miniBoard" style="border: 1px solid black;">
                     <h3 style="display: inline;">  
                         [
-                        <a href="#">국내</a>
-                        <a href="#">국외</a>
-                        <a href="#">자유</a>
-                        <a href="#">공지</a>
+                        <a id="domestic">국내</a>
+                        <a id="international">국외</a>
+                        <a id="free">자유</a>
+                        <a id="notice">공지</a>
                         ]
                     </h3>
+
+                    <div class="widgetContent">
+                        <ul>
+                            <li>
+                                <a target="_self">
+                                    <span class="category" th:text="*{categoryName}">카테고리</span>
+                                    <span class="title" th:text="*{boardTitle}"></span>
+                                    <span class="comment" th:text="*{commentCount}"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_self">
+                                    <span class="category" th:text="*{categoryName}">카테고리</span>
+                                    <span class="title" th:text="*{boardTitle}"></span>
+                                    <span class="comment" th:text="*{commentCount}"></span>
+                                    <span>dkdkdk</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                       
+                </div>
+
+                <!-- <div class="hotBoard">
                     <div id="miniBoard-content">
                         <table>
                             <tr>
@@ -94,7 +117,7 @@
                             </tr>
                         </table>
                     </div>
-                </div>
+                </div> -->
         
                 <div class="hotBoard" style="border: 1px solid black;">
                     <h3 style="display: inline;">실시간 인기글</h3>

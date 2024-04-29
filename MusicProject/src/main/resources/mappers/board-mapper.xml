@@ -153,6 +153,43 @@
 		AND BOARD_CODE = #{boardCode}
 		AND BOARD_NO = #{boardNo}
 	</select>
+	
+
+	<!-- 조회수 증가 -->
+	<update id="updateReadCount">
+		UPDATE "BOARD" SET
+		READ_COUNT = READ_COUNT + 1
+		WHERE BOARD_NO = #{boardNo}
+	</update>
+	
+	<!-- 조회수 조회 -->
+	<select id="selectReadCount">
+		SELECT READ_COUNT
+		FROM "BOARD"
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+	
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteBoardLike">
+		DELETE FROM "BOARD_LIKE" 
+		WHERE MEMBER_NO = #{memberNo} 
+		AND BOARD_NO = #{boardNo}
+	</delete>
+	
+	<!-- 좋아요 하기 -->
+	<insert id="addBoardLike">
+		INSERT INTO "BOARD_LIKE" 
+		VALUES(#{memberNo}, #{boardNo})
+	</insert>
+	
+	<!-- 좋아요 개수 -->
+	<select id="selectLikeCount">
+		SELECT COUNT(*)
+		FROM "BOARD_LIKE"
+		WHERE BOARD_NO = #{boardNo}
+	</select>
+
   
   
   	<!-- 댓글 조회 -->

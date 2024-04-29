@@ -20,12 +20,20 @@
 .board-writer {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .board-writer span {
     font-size: 14px;
     color: rgb(60, 60, 60);
     margin: 0 5px;
+}
+
+.boardImg{
+    width: 25%;
+    height: 240px;
+    float: left;
+    text-align: center;
 }
 
 .boardImg img{

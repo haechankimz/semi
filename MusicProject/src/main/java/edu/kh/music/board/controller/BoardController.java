@@ -142,9 +142,9 @@ public class BoardController {
 	public String boardDetail(
 		@PathVariable("boardCode") int boardCode,
 		@PathVariable("boardNo") int boardNo,
+		@SessionAttribute(value="loginMemberNo", required=false) Member loginMember,
 		Model model,
 		RedirectAttributes ra,
-		@SessionAttribute(value="loginMember", required=false) Member loginMember,
 		HttpServletRequest req,
 		HttpServletResponse resp) throws ParseException, Exception {
 		

@@ -35,7 +35,7 @@ const selectCommentList = () => {
 
                 const commentDate = document.createElement("span");
                 commentDate.classList.add("comment-date");
-                commentDate.innerText = comment.commentWriterDate;
+                commentDate.innerText = comment.commentWriteDate;
 
                 commentWriter.append(profileImg, nickname, commentDate);
                 commentRow.append(commentWriter);

@@ -142,9 +142,9 @@ public class BoardController {
 	public String boardDetail(
 		@PathVariable("boardCode") int boardCode,
 		@PathVariable("boardNo") int boardNo,
+		@SessionAttribute(value="loginMemberNo", required=false) Member loginMember,
 		Model model,
 		RedirectAttributes ra,
-		@SessionAttribute(value="loginMember", required=false) Member loginMember,
 		HttpServletRequest req,
 		HttpServletResponse resp) throws ParseException, Exception {
 		
@@ -165,7 +165,7 @@ public class BoardController {
 			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
 			
 		} else {
-//			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
+			if(loginMember == null || loginMember.getMemberNo() != board.getMemberNo()) {
 				
 				Cookie[] cookies = req.getCookies();
 				Cookie c = null;
@@ -224,6 +224,7 @@ public class BoardController {
 					
 				}
 				
+		}
 
 		
 		return path;

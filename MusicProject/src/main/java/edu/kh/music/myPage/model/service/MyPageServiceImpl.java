@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.board.model.dto.Comment;
+import edu.kh.music.board.model.dto.Pagination;
 import edu.kh.music.common.util.Utility;
 import edu.kh.music.member.model.dto.Member;
 import edu.kh.music.myPage.model.mapper.MyPageMapper;
@@ -106,23 +108,57 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
-	
 	@Override
-	public List<Board> selectBoard(Map<String, Integer> map) {
+	public Map<String, Object> selectMyBoard(int memberNo, int cp) {
+
+		int listCount = mapper.getListCount(memberNo);
 		
-		int memberNo = map.get("memberNo");
+		Pagination pagination = new Pagination(cp, listCount);
 		
-		return mapper.selectBoard(memberNo);
+		int limit = pagination.getLimit();
+		int offset = (cp - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Board> boardList = mapper.selectMyBoard(memberNo, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("pagination", pagination);
+		map.put("boardList", boardList);
+		
+		return map;
 	}
 	
 	
+	
 	@Override
-	public List<Comment> selectComment(Map<String, Integer> map) {
+	public Map<String, Object> selectMyComment(int memberNo, int cp) {
+
+		int listCount = mapper.getCommentCount(memberNo);
 		
-		int memberNo = map.get("memberNo");
+		Pagination pagination = new Pagination(cp, listCount);
 		
-		return mapper.selectComment(memberNo);
+		int limit = pagination.getLimit();
+		int offset = (cp - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		List<Comment> commentList = mapper.selectMyComment(memberNo, rowBounds);
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("pagination", pagination);
+		map.put("commentList", commentList);
+		
+		return map;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

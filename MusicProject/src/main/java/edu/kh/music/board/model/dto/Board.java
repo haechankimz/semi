@@ -29,6 +29,8 @@ public class Board {
 	
 	private String memberNickname;
 	
+	private String boardName;
+	
 	private int categoryNo;
 	private String categoryName;
 	

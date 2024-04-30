@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.music.board.model.dto.Board;
 import edu.kh.music.board.model.dto.Comment;
@@ -27,12 +28,21 @@ public interface MyPageMapper {
 	// 프로필 이미지 수정
 	int updateProfile(Member mem);
 
+	// 내가 쓴 게시글 수 조회
+	int getListCount(int memberNo);
 
-	// 내가 쓴 글 조회
-	List<Board> selectBoard(int memberNo);
+	// 내가 쓴 게시글 조회
+	List<Board> selectMyBoard(int memberNo, RowBounds rowBounds);
+
+	// 내가 쓴 댓글 수 조회
+	int getCommentCount(int memberNo);
 
 	// 내가 쓴 댓글 조회
-	List<Comment> selectComment(int memberNo);
+	List<Comment> selectMyComment(int memberNo, RowBounds rowBounds);
+
+
+
+
 
 
 	

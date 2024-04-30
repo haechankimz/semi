@@ -3,6 +3,8 @@
     <div class="comment-list-area">
         
         <ul id="commentList">
+            <h1>댓글</h1>
+
             <li class="comment-row"
                 th:each="comment : ${board.commentList}"
                 th:object="${comment}"
@@ -33,7 +35,7 @@
                         <th:block th:if="${session.loginMember != null
                                            and session.loginMember.memberNo == comment.memberNo}">
     
-                        <button th:onclick="|showInsertComment(*{commentNo},this)|">수정</button> 
+                        <button th:onclick="|showUpdateComment(*{commentNo},this)|">수정</button> 
                         <button th:onclick="|deleteComment(*{commentNo},this)|">삭제</button>
     
                         </th:block>

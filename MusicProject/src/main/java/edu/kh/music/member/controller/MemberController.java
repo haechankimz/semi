@@ -1,4 +1,4 @@
-package edu.kh.music.member.controller;
+	package edu.kh.music.member.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +44,7 @@ public class MemberController {
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
 		
 		
-		if (loginMember != null)
+		if (loginMember != null) {
 			model.addAttribute("loginMember", loginMember);
 
 		Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
@@ -57,6 +57,7 @@ public class MemberController {
 			cookie.setMaxAge(0); // 클라이언트 쿠기 삭제
 
 		resp.addCookie(cookie);
+		}
 
 		return "redirect:/";
 	}

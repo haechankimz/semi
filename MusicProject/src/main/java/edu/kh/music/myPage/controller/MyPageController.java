@@ -40,28 +40,17 @@ public class MyPageController {
 	
 	
 	
-	@GetMapping("write")
-	public String write(
-		@SessionAttribute("loginMember") Member loginMember) {
-		
-		
-		
-		
-		
-		
-		
-		
-		return "myPage/myPage-write";
-	}
 	
 	@GetMapping("changePw")
-	public String changePw() {
+	public String changePw(
+		@SessionAttribute("loginMember") Member loginMember) {
 		return "myPage/myPage-changePw";
 	}
 	
 	
 	@GetMapping("secession")
-	public String secession() {
+	public String secession(
+		@SessionAttribute("loginMember") Member loginMember) {
 		return "myPage/myPage-secession";
 	}
 	
@@ -165,21 +154,44 @@ public class MyPageController {
 		return "redirect:profile";
 	}
 	
-	@ResponseBody
-	@PostMapping("selectBoard")
-	public List<Board> selectBoard(
-			@RequestBody Map<String, Integer> map){
+	
+	@GetMapping("write/myBoardList")
+	public String myBoardList(
+		@SessionAttribute("loginMember") Member loginMember,
+		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		Model model
+			){
 		
-		return service.selectBoard(map);
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Object> map = null;
+		
+		map = service.selectMyBoard(memberNo, cp);
+		
+		model.addAttribute("pagination" , map.get("pagination"));
+		model.addAttribute("boardList" , map.get("boardList"));
+		
+		return "myPage/myPage-write";
 	}
+
 	
-	@ResponseBody
-	@PostMapping("selectComment")
-	public List<Comment> selectComment(
-		@RequestBody Map<String, Integer> map){
-		return service.selectComment(map);
+	@GetMapping("write/myCommentList")
+	public String myCommentList(
+		@SessionAttribute("loginMember") Member loginMember,
+		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		Model model) {
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		Map<String, Object> map = null;
+		
+		map = service.selectMyComment(memberNo,cp);
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("commentList", map.get("commentList"));
+		
+		return "myPage/myPage-comment";
 	}
-	
 	
 	
 	

@@ -276,8 +276,7 @@ public class BoardController {
 		
 		return miniList;
 	}
-	
-	
+
 
 	
 	

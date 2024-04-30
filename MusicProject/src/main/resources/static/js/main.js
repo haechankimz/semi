@@ -1,22 +1,25 @@
-/* banner swipe */
-var swiper = new Swiper(".swiper-container", {
-    slidesPerView: 1,
-    direction: 'horizontal',
-    autoplay: {
-        delay: 2000,
-    },
-    loop: true,
-    spaceBetween: 30,
-    centeredSlides: true,
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
+if(document.querySelector(".swiper-container") != null) {
+
+    /* banner swipe */
+    var swiper = new Swiper(".swiper-container", {
+        slidesPerView: 1,
+        direction: 'horizontal',
+        autoplay: {
+            delay: 2000,
+        },
+        loop: true,
+        spaceBetween: 30,
+        centeredSlides: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+}
 
 const popupClose = document.querySelector("#popupClose");
 const popupLayer = document.querySelector("#popupLayer");
@@ -25,14 +28,14 @@ const background = document.querySelector("#modalBackground");
 
 if(loginForm != null) {
     popupClose.addEventListener("click", () => {
-        popupLayer.classList.add("popup-hidden");
+        loginForm.classList.add("popup-hidden");
     });
 }
 
 const loginIcon = document.querySelector("#loginIcon")
 if(loginIcon != null) {
     loginIcon.addEventListener("click", ()=>{
-        popupLayer.classList.remove("popup-hidden");
+        loginForm.classList.remove("popup-hidden");
     });
 }
 

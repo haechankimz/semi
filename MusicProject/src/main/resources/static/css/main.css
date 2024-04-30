@@ -126,20 +126,27 @@ header {
 
 .header-menu {
     position: absolute;
-    right: 100px;
     top: 20px;
+}
+
+.login-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+#memberProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
 }
 
 #menuToggle {
     display: none;
-    cursor: pointer;
-    user-select: none;
-    color: black;
 }
 
-#menuToggle:hover {
-    text-decoration: none;  /* 밑줄 */
-}
 
 /* 
     MYPAGE/LOGOUT 일단 안보이게
@@ -151,22 +158,42 @@ header {
 
 #menuToggle + div {
     display: none;
+}
+
+#menuToggle:checked + div {
     display: block;
 }
 
 .header-menu{
     position: absolute;
     width: 100px;
-    height: 80px;
-    margin-top: 5px;
-    border: 1px solid black;
+    height: 60px;
+    margin-top: 65px;
+    margin-left: 15px;
+    z-index: 1001;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    border: 1px solid #ccc;
+   
+
 }
+
 
 .header-menu > a{
     display: flex;
+    flex-direction: row;
     height: 50%;
     justify-content: center;
     align-items: center;
+    color: #1c1c1c;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-menu > a:hover{
+    color: red;
 }
 
 
@@ -175,7 +202,8 @@ header {
     width: 400px;
     height: 300px;
     border-radius: 8px;
-    background-color: #404040;
+    background-color: #1c1c1c;
+    position: relative;
 }
 
 #loginPw {
@@ -187,13 +215,13 @@ header {
 }
 
 .popup-hidden{
-    display: none;
+    display: none !important;
 }
 
 #p {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
 
     padding-top: 30px;
     padding-bottom: 30px;
@@ -201,6 +229,7 @@ header {
     font-weight: bold;
 
     font-size: 17px;
+    margin: 0;
 }
 
 /* ID/PW input 태그 */
@@ -238,8 +267,11 @@ header {
 
 label {
     margin-top: 5px;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
     color: black;
+    padding-left: 10px;
+    cursor: pointer;
 }
 
 .save-id-area {
@@ -248,11 +280,21 @@ label {
 }
 
 #loginForm {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100;
+    z-index: 100; */
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1001;
+    background-color: #000c;
+    top: 0px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #loginBtn {

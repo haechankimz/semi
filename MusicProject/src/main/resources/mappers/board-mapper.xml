@@ -261,5 +261,13 @@
 		WHERE BOARD_NO = #{boardNo}
 		ORDER BY IMG_ORDER
 	</select>
+	
+	<select id="selectMiniList">
+		SELECT (SELECT CATEGORY_NAME FROM "CATEGORY" C
+		 	 WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, BOARD_TITLE
+		FROM "BOARD" B
+		WHERE BOARD_CODE = #{boardCode}
+		ORDER BY BOARD_NO DESC
+	</select>
   
 </mapper>

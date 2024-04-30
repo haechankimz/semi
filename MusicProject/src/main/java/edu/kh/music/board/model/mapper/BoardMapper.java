@@ -107,6 +107,9 @@ public interface BoardMapper {
 	int getCategoryCount(Map<String, Object> paramMap);
 
 
+	List<Board> selectMiniList(int boardCode, RowBounds rowBounds);
+
+
 	/** 특정 카테고리 cp
 	 * @param paramMap
 	 * @param rowBounds

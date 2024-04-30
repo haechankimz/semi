@@ -61,6 +61,10 @@ public interface BoardService {
 
 
 
+	List<Board> selectMiniList(int boardCode, int cp);
+
+
+
 
 
 

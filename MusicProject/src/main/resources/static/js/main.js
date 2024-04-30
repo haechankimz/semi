@@ -18,10 +18,6 @@ var swiper = new Swiper(".swiper-container", {
     },
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.body.style.overflow="hidden";
-});
-
 const popupClose = document.querySelector("#popupClose");
 const popupLayer = document.querySelector("#popupLayer");
 const loginForm = document.querySelector("#loginForm");
@@ -108,13 +104,69 @@ quickLoginBtn.addEventListener("click", () => {
 });
 
 
-
+////////////////////////////////////////////////////////////////////
 // 위젯 
-// const domain = document.querySelector("#domain");
-// const international = document.getElementById("international");
-// const free = document.getElementById("free");
-// const notice = document.getElementById("notice");
+let boardCode;
 
-// domain.addEventListener("click", () => {
-//    location.href="/board/1"; 
-// });
+document.addEventListener("DOMContentLoaded", function() {
+    loadMiniList("1");
+
+    var boardLinks = document.querySelectorAll(".board-link");
+    boardLinks.forEach(function(link) {
+        link.addEventListener("click", function() {
+            boardCode = this.getAttribute("data-board-code");
+            loadMiniList(boardCode);
+        });
+    });
+
+    function loadMiniList(boardCode) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/board/selectMiniList/" + boardCode);
+        console.log(boardCode);
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState === 4 && xhr.status === 200) {
+                var miniList = JSON.parse(xhr.responseText);
+                renderMiniList(miniList, boardCode);
+            }
+        };
+        xhr.send();
+
+    }
+
+    function renderMiniList(miniList, board) {
+        const boardLinks = document.querySelector("#board-links");
+        boardLinks.innerHTML = "";
+
+        console.log(miniList);
+
+        for(let i=0; i<Math.min(miniList.length, 7); i++) {
+            const mini = miniList[i];
+            const tr = document.createElement("tr");
+
+            const arr = ['categoryName', 'boardTitle'];
+
+            for(let key of arr) {
+                const td = document.createElement("td");
+
+                if(key === 'boardTitle') {
+                    const a = document.createElement("a");
+                    a.innerText = mini[key];
+                    a.href = "/board/" + boardCode + "/" + mini.boardNo;
+                    td.append(a);
+                    tr.append(td);
+
+                    a.addEventListener("click", e => {
+                        e.preventDefault();
+
+                        window.location.href = e.target.href;
+                    });
+                    continue;
+                }
+                td.innerText = mini[key];
+                tr.append(td);
+            }
+            boardLinks.append(tr);
+        }
+    }
+});

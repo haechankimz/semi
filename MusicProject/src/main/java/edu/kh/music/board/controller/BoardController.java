@@ -246,16 +246,7 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 

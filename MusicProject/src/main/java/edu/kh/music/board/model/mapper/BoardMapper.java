@@ -107,6 +107,21 @@ public interface BoardMapper {
 	int getCategoryCount(Map<String, Object> paramMap);
 
 
+	/** 게시글 조회
+	 * @param paramMap
+	 * @return
+	 */
+	int getSearchCount(Map<String, Object> paramMap);
+
+
+	/** 검색
+	 * @param paramMap
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Board> searchList(Map<String, Object> paramMap, RowBounds rowBounds);
+
+
 	/** 특정 카테고리 cp
 	 * @param paramMap
 	 * @param rowBounds

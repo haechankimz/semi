@@ -34,23 +34,36 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	<select id="getListCount">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		WHERE BOARD_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
+	</select>
 	
-	<select id="selectBoard">
-		SELECT BOARD_NO, BOARD_TITLE, READ_COUNT, 
+	<select id="selectMyBoard">
+		SELECT BOARD_NO, BOARD_NAME, BOARD_TITLE, READ_COUNT, 
 		 	TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD') BOARD_WRITE_DATE
 		FROM "BOARD"
+		JOIN "BOARD_TYPE" USING (BOARD_CODE)
 		WHERE MEMBER_NO = #{memberNo}
+		ORDER BY BOARD_WRITE_DATE DESC
 	</select>
 	
+	<select id="getCommentCount">
+		SELECT COUNT(*)
+		FROM "COMMENT"
+		WHERE COMMENT_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
+	</select>
 	
-	<select id="selectComment">
-		SELECT COMMENT_NO, COMMENT_CONTENT, BOARD_NO,
-			TO_CHAR(COMMENT_WRITE_DATE, 'YYYY-MM-DD') COMMENT_WRITE_DATE
+	<select id="selectMyComment">
+		SELECT COMMENT_NO, COMMENT_CONTENT,  
+		 	TO_CHAR(COMMENT_WRITE_DATE, 'YYYY-MM-DD') COMMENT_WRITE_DATE
 		FROM "COMMENT"
 		WHERE MEMBER_NO = #{memberNo}
+		ORDER BY COMMENT_WRITE_DATE DESC
 	</select>
-	
-	
 	
 	
 	

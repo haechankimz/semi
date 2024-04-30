@@ -263,18 +263,23 @@ form[name='myPageFrm']{
 }
 
 /* ***********************내가 쓴 글*************************** */
-.write-btn-area > button{
-  width: 80px;
-  height: 30px;
+.write-btn-area > a{
+  width: 110px;
+  height: 35px;
   text-align: center;
-
+  text-decoration: none;
+  font-size: 15px;
+  border: 2px solid black;
+  
+  padding: 5px;
   margin-bottom: 10px;
 
   background-color: white;
+  color: black;
   border-radius: 24px;
 }
 
-.write-btn-area > button:active{
+.write-btn-area > a:active{
   background-color: black;
   color: white;
 }
@@ -306,10 +311,14 @@ form[name='myPageFrm']{
 }
 
 .write-board-list > tbody > tr > td:first-child{
-  width: 15%;
+  width: 12%;
 }
 
-.write-board-list > tbody > tr > td:nth-child(3){
+.write-board-list > tbody > tr > td:nth-child(2){
+  width: 7%;
+}
+
+.write-board-list > tbody > tr > td:nth-child(4){
   width: 12%;
 }
 
@@ -338,29 +347,79 @@ form[name='myPageFrm']{
 }
 
 /* ***** pagination ****** */
-.pagination {
+.pagination{
   list-style: none;
   display: flex;
+  margin-top: 15px;
   justify-content: center;
   padding: 0;
 }
 
-.pagination li {
+.pagination li{
   width: 20px;
   margin: 0 5px;
   text-align: center;
 }
 
-.pagination a {
+.pagination a{
   display: block;
+  text-decoration: none;
   width: 100%;
   height: 100%;
 }
 
-.current {
+.current{
   font-weight: bold;
   background-color: black;
   border-radius: 50%;
-  color: white;
+  color: white !important;
   letter-spacing: 0 !important;
+}
+
+.write-comment-list{
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.write-comment-list > thead{
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+}
+
+.write-comment-list > tbody > tr{
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+.write-comment-list > tbody > tr > td {
+  text-align: center;
+  border-left: 1px solid #ccc;
+}
+
+.write-comment-list > tbody > tr > td:first-child{
+  width: 15%;
+}
+
+.write-comment-list > tbody > tr > td:nth-child(2){
+  width: 70%;
+}
+
+
+.write-comment-list > tbody > tr > td:last-child{
+  width: 15%;
+}
+
+.write-comment-list > tbody > tr > td > a {
+  text-decoration: none;
+  color: black;
+}
+
+.write-comment-list > tbody > tr > td > a:hover{
+  text-decoration: underline;
 }

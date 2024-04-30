@@ -27,13 +27,11 @@
 
         
         <div id="listMain">
-          <table class="write-board-list">
+          <table class="write-comment-list">
             <thead>
               <tr>
                 <th>번호</th>
-                <th>게시판</th>
                 <th>내용</th>
-                <th>조회수</th>
                 <th>작성일</th>
               </tr>
             </thead>
@@ -41,28 +39,22 @@
             <tbody>
 
               <!-- 게시글 존재하지 않을 때 -->
-              <th:block th:if="${#lists.isEmpty(boardList)}">
+              <th:block th:if="${#lists.isEmpty(commentList)}">
                   <tr>
                       <th colspan="7">게시글이 존재하지 않습니다</th>
                   </tr>
               </th:block> 
 
               <!-- 게시글 존재할 때 -->
-              <th:block th:unless="${#lists.isEmpty(boardList)}">
+              <th:block th:unless="${#lists.isEmpty(commentList)}">
 
-                  <tr th:each="board : ${boardList}" th:object="${board}">
+                  <tr th:each="comment : ${commentList}" th:object="${comment}">
                   
-                    <td th:text="*{boardNo}">게시글 번호</td>
+                    <td th:text="*{commentNo}">댓글 번호</td>
 
-                    <td th:text="*{boardName}">게시판</td>
-                    <td>
-                        <a  th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
-                            th:text="*{boardTitle}">게시글 제목</a>
-                    </td>
+                    <td th:text="*{commentContent}">댓글 내용</td>
 
-                    <td th:text="*{readCount}">조회수</td>
-                    
-                    <td th:text="*{boardWriteDate}">작성일</td>
+                    <td th:text="*{commentWriteDate}">댓글 작성일</td>
                   </tr>
               </th:block>
             </tbody>
@@ -76,9 +68,9 @@
           <!-- 목록 조회 -->
           <ul class="pagination" th:unless="${param.key}" th:object="${pagination}">
 
-            <li><a th:href="@{/myPage/write/myBoardList(cp=1)}">&lt;&lt;</a></li>
+            <li><a th:href="@{/myPage/write/myCommentList(cp=1)}">&lt;&lt;</a></li>
 
-            <li><a th:href="@{/myPage/write/myBoardList(cp=*{prevPage})}">&lt;</a></li>
+            <li><a th:href="@{/myPage/write/myCommentList(cp=*{prevPage})}">&lt;</a></li>
 
             <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
 
@@ -87,15 +79,15 @@
                 </li>
 
                 <li th:unless="${i} == *{currentPage}">
-                    <a th:href="@{/myPage/write/myBoardList(cp=${i})}" th:text="${i}">
+                    <a th:href="@{/myPage/write/myCommentList(cp=${i})}" th:text="${i}">
                         이동할 페이지
                     </a>
                 </li>
             </th:block>
             
-            <li><a th:href="@{/myPage/write/myBoardList(cp=*{nextPage})}">&gt;</a></li>
+            <li><a th:href="@{/myPage/write/myCommentList(cp=*{nextPage})}">&gt;</a></li>
             
-            <li><a th:href="@{/myPage/write/myBoardList(cp=*{maxPage})}">&gt;&gt;</a></li>
+            <li><a th:href="@{/myPage/write/myCommentList(cp=*{maxPage})}">&gt;&gt;</a></li>
 
           </ul>
         </div>

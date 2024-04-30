@@ -426,12 +426,14 @@ label {
     margin-right: 20px;
 }
 
-.widgetContent ul li {
-    list-style: none;
+#board-links tr td a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
 
-.widgetContent ul li a {
-    text-decoration: none;
+.widgetContent ul li {
+    list-style: none;
 }
 
 .hotBoard {

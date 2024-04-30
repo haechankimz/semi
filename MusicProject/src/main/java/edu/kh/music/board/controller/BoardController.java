@@ -224,18 +224,15 @@ public class BoardController {
 				
 				
 				
-				
 				//// 이미지 있을 경우 추가 부분 /////
 					
 				}
-				
 		}
 		
 		return path;
-		
 	}
 	
-	
+	// 좋아요
 	@ResponseBody
 	@PostMapping("like")
 	public int boardLike(
@@ -245,7 +242,41 @@ public class BoardController {
 	}
 	
 	
-	
+	// 메인에 미니 보드
+	@GetMapping("selectMiniList/{boardCode:[0-9]+}")
+	@ResponseBody
+	public List<Board> selectMiniList(
+		@PathVariable("boardCode") int boardCode,
+		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		@RequestParam Map<String, Object> paramMap,
+		Model model) {
+		
+		List<Board> miniList = service.selectMiniList(boardCode, cp);
+		
+		Map<String, Object> map = null;
+		
+		if(paramMap.get("key") == null) {
+			map = service.selectBoardList(boardCode, cp);
+			
+			
+			List<Board> boardList = (List<Board>) map.get("boardList");
+			for(Board board : boardList) {
+				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
+					String categoryName = service.getCategoryName(boardCode);
+					board.setCategoryName(categoryName);
+				}
+			}
+		}
+		
+		
+		
+		
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("miniList", map.get("miniList"));
+		
+		return miniList;
+	}
+
 
 	
 	

@@ -107,6 +107,8 @@ public interface BoardMapper {
 	int getCategoryCount(Map<String, Object> paramMap);
 
 
+	List<Board> selectMiniList(int boardCode, RowBounds rowBounds);
+
 	/** 게시글 조회
 	 * @param paramMap
 	 * @return
@@ -120,6 +122,7 @@ public interface BoardMapper {
 	 * @return
 	 */
 	List<Board> searchList(Map<String, Object> paramMap, RowBounds rowBounds);
+
 
 
 	/** 특정 카테고리 cp

@@ -22,7 +22,7 @@ public interface CommentService {
 	 * @param comment
 	 * @return
 	 */
-	int deletecomment(Comment comment);
+	int deletecomment(int comment);
 
 	/** 댓글 수정
 	 * @param comment

@@ -25,7 +25,7 @@ public interface CommentMapper {
 	 * @param comment
 	 * @return
 	 */
-	int deleteComment(Comment comment);
+	int deleteComment(int comment);
 
 	/** 댓글 수정
 	 * @param comment

@@ -31,6 +31,7 @@
             <thead>
               <tr>
                 <th>번호</th>
+                <th>게시글 번호</th>
                 <th>내용</th>
                 <th>작성일</th>
               </tr>
@@ -51,6 +52,8 @@
                   <tr th:each="comment : ${commentList}" th:object="${comment}">
                   
                     <td th:text="*{commentNo}">댓글 번호</td>
+                    
+                    <td th:text="*{boardNo}">댓글 번호</td>
 
                     <td th:text="*{commentContent}">댓글 내용</td>
 

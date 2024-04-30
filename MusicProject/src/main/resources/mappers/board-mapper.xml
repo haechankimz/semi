@@ -261,5 +261,70 @@
 		WHERE BOARD_NO = #{boardNo}
 		ORDER BY IMG_ORDER
 	</select>
+	
+	
+	<!-- 게시글 조회 -->
+	<select id="getSearchCount">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		JOIN "MEMBER" USING(MEMBER_NO) 
+		
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		AND CATEGORY_NO = #{categoryNo}
+		
+		<choose>
+			<when test='key == "t"'>
+				AND BOARD_TITLE LIKE '%' || #{boardTitle} || '%'
+				AND BOARD_CONTENT LIKE '%' || #{boardContent} || '%'
+				AND MEMBER_NICKNAME LIKE '%' || #{memberNickname} || '%'
+			</when>
+		</choose>
+	</select>
+	
+	<!-- 검섹 결과 목록 조회 -->
+	<select id="searchList">
+		SELECT BOARD_NO, 
+			(SELECT CATEGORY_NAME FROM CATEGORY C 
+		 	 WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, 
+			BOARD_TITLE,
+			(SELECT COUNT(*) FROM "COMMENT" C
+			 WHERE C.BOARD_NO = B.BOARD_NO
+			 AND COMMENT_DEL_FL='N') COMMENT_COUNT, 
+			MEMBER_NICKNAME, 
+			<![CDATA[
+			CASE
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24 / 60
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60 * 60) || '초 전'
+				
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1 / 24
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24 * 60) || '분 전'
+				
+				WHEN SYSDATE - BOARD_WRITE_DATE < 1
+				THEN FLOOR((SYSDATE - BOARD_WRITE_DATE) * 24) || '시간 전'
+				
+				ELSE TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD')
+			END BOARD_WRITE_DATE
+			]]>,
+			BOARD_WRITE_DATE, 
+			READ_COUNT,
+			(SELECT COUNT(*) FROM BOARD_LIKE L WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+			
+		FROM BOARD B
+		JOIN MEMBER USING (MEMBER_NO)
+		WHERE BOARD_DEL_FL = 'N'
+		AND BOARD_CODE = #{boardCode}
+		AND CATEGORY_NO = #{categoryNo}
+		
+		<choose>
+			<when test='key == "t"'>
+				AND BOARD_TITLE LIKE '%' || #{boardTitle} || '%'
+				AND BOARD_CONTENT LIKE '%' || #{boardContent} || '%'
+				AND MEMBER_NICKNAME LIKE '%' || #{memberNickname} || '%'
+			</when>
+		</choose>
+		
+		ORDER BY BOARD_NO DESC
+	</select>
   
 </mapper>

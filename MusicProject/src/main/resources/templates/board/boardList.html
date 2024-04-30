@@ -108,13 +108,13 @@
                 </ul>
 
                 <!-- 검색인 경우  -->
-                <!-- <ul class="pagination" th:if="${param.key}" th:object="${pagination}">
+                <ul class="pagination" th:if="${param.key}" th:object="${pagination}">
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1, category=${param.categoryNo})}">&lt;&lt;</a></li>
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage}, category=${param.categoryNo})}">&lt;</a></li>
 
-                    <th:block th:each="*{startPage lt endPage}" th:each="i : *{#numbers.sequence(startPage, endPage)}">
+                    <th:block th:if="*{startPage lt endPage}" th:each="i : *{#numbers.sequence(startPage, endPage)}">
 
                         <li th:if="${i} == *{currentPage}">
                             <a class="current" th:text="${i}">현재 페이지</a>
@@ -136,7 +136,7 @@
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{nextPage}, category=${param.categoryNo})}">&gt;</a></li>
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{maxPage}, category=${param.categoryNo})}">&gt;&gt;</a></li>
                     
-                </ul> -->
+                </ul> 
                     
             </div>
 

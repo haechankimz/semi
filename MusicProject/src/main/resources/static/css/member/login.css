@@ -95,11 +95,11 @@ section:first-child{
     font-size: 1.05em;
 }
 
-/* .saveId-area>input:checked+label>i {
-    background-color: #455ba8;
-    border-color: #455ba8;
+.saveId-area>input:checked+label>i {
+    background-color: #404040;
+    border-color: #404040;
     color: white !important;
-} */
+} 
 
 .text-area {
     margin-top: 10px;

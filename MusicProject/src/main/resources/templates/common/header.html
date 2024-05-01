@@ -7,14 +7,12 @@
 
     <section id="secondSection">
         <article class="search-area">
-            <form th:action="@{{boardCode}(boardCode=${boardCode})}" method="GET">
+            <form th:action="@{/board/search}" method="GET">
                 <!-- {boardCode:[0-9]+}/category/{categoryNo:[0-9]+} -->
                 <fieldset>
-
-                    <input type="search" id="search" name="search" autocomplete="off">
+                    
+                    <input type="text" id="search" name="keyword" autocomplete="off" th:value="${keyword}">
                     <!-- placeholder="검색어를 입력해 주세요." -->
-
-                    <input type="hidden" name="hidden" value="t">
 
                     <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
 
@@ -30,8 +28,8 @@
 
         <div class="top-menu">
 
-            <h3>빠른 로그인</h3>
-            <button class="quick-login">ijisu8022@gmail.com</button>
+            <!-- <h3>빠른 로그인</h3>
+            <button class="quick-login">ijisu8022@gmail.com</button> -->
 
             <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정) -->
     

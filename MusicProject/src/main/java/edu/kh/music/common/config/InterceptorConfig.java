@@ -33,7 +33,8 @@ public class InterceptorConfig implements WebMvcConfigurer {
 							 "/favicon.ico");
 		
 		registry.addInterceptor(boardNameInterceptor())
-		.addPathPatterns("/board/**", "/editBoard/**");
+		.addPathPatterns("/board/**", "/editBoard/**")
+		.excludePathPatterns("/board/selectMiniList/**", "/board/search/**");
 	}
 
 }

@@ -58,18 +58,18 @@ public interface BoardService {
 	 * @return
 	 */
 	int boardLike(Map<String, Integer> map);
-	
-	/** 검색
-	 * @param map
-	 * @param cp
-	 * @param categoryNo
-	 * @return
-	 */
-	Map<String, Object> searchList(Map<String, Object> paramMap, int cp, int categoryNo);
-
-
 
 	List<Board> selectMiniList(int boardCode, int cp);
+
+
+	/** 검색
+	 * @param keyword
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> searchList(String keyword, int cp);
+
+
 
 
 

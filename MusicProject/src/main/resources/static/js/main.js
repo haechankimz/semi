@@ -24,7 +24,6 @@ if(document.querySelector(".swiper-container") != null) {
 const popupClose = document.querySelector("#popupClose");
 const popupLayer = document.querySelector("#popupLayer");
 const loginForm = document.querySelector("#loginForm");
-const background = document.querySelector("#modalBackground");
 
 if(loginForm != null) {
     popupClose.addEventListener("click", () => {
@@ -97,14 +96,14 @@ if (loginForm != null) {
 
 
 //  빠른 로그인
-const quickLoginBtn = document.querySelector(".quick-login");
+// const quickLoginBtn = document.querySelector(".quick-login");
 
-// quickLoginBtns 요소를 하나씩 꺼내서 이벤트 리스너 추가
-quickLoginBtn.addEventListener("click", () => {
-    const email = quickLoginBtn.innerText; // 버튼에 작성된 이메일 얻어오기
-    location.href = "/member/quickLogin?memberEmail=" + email;
+// // quickLoginBtns 요소를 하나씩 꺼내서 이벤트 리스너 추가
+// quickLoginBtn.addEventListener("click", () => {
+//     const email = quickLoginBtn.innerText; // 버튼에 작성된 이메일 얻어오기
+//     location.href = "/member/quickLogin?memberEmail=" + email;
 
-});
+// });
 
 
 ////////////////////////////////////////////////////////////////////

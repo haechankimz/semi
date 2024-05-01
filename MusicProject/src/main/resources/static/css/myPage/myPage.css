@@ -41,6 +41,7 @@
 
 .list-group > li > a:hover{
   background-color: #ccc;
+  transition-duration: 0.2s;
 }
 
 .list-group > li > a:active{
@@ -88,7 +89,7 @@
 }
 
 .myPage-row > label{
-  width: 30%;
+  width: 32%;
   margin: 0 10px;
   color: black;
 }
@@ -335,6 +336,7 @@ form[name='myPageFrm']{
 
 .write-board-list > tbody > tr > td > a:hover{
   text-decoration: underline;
+  transition-duration: 0.2s;
 }
 
 #listMain > span{
@@ -427,4 +429,5 @@ form[name='myPageFrm']{
 
 .write-comment-list > tbody > tr > td > a:hover{
   text-decoration: underline;
+  transition-duration: 0.2s;
 }

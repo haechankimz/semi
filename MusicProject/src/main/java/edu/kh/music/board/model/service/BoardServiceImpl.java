@@ -150,30 +150,27 @@ public class BoardServiceImpl implements BoardService {
 		return boardList;
 	}	
 	
-
-
-	// 검색
 	@Override
-	public Map<String, Object> searchList(Map<String, Object> paramMap, int cp, int categoryNo) {
+	public Map<String, Object> searchList(String keyword, int cp) {
 		
-			int listCount = mapper.getSearchCount(paramMap);
+		int listCount = mapper.getSearchCount(keyword);
 		
-			Pagination pagination = new Pagination(cp, listCount);
-			
-			int limit = pagination.getLimit();
-			int offset = (cp-1) * limit;
-			RowBounds rowBounds = new RowBounds(offset, limit);
-			
-			paramMap.put("categoryNo", categoryNo);
-			
-			List<Board> boardList = mapper.searchList(paramMap,  rowBounds);
-			
-			Map<String, Object> map = new HashMap<>();
-			map.put("pagination", pagination);
-			map.put("boardList", boardList);
+		Pagination pagination = new Pagination(cp, listCount);
 		
-		return map;
+		int limit = pagination.getLimit(); int offset = (cp-1) * limit; 
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		  
+		  List<Board> boardList = mapper.searchList(keyword, rowBounds);
+		  
+		  Map<String, Object> map = new HashMap<>(); 
+		  
+		  map.put("pagination", pagination);
+		  map.put("boardList", boardList);
+		  
+		  return map;
+		
 	}
-	
 
 }
+	
+

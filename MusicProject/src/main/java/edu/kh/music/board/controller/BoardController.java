@@ -259,9 +259,23 @@ public class BoardController {
 		
 		return miniList;
 	}
-
-
 	
 	
+	// 검색
+	@GetMapping("search")
+	public String search(
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, 
+			Model model,
+			@RequestParam("keyword") String keyword) {
+
+		Map<String, Object> map = service.searchList(keyword, cp);
+
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("pagination", map.get("pagination"));
+		model.addAttribute("boardList", map.get("boardList"));
+
+		return "board/boardList";
+
+	}
 
 }

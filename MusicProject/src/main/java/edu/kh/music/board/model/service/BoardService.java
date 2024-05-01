@@ -57,21 +57,28 @@ public interface BoardService {
 	 * @return
 	 */
 	int boardLike(Map<String, Integer> map);
-	
+
+	List<Board> selectMiniList(int boardCode, int cp);
+
+
 	/** 검색
-	 * @param map
+	 * @param keyword
 	 * @param cp
-	 * @param categoryNo
 	 * @return
 	 */
-	Map<String, Object> searchList(Map<String, Object> paramMap, int cp, int categoryNo);
+	Map<String, Object> searchList(String keyword, int cp);
 	
+  
 	/** 메인 페이지에 미니 게시판
 	 * @param boardCode
 	 * @param cp
 	 * @return
 	 */
 	List<Board> selectMiniList(int boardCode, int cp);
+
+
+
+
 
 
 

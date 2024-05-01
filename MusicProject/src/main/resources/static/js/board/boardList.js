@@ -2,22 +2,20 @@
 const categoryBtn = document.querySelectorAll(".category-btn");
 
 categoryBtn.forEach(categoryBtn => {
-    categoryBtn.addEventListener("click", () => {
-        const boardCode = window.location.pathname.split("/")[2];
-        const categoryNo = categoryBtn.dataset.categoryNo;
-        location.href = `/board/${boardCode}/category/${categoryNo}`;
+  categoryBtn.addEventListener("click", () => {
+    console.log("클릭됨");
+      const categoryNo = categoryBtn.dataset.categoryNo;
+      const boardCode = window.location.pathname.split("/")[2];
+      location.href = `/board/${boardCode}/category/${categoryNo}`;
     });
 });
 
 
-
-
 /* 글쓰기 버튼 / 검색 요소 */
 const insertBtn = document.querySelector("#insertBtn");
-
-
 insertBtn.addEventListener("click", () => {
 
   location.href = `/editBoard/${boardCode}/insert`;
 
 });
+

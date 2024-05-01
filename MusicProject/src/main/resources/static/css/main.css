@@ -398,7 +398,6 @@ label {
 /* ****** 미니들 ****** */
 
 .mainBoard {
-    display: flex;
     top: 30px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -413,12 +412,32 @@ label {
 }
 
 .widget {
-    display: inline-block;
-    padding: 20px;
-    margin-left: 200px;
-    width: 600px;
+    display: flex;
+    margin-bottom: 130px !important;
     height: 450px;
     justify-content: center;
+}
+
+.miniBoard {
+    padding: 26px;
+    margin: 30px;
+    width: 400px;
+    height: 450px;
+}
+
+#post-list {
+    border-bottom: 1px solid black;
+    margin: 20px;
+}
+
+#post-list a {
+    text-decoration: none;
+    color: black;
+}
+
+#post-list a:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 
@@ -426,10 +445,24 @@ label {
     margin-right: 20px;
 }
 
+#board-links {
+    margin: 20px;
+}
+
+#board-links > tr {
+    /* display: block; */
+}
+
+#board-links>tr:nth-child(1){
+    margin: 300px !important;
+    border: 1px solid;
+}
+
 #board-links tr td a {
     text-decoration: none;
     color: black;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 
 .widgetContent ul li {
@@ -439,9 +472,13 @@ label {
 .hotBoard {
     display: flex;
     padding: 26px;
-    margin-right: 200px;
+    margin: 30px;
     width: 400px;
     height: 450px;
+}
+
+.hotBoard h3 {
+    margin: 20px;
 }
 
 /* ****** footer ****** */

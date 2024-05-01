@@ -11,14 +11,9 @@ import org.apache.ibatis.session.RowBounds;
 import edu.kh.music.board.model.dto.Board;
 import oracle.jdbc.proxy.annotation.Post;
 
-/**
- * 
- */
 @Mapper
 public interface BoardMapper {
 	
-	
-
 	/** 게시판 종류
 	 * @return
 	 */
@@ -50,7 +45,8 @@ public interface BoardMapper {
 	 * @param rowBounds
 	 * @return
 	 */
-	List<Board> selectCategoryBoardList(@Param("boardCode") int boardCode, @Param("categoryNo") int categoryNo, RowBounds rowBounds);
+	List<Board> selectCategoryBoardList(
+		@Param("boardCode")int boardCode, @Param("categoryNo")int categoryNo, RowBounds rowBounds);
 
 	/** 게시글에 카테고리 이름 가져오기
 	 * @param categoryNo
@@ -104,9 +100,14 @@ public interface BoardMapper {
 	 * @param paramMap
 	 * @return
 	 */
-	int getCategoryCount(Map<String, Object> paramMap);
+	int getCategoryCount(@Param("boardCode")int boardCode, @Param("categoryNo")int categoryNo);
 
 
+	/** 메인에 미니 게시판
+	 * @param boardCode
+	 * @param rowBounds
+	 * @return
+	 */
 	List<Board> selectMiniList(int boardCode, RowBounds rowBounds);
 
 	/** 게시글 조회
@@ -125,12 +126,7 @@ public interface BoardMapper {
 
 
 
-	/** 특정 카테고리 cp
-	 * @param paramMap
-	 * @param rowBounds
-	 * @return
-	 */
-//	List<Board> categoryListCp(Map<String, Object> paramMap, RowBounds rowBounds);
+
 
 
 

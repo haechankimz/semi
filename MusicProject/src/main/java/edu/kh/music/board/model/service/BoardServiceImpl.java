@@ -57,19 +57,17 @@ public class BoardServiceImpl implements BoardService {
 		
 		return map;
 	}
-
 	
-	// 특정 카테고리의 게시글 
+	// 특정 카테고리 게시판 목록
 	@Override
 	public Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo) {
 		
-		int listCount = mapper.getListCount(boardCode);
+		int listCount = mapper.getCategoryCount(boardCode, categoryNo);
 		
 		Pagination pagination = new Pagination(cp, listCount);
 		
 		int limit = pagination.getLimit();
 		int offset = (cp-1) * limit;
-		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		List<Board> boardList = mapper.selectCategoryBoardList(boardCode, categoryNo, rowBounds);
@@ -129,6 +127,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	
+	// 메인에 미니 게시판
 	@Override
 	public List<Board> selectMiniList(int boardCode, int cp) {
 	
@@ -175,28 +174,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		return map;
 	}
+	
 
-//
-//	// 특정 카테고리의 게시글 
-//	@Override
-//	public Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo) {
-//		
-//		int listCount = mapper.getListCount(boardCode);
-//		
-//		Pagination pagination = new Pagination(cp, listCount);
-//		
-//		int limit = pagination.getLimit();
-//		int offset = (cp-1) * limit;
-//		
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//		
-//		List<Board> boardList = mapper.selectCategoryBoardList(boardCode, categoryNo, rowBounds);
-//		
-//		Map<String, Object> map = new HashMap<>();
-//		
-//		map.put("pagination", pagination);
-//		map.put("boardList", boardList);
-//		
-//		return map;
-//	}
 }

@@ -56,7 +56,7 @@
 
                     <td th:text="*{boardName}">게시판</td>
                     <td>
-                        <a  th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo})}"
+                        <a  th:href="@{/board/{boardCode}/{boardNo}(boardCode=*{boardCode}, boardNo=*{boardNo})}"
                             th:text="*{boardTitle}">게시글 제목</a>
                     </td>
 

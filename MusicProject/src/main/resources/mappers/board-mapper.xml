@@ -270,6 +270,7 @@
 		WHERE BOARD_CODE = #{boardCode}
 	</select>
 
+
 	
 	<!-- 게시글 조회 -->
 	<select id="getSearchCount">

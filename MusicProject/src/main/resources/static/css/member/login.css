@@ -19,8 +19,13 @@ main {
     border-radius: 5px;
 }
 
-section:first-child{
-    height: 30%;
+main .logo-area {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo-area img {
+    width: 150px;
 }
 
 .input-box {

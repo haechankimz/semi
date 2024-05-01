@@ -51,7 +51,6 @@ const pwForm = document.querySelector("#pwForm");
 const memberEmail = document.querySelector("#memberEmail");
 const pwBtn = document.querySelector("#pwBtn");
 
-
 const pwObj = {
     "memberNickname": false,
     "memberTel": false,

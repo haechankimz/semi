@@ -13,8 +13,17 @@ categoryBtn.forEach(categoryBtn => {
 
 /* 글쓰기 버튼 / 검색 요소 */
 const insertBtn = document.querySelector("#insertBtn");
-insertBtn.addEventListener("click", () => {
 
+insertBtn.addEventListener("click", e => {
+  
+  if(boardCode == 4){
+    if(authority == 'N'){
+      alert("관리자만 작성할 수 있습니다.");
+      e.preventDefault();
+      return;
+    }
+  }
+  
   location.href = `/editBoard/${boardCode}/insert`;
 
 });

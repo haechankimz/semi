@@ -268,6 +268,7 @@
 		 	 WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, BOARD_TITLE
 		FROM "BOARD" B
 		WHERE BOARD_CODE = #{boardCode}
+	</select>
 
 	
 	<!-- 게시글 조회 -->

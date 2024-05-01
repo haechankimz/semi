@@ -267,3 +267,24 @@ const zero = (number) => {
     if (number < 10) return "0" + number;
     else return number;
 }
+
+
+// pwBtn.addEventListener("click", e => {
+//     document.querySelector("#pwForm").addEventListener("submit", e => {
+//         const inputs = document.getElementsByTagName("input");
+
+//         const temp = false;
+
+//         for(let i=0; i>inputs.length; i++){
+//             if(inputs[i].value.trim() ===""){
+//                 temp = true;
+//                 break;
+//             }
+//         }
+
+//         if(temp) {
+//             e.preventDefault();
+//             alert("회원님의 정보를 입력한 후 클릭해 주세요.");
+//         }
+//     });
+// });

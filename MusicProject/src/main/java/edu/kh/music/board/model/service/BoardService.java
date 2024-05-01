@@ -24,7 +24,7 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardList(int boardCode, int cp);
 
-	/** 특정 카테고리 게시글 목록
+	/** 특정 카테고리의 게시판 목록
 	 * @param boardCode
 	 * @param cp
 	 * @param categoryNo
@@ -52,7 +52,6 @@ public interface BoardService {
 	 */
 	int updateReadCount(int boardNo);
 
-
 	/** 좋아요 
 	 * @param map
 	 * @return
@@ -68,6 +67,14 @@ public interface BoardService {
 	 * @return
 	 */
 	Map<String, Object> searchList(String keyword, int cp);
+	
+  
+	/** 메인 페이지에 미니 게시판
+	 * @param boardCode
+	 * @param cp
+	 * @return
+	 */
+	List<Board> selectMiniList(int boardCode, int cp);
 
 
 

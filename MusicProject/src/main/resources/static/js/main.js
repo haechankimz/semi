@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     a.innerText = mini[key];
                     a.href = "/board/" + boardCode + "/" + mini.boardNo;
                     td.append(a);
-                    tr.append(td);
+                    tr.append(td); 
 
                     a.addEventListener("click", e => {
                         e.preventDefault();

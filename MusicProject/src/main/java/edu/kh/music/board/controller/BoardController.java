@@ -61,9 +61,6 @@ public class BoardController {
 		
 		Map<String, Object> map = null;
 
-
-
-		
 		if(paramMap.get("key") == null) {
 			map = service.selectBoardList(boardCode, cp);
 			
@@ -74,16 +71,12 @@ public class BoardController {
 					String categoryName = service.getCategoryName(boardCode);
 					board.setCategoryName(categoryName);
 				}
-					
-
 			}
-			
 		}
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 		model.addAttribute("categoryList", categoryList);
-		
 		
 		return "board/boardList";
 	}
@@ -99,11 +92,11 @@ public class BoardController {
 	 */
 	@GetMapping("{boardCode:[0-9]+}/category/{categoryNo:[0-9]+}")
 	public String selectCategoryBoardList(
-		@PathVariable("boardCode") int boardCode,
-		@PathVariable("categoryNo") int categoryNo,
-		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
-		Model model,
-		@RequestParam Map<String, Object> paramMap) {
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("categoryNo") int categoryNo,
+			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+			Model model,
+			@RequestParam Map<String, Object> paramMap) {
 		
 		
 		// 카테고리 버튼이름 가져오기
@@ -112,31 +105,23 @@ public class BoardController {
 		Map<String, Object> map = null;
 		
 		
-		if(paramMap.get("key") == null) {
-			map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
+		if(paramMap.get("categoryNo") == null) {
+			map = service.selectBoardList(boardCode, cp);
 		} 
-//		else {	
-//			paramMap.put("boardCode", boardCode);
-//			paramMap.put("categoryNo", categoryNo);
-//			
-//			map = service.categoryListCp(paramMap, cp);
-//		}
-			
+		
+		map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
+		
 		List<Board> boardList = (List<Board>) map.get("boardList");
 		for(Board board : boardList) {
 			if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
 				String categoryName = service.getCategoryName(boardCode);
 				board.setCategoryName(categoryName);
 			}
-			
 		}
-		
-
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 		model.addAttribute("categoryList", categoryList);
-		
 		
 		return "board/boardList";
 	}
@@ -268,10 +253,7 @@ public class BoardController {
 				}
 			}
 		}
-		
-		
-		
-		
+
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("miniList", map.get("miniList"));
 		

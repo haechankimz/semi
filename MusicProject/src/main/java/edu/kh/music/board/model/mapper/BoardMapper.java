@@ -113,15 +113,16 @@ public interface BoardMapper {
 	 * @param paramMap
 	 * @return
 	 */
-	int getSearchCount(Map<String, Object> paramMap);
+	int getSearchCount(String keyword);
 
 
 	/** 검색
-	 * @param paramMap
+	 * @param keyword
 	 * @param rowBounds
 	 * @return
 	 */
-	List<Board> searchList(Map<String, Object> paramMap, RowBounds rowBounds);
+	List<Board> searchList(String keyword, RowBounds rowBounds);
+
 
 
 

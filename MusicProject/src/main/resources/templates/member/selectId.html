@@ -13,34 +13,35 @@
     <main>
         <th:block th:replace="~{common/header}"></th:block>
 
+       <section class="finId-content">
 
-        <section class="idpw-content">
-            <section class="side-menu">
+            <div id="main">
+                <section class="menu-header">
     
-                <ul class="list-group">
-                    <li>
-                        <a href="/member/login">로그인 하기</a>
-                    </li>
+                    <div class="find-header">
+                        <h1>회원님의 아이디(이메일)을 확인해 주세요.</h1>
+                    </div>
+                    
+                    <div class="find-content">
+                        <th:block th:text="|'${memberNickname}' 님의 아이디(이메일)는|"></th:block>
+                        <th:block th:text="|${id} 입니다.|"></th:block>
+                    </div>
         
-                    <li>
-                        <a href="/member/signup">회원가입 하기</a>
-                    </li>
-        
-                    <li>
-                        <a href="/member/idpw">ID(Email)/PW 찾기</a>
-                    </li>
-                </ul>
-
-            </section>
+                </section>
     
-            <section class="menu-content">
+                <section class="find-footer">
+                    <ul class="lists">
+                        <li>
+                            <a href="/member/login">로그인 하기</a>
+                        </li>
+            
+                        <li>
+                            <a href="/member/idpw">ID(Email)/PW 찾기</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
 
-                <h1>아이디(이메일) 조회 결과</h1>
-                
-                <th:block th:text="|'${memberNickname}' 님의 아이디는|"></th:block>
-                <th:block th:text="|${id} 입니다.|"></th:block>
-    
-            </section>
         </section>
 
     </main>

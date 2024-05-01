@@ -115,7 +115,6 @@
     width: 65px;
     height: 30px;
     padding: 5px;
-    margin: auto;
 
     font-weight: bold;
     border: none;
@@ -125,8 +124,18 @@
     cursor: pointer;
 
     border-radius: 20px;
+
+    margin: 40px;
+    margin-left: 440px;
 }
 
+#idBtn:active {
+    transform: scale(0.95);
+}
+
+#pwBtn:active {
+    transform: scale(0.95);
+}
 
 #checkAuthKeyBtn, #sendAuthKeyBtn{
     display: flex;
@@ -158,3 +167,81 @@
 
 .confirm {color: green;}
 .error {color: red;}
+
+.finId-content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    height: 700px;
+    margin: 50px 100px; 
+}
+
+.menu-header{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.find-header>h1{
+    font-size: 25px;
+    font-weight: bold;
+    color: #303030;
+}
+
+.find-content{
+    font-size: 16px;
+    font-weight: bold;
+    color: #303030;
+    margin: 30px 0;
+}
+
+.find-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lists{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.lists>li{
+    height: 50px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.lists>li>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #404040;
+    border-radius: 30px;
+}
+
+.lists>li>a:hover{
+    color: white;
+    background-color: #404040;
+}
+
+#main{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 250px;
+}
+

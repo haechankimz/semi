@@ -213,6 +213,7 @@ public class BoardController {
 	public List<Board> selectMiniList(
 		@PathVariable("boardCode") int boardCode,
 		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		@RequestParam(value="boardNo", required=false) int boardNo,
 		@RequestParam Map<String, Object> paramMap,
 		Model model) {
 		
@@ -235,9 +236,12 @@ public class BoardController {
 
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("miniList", map.get("miniList"));
+		model.addAttribute("boardNo", boardNo);
 		
 		return miniList;
 	}
+	
+
 	
 	
 	// 검색

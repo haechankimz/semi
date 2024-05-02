@@ -113,6 +113,7 @@ let mainCode;
 document.addEventListener("DOMContentLoaded", function() {
     loadMiniList("1");
 
+
     var boardLinks = document.querySelectorAll(".board-link");
     boardLinks.forEach(function(link) {
         link.addEventListener("click", function() {
@@ -142,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log(miniList);
 
-        for(let i=0; i<Math.min(miniList.length, 7); i++) {
+        for(let i=0; i<Math.min(miniList.length, 8); i++) {
             const mini = miniList[i];
             const tr = document.createElement("tr");
 
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const a = document.createElement("a");
                     a.innerText = mini[key];
 
-                    a.href = "/board/" + mainCode + "/" + mini.boardNo;
+                    a.href = `board/${boardCode}`
 
                     td.append(a);
                     tr.append(td); 
@@ -200,6 +201,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if(key === 'boardTitle'){
                     const a = document.createElement("a");
                     a.innerText = board[key];
+
+
                     a.href = "/board/" + board.boardCode + "/" + board.boardNo;
                     td.append(a);
                 }else{
@@ -213,3 +216,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+const moreView = document.querySelector("#moreView")
+
+moreView.forEach(moreView => {
+    moreView.addEventListener("click", () => {
+        const boardCode = moreView.dataset.boardCode;
+        location.href = `/board/${boardCode}`;
+    });
+});

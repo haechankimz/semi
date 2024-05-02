@@ -191,7 +191,7 @@
 	</insert>
 	
 	<!-- 좋아요 개수 -->
-	<select id="selectLikeCount">
+	<select id="selectLikeCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM "BOARD_LIKE"
 		WHERE BOARD_NO = #{boardNo}

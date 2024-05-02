@@ -399,9 +399,10 @@ label {
 }
 
 .miniBoard {
+    position: relative;
     padding: 26px;
     margin: 30px;
-    width: 550px;
+    width: 600px;
     height: 500px;
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -434,25 +435,26 @@ label {
 }
 
 #board-links {
-    padding-bottom: 5px;
     margin: 20px;
 }
 
-
-#board-links > tr {
-    padding-bottom: 5px;
+#board-links * {
+    margin-bottom: 30px;
 }
 
-#board-links>tr:nth-child(1){
-    margin: 300px !important;
-    border: 1px solid;
+/* 미니 카테고리 */
+#board-links tr td:first-child {
+    font-weight: bold;
+    cursor: default;
 }
+
 
 #board-links tr td a {
+    display: grid;
     text-decoration: none;
     color: black;
     cursor: pointer;
-    margin-bottom: 5px;
+    margin: 8px;
 }
 
 #board-links tr td a:hover {
@@ -464,11 +466,15 @@ label {
 }
 
 #moreView {
+    position: absolute;
     display: block;
     width: 90%;
     height: 40px;
     border-radius: 5px;
     text-align: center;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     border: 1px solid gray;
     background-color: white;
     margin-bottom: 0;

@@ -102,6 +102,7 @@ public class BoardController {
 		Map<Object, Object> map = service.selectCategoryBoardList(categoryNo, cp);
 		List<Board> boardList = (List<Board>) map.get("boardList");
 		
+		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("boardList", boardList);
@@ -258,5 +259,19 @@ public class BoardController {
 		return "board/boardList";
 
 	}
+	
+	@ResponseBody
+	@GetMapping("hotBoard")
+	public List<Board> hotBoard() {
+		return service.selectHotBoard();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

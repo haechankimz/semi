@@ -36,7 +36,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		.addPathPatterns("/board/**", "/editBoard/**")
 
 
-		.excludePathPatterns("/board/selectMiniList/**", "/board/search/**");
+		.excludePathPatterns("/board/selectMiniList/**", "/board/search/**", "/board/hotBoard/**");
 
 	}
 

@@ -102,6 +102,13 @@ boardWrite.addEventListener("submit", e =>{
     return;
   }
 
+  if(boardContent.value.trim().length > 1332){
+    alert("입력할 수 있는 글자 수를 초과했습니다.");
+    boardContent.focus();
+    e.preventDefault();
+    return;
+  }
+
 });
 
 

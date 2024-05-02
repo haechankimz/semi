@@ -161,6 +161,13 @@
 		AND BOARD_NO = #{boardNo}
 	</select>
 	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteBoardLike">
+		DELETE FROM "BOARD_LIKE" 
+		WHERE MEMBER_NO = #{memberNo} 
+		AND BOARD_NO = #{boardNo}
+	</delete>
+	
 
 	<!-- 조회수 증가 -->
 	<update id="updateReadCount">
@@ -176,13 +183,6 @@
 		WHERE BOARD_NO = #{boardNo}
 	</select>
 	
-	
-	<!-- 좋아요 취소 -->
-	<delete id="deleteBoardLike">
-		DELETE FROM "BOARD_LIKE" 
-		WHERE MEMBER_NO = #{memberNo} 
-		AND BOARD_NO = #{boardNo}
-	</delete>
 	
 	<!-- 좋아요 하기 -->
 	<insert id="addBoardLike">

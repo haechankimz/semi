@@ -141,6 +141,8 @@ header {
     justify-content: center;
     align-items: center;
     width: 30px;
+    height: 30px;
+    border-radius: 50px;
 }
 
 #menuToggle {
@@ -584,4 +586,11 @@ article span {
     color: white;
     font-size: 35px;
     font-weight: bold;
+}
+
+
+#board-links {
+    
+    padding-left: 10px;
+
 }

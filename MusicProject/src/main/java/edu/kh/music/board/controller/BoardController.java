@@ -118,7 +118,7 @@ public class BoardController {
 	public String boardDetail(
 		@PathVariable("boardCode") int boardCode,
 		@PathVariable("boardNo") int boardNo,
-		@SessionAttribute(value="loginMemberNo", required=false) Member loginMember,
+		@SessionAttribute(value="loginMember", required=false) Member loginMember,
 		Model model,
 		RedirectAttributes ra,
 		HttpServletRequest req,
@@ -186,14 +186,12 @@ public class BoardController {
 					c.setMaxAge((int)diff);
 					resp.addCookie(c);
 				}
-				
-				path = "board/boardDetail";
-				
-				model.addAttribute("board", board);
-				
-				model.addAttribute("start", 0);
-				
-				}
+			}
+			
+			path = "board/boardDetail";
+			model.addAttribute("board", board);
+			model.addAttribute("start", 0);
+			
 		}
 		
 		return path;

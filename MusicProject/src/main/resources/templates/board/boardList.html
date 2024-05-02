@@ -84,10 +84,6 @@
                 <!-- 목록 조회 -->
 
                 <ul class="pagination" th:unless="${categoryNo} or ${param.keyword}" th:object="${pagination}">
-                    
-
-                <ul class="pagination" th:unless="${param.key}" th:object="${pagination}">
-
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
 
@@ -145,23 +141,12 @@
                 </ul> 
                
 
-                <!-- /board/2/category/21?cp=2 -->
-                <!-- /board/2?cp=2 -->
-
                 <!-- 카테고리 버튼 누른 경우 -->
 
                 <ul class="pagination" th:if="${categoryNo}" th:object="${pagination}">
-                    <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode},  categoryNo=${param.categoryNo}, cp=1)}">&lt;&lt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
 
-                    <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode},  categoryNo=$categoryNo=${param.categoryNo}, cp=*{prevPage})}">&lt;</a></li>
-
-                <ul class="pagination" th:if="${param.key}" th:object="${pagination}">
-
-
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1, category=${param.categoryNo})}">&lt;&lt;</a></li>
-
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage}, category=${param.categoryNo})}">&lt;</a></li>
-
+                    <li><a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=*{prevPage})}">&lt;</a></li>
 
                     <th:block th:if="*{startPage lt endPage}" th:each="i : *{#numbers.sequence(startPage, endPage)}">
 
@@ -170,11 +155,7 @@
                         </li>
 
                         <li th:unless="${i} == *{currentPage}">
-
-                            <a th:href="@{/board/boardCode/category/, (boardCode=${boardCode}, categoryNo=${param.categoryNo}, cp=${i})}" 
-
-                            <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i}, category=${param.categoryNo})}" 
-
+                            <a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=${i}) }" 
                                th:text="${i}"> 이동할 페이지
                             </a>
                         </li>
@@ -186,17 +167,14 @@
                         </li>
                     </th:block>
 
-
-                    <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode}, categoryNo=${param.categoryNo}, cp=*{nextPage})}">&gt;</a></li>
-                    <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode},  categoryNo=${param.categoryNo}, cp=*{maxPage})}">&gt;&gt;</a></li>
-
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{nextPage}, category=${param.categoryNo})}">&gt;</a></li>
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{maxPage}, category=${param.categoryNo})}">&gt;&gt;</a></li>
-                    
+                    <li><a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=*{nextPage})}">&gt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
 
                 </ul> 
                     
+            
             </div>
+            
 
 
         </section>

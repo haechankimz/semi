@@ -80,8 +80,8 @@
             <div class="pagination-area">
 
                 <!-- 목록 조회 -->
-                <ul class="pagination" th:unless="${param.keyword}" th:object="${pagination}">
-
+                <ul class="pagination" th:unless="${categoryNo} or ${param.keyword}" th:object="${pagination}">
+                    
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage})}">&lt;</a></li>
@@ -135,9 +135,10 @@
                     <li><a th:href="@{/board/search (keyword=${param.keyword}, cp=*{maxPage})}">&gt;&gt;</a></li>
                     
                 </ul> 
+               
 
                 <!-- 카테고리 버튼 누른 경우 -->
-                <ul class="pagination" th:if="${param.key}" th:object="${pagination}">
+                <ul class="pagination" th:if="${categoryNo}" th:object="${pagination}">
 
                     <li><a th:href="@{/board/{boardCode}/category/{categoryNo}(boardCode=${boardCode}, categoryNo=${categoryNo}, cp=1)}">&lt;&lt;</a></li>
 
@@ -177,7 +178,7 @@
 
         const boardCode = /*[[${boardCode}]]*/ "게시글 코드";
         const categoryNo = /*[[${board?.categoryNo}]]*/ "카테고리 번호";
-        const authority = /*[[${session.loginMember.authority}]]*/ "관리자 권한";
+        const authority = /*[[${session.loginMember?.authority}]]*/ "관리자 권한";
 
     </script>
 

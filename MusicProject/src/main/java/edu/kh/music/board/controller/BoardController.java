@@ -119,6 +119,7 @@ public class BoardController {
 			}
 		}
 		
+		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
 		model.addAttribute("categoryList", categoryList);

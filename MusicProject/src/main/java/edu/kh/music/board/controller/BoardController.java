@@ -118,7 +118,7 @@ public class BoardController {
 	public String boardDetail(
 		@PathVariable("boardCode") int boardCode,
 		@PathVariable("boardNo") int boardNo,
-		@SessionAttribute(value="loginMemberNo", required=false) Member loginMember,
+		@SessionAttribute(value="loginMember", required=false) Member loginMember,
 		Model model,
 		RedirectAttributes ra,
 		HttpServletRequest req,
@@ -215,6 +215,7 @@ public class BoardController {
 	public List<Board> selectMiniList(
 		@PathVariable("boardCode") int boardCode,
 		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
+		@RequestParam(value="boardNo", required=false) int boardNo,
 		@RequestParam Map<String, Object> paramMap,
 		Model model) {
 		
@@ -237,9 +238,12 @@ public class BoardController {
 
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("miniList", map.get("miniList"));
+		model.addAttribute("boardNo", boardNo);
 		
 		return miniList;
 	}
+	
+
 	
 	
 	// 검색

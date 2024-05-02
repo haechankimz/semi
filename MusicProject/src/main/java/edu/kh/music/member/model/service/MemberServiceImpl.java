@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	// 비밀번호 찾기
 	@Override
-	public int findPw(Member member) {
+	public Integer findPw(Member member) {
 		return mapper.findPw(member);
 	}
 	

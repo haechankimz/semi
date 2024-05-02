@@ -58,7 +58,6 @@ public interface BoardService {
 	 */
 	int boardLike(Map<String, Integer> map);
 
-	List<Board> selectMiniList(int boardCode, int cp);
 
 
 	/** 검색

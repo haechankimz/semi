@@ -144,7 +144,7 @@ public class MemberController {
 			Member member, 
 			RedirectAttributes ra, HttpSession session) {
 
-		Integer  id = service.findPw(member);
+		Integer id = service.findPw(member);
 
 		if (id == null) {
 			ra.addFlashAttribute("message", "조회된 결과가 없습니다. 정확한 정보를 입력 해주세요.");

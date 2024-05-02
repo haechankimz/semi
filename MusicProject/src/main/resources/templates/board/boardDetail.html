@@ -14,12 +14,11 @@
 <body>
     <main>
         <th:block th:replace="~{common/header}"></th:block>
-
         <section class="board-detail" th:object="${board}">
 
             <p class="category" th:text="*{categoryName}">카테고리</p>
             <h1 class="board-title" th:text="*{boardTitle}">게시글 제목</h1>
-            <p class="board-writer">
+            <a class="board-writer">
 
                 <img th:unless="*{profileImg}" th:src="*{profileImg}">
                 <img th:if="*{profileImg}" th:src="*{profileImg}">
@@ -33,7 +32,7 @@
                         th:classappend="*{likeCheck == 1} ? fa-solid : fa-regular"></i>
                     <span th:text="| *{likeCount}|">좋아요</span>
                 </span>
-                
+            </a>
             </p>
 
             <!-- 이미지 있을 경우 출력 -->

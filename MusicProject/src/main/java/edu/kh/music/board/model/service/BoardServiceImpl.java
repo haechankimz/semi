@@ -92,18 +92,7 @@ public class BoardServiceImpl implements BoardService {
 	public Board selectOne(Map<String, Integer> map) {
 		return mapper.selectOne(map);
 	}
-
-	// 조회수 증가
-	@Override
-	public int updateReadCount(int boardNo) {
-		int result = mapper.updateReadCount(boardNo);
-		if(result > 0) {
-			return mapper.selectReadCount(boardNo);
-		}
-		
-		return -1;
-	}
-
+	
 	// 좋아요
 	@Override
 	public int boardLike(Map<String, Integer> map) {
@@ -120,6 +109,19 @@ public class BoardServiceImpl implements BoardService {
 		if(result > 0) {
 			return mapper.selectLikeCount(map.get("boardNo"));
 			
+		}
+		
+		return -1;
+	}
+
+	// 조회수 증가
+	@Override
+	public int updateReadCount(int boardNo) {
+		
+		int result = mapper.updateReadCount(boardNo);
+		
+		if(result > 0) {
+			return mapper.selectReadCount(boardNo);
 		}
 		
 		return -1;

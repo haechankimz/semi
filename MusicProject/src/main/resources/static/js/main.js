@@ -186,25 +186,28 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("board/hotBoard")
     .then(response => response.json())
     .then(list => {
-
+        console.log(list);
         hotBoardList.innerText = "";
 
         for(let board of list){
+            console.log(board.boardCode);
+            console.log(board.boardNo);
             const tr = document.createElement("tr");
             const arr = ['boardName', 'categoryName', 'boardTitle', 'memberNickname', 'likeCount'];
 
             for(let key of arr){
                 const td = document.createElement("td");
-                
-                if(key === 'boardTitle') {
+
+                if(key === 'boardTitle'){
                     const a = document.createElement("a");
                     a.innerText = board[key];
-                    a.href = `/board/${board}`;
-                    td.append(a);
-                    tr.append(td); 
-                }
 
-                td.innerText = board[key];
+
+                    a.href = "/board/" + board.boardCode + "/" + board.boardNo;
+                    td.append(a);
+                }else{
+                    td.innerText = board[key];
+                }
                 tr.append(td);
             }
             hotBoardList.append(tr);

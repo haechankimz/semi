@@ -161,6 +161,13 @@
 		AND BOARD_NO = #{boardNo}
 	</select>
 	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteBoardLike">
+		DELETE FROM "BOARD_LIKE" 
+		WHERE MEMBER_NO = #{memberNo} 
+		AND BOARD_NO = #{boardNo}
+	</delete>
+	
 
 	<!-- 조회수 증가 -->
 	<update id="updateReadCount">
@@ -176,13 +183,6 @@
 		WHERE BOARD_NO = #{boardNo}
 	</select>
 	
-	
-	<!-- 좋아요 취소 -->
-	<delete id="deleteBoardLike">
-		DELETE FROM "BOARD_LIKE" 
-		WHERE MEMBER_NO = #{memberNo} 
-		AND BOARD_NO = #{boardNo}
-	</delete>
 	
 	<!-- 좋아요 하기 -->
 	<insert id="addBoardLike">
@@ -292,7 +292,7 @@
 	<select id="selectHotBoard">
 		SELECT DISTINCT BOARD_NAME, 
 			(SELECT CATEGORY_NAME FROM "CATEGORY" C WHERE C.CATEGORY_NO = B.CATEGORY_NO) CATEGORY_NAME, BOARD_TITLE, MEMBER_NICKNAME, 
-			(SELECT COUNT(*) FROM BOARD_LIKE L WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT
+			(SELECT COUNT(*) FROM BOARD_LIKE L WHERE L.BOARD_NO = B.BOARD_NO) LIKE_COUNT, BOARD_CODE, BOARD_NO
 		FROM BOARD B
 		JOIN "BOARD_TYPE" USING(BOARD_CODE)
 		JOIN "CATEGORY" USING(BOARD_CODE)

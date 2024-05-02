@@ -186,14 +186,12 @@ public class BoardController {
 					c.setMaxAge((int)diff);
 					resp.addCookie(c);
 				}
-				
-				path = "board/boardDetail";
-				
-				model.addAttribute("board", board);
-				
-				model.addAttribute("start", 0);
-				
-				}
+			}
+			
+			path = "board/boardDetail";
+			model.addAttribute("board", board);
+			model.addAttribute("start", 0);
+			
 		}
 		
 		return path;

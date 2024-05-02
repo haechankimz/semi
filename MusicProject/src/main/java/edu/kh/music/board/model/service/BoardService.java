@@ -71,7 +71,7 @@ public interface BoardService {
 	 * @param cp
 	 * @return
 	 */
-	List<Board> selectMiniList(int boardCode, int cp);
+//	List<Board> selectMiniList(int boardCode, int cp);
 
 
 	
@@ -79,6 +79,12 @@ public interface BoardService {
 	 * @return
 	 */
 	List<Board> selectHotBoard();
+
+
+//	List<Board> selectMiniList();
+
+
+	List<Board> selectMiniList(int boardCode);
 
 
 

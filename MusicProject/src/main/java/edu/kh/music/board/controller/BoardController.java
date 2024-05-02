@@ -208,29 +208,24 @@ public class BoardController {
 	
 	
 	// 메인에 미니 보드
-	@GetMapping("selectMiniList/{boardCode:[0-9]+}")
 	@ResponseBody
+	@GetMapping("selectMiniList/{boardCode:[0-9]+}")
 	public List<Board> selectMiniList(
 		@PathVariable("boardCode") int boardCode,
-		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 		@RequestParam(value="boardNo", required=false) int boardNo,
 		@RequestParam Map<String, Object> paramMap,
 		Model model) {
 		
-		List<Board> miniList = service.selectMiniList(boardCode, cp);
+		List<Board> miniList = service.selectMiniList(boardCode);
 		
 		Map<String, Object> map = null;
 		
-		if(paramMap.get("key") == null) {
-			map = service.selectBoardList(boardCode, cp);
-			
-			
-			List<Board> boardList = (List<Board>) map.get("boardList");
-			for(Board board : boardList) {
-				if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
-					String categoryName = service.getCategoryName(boardCode);
-					board.setCategoryName(categoryName);
-				}
+		
+		List<Board> boardList = (List<Board>) map.get("boardList");
+		for(Board board : boardList) {
+			if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
+				String categoryName = service.getCategoryName(boardCode);
+				board.setCategoryName(categoryName);
 			}
 		}
 
@@ -241,8 +236,6 @@ public class BoardController {
 		return miniList;
 	}
 	
-
-	
 	
 	// 검색
 	@GetMapping("search")
@@ -252,7 +245,6 @@ public class BoardController {
 			@RequestParam("keyword") String keyword) {
 		
 		Map<String, Object> map = service.searchList(keyword, cp);
-
 		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pagination", map.get("pagination"));
@@ -267,10 +259,6 @@ public class BoardController {
 	public List<Board> hotBoard() {
 		return service.selectHotBoard();
 	}
-	
-	
-	
-	
 	
 	
 	

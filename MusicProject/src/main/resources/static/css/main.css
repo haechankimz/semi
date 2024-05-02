@@ -133,6 +133,7 @@ header {
     display: flex;
     align-items: center;
     padding: 40px 10px;
+
 }
 
 #memberProfile {
@@ -453,7 +454,6 @@ label {
 }
 
 .hotBoard {
-    display: flex;
     padding: 26px;
     margin: 30px;
     width: 400px;
@@ -462,7 +462,29 @@ label {
 
 .hotBoard h3 {
     margin: 20px;
+    margin-left: 7px;
 }
+
+#hotBoardTable{
+    width: 100%;
+}
+
+#hotBoardTable > thead > th{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#hotBoardList {
+    text-align: center;
+}
+
+#hotBoardList > tr > td {
+    word-wrap: break-word;
+}
+
+
+
 
 /* ****** footer ****** */
 

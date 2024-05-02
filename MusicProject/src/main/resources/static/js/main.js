@@ -172,3 +172,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 });
+
+
+const hotBoard = document.querySelector(".hotBoard");
+const hotBoradTable = document.querySelector("#hotBoardTable");
+const hotBoardList = document.querySelector("#hotBoardList");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    fetch("board/hotBoard")
+    .then(response => response.json())
+    .then(list => {
+
+        hotBoardList.innerText = "";
+
+        for(let board of list){
+            const tr = document.createElement("tr");
+            const arr = ['boardName', 'categoryName', 'boardTitle', 'memberNickname', 'likeCount'];
+
+            for(let key of arr){
+                const td = document.createElement("td");
+                
+                if(key === 'boardTitle') {
+                    const a = document.createElement("a");
+                    a.innerText = board[key];
+                    a.href = `/board/${boardCode}/${board.boardNo}`;
+                    td.append(a);
+                    tr.append(td); 
+                }
+
+                td.innerText = board[key];
+                tr.append(td);
+            }
+            hotBoardList.append(tr);
+        }
+    })
+});
+
+
+

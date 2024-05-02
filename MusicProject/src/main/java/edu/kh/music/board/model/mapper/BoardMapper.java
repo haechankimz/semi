@@ -11,6 +11,9 @@ import org.apache.ibatis.session.RowBounds;
 import edu.kh.music.board.model.dto.Board;
 import oracle.jdbc.proxy.annotation.Post;
 
+/**
+ * 
+ */
 @Mapper
 public interface BoardMapper {
 	
@@ -123,6 +126,16 @@ public interface BoardMapper {
 	 * @return
 	 */
 	List<Board> searchList(String keyword, RowBounds rowBounds);
+
+
+	/** 실시간 인기글
+	 * @param rowBounds
+	 * @return
+	 */
+	List<Board> selectHotBoard(RowBounds rowBounds);
+
+
+	
 
 
 

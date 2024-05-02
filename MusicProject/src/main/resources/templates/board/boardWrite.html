@@ -48,6 +48,18 @@
           </select>
         </th:block>
 
+        <th:block th:if="${boardCode == 3}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="37">자유</option>
+          </select>
+        </th:block>
+
+        <th:block th:if="${boardCode == 4}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="38">공지</option>
+          </select>
+        </th:block>
+
         <input type="text" name="boardTitle" placeholder="제목을 입력해주세요.">
       </div>
 

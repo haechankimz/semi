@@ -174,7 +174,13 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public List<Board> selectHotBoard() {
-		return mapper.selectHotBoard();
+
+		int limit = 7;
+		int offset = 0;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectHotBoard(rowBounds);
 	}
 	
 	

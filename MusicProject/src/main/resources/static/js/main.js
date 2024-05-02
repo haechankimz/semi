@@ -108,7 +108,7 @@ if (loginForm != null) {
 
 ////////////////////////////////////////////////////////////////////
 // 위젯 
-let boardCode;
+let mainCode;
 
 document.addEventListener("DOMContentLoaded", function() {
     loadMiniList("1");
@@ -116,20 +116,20 @@ document.addEventListener("DOMContentLoaded", function() {
     var boardLinks = document.querySelectorAll(".board-link");
     boardLinks.forEach(function(link) {
         link.addEventListener("click", function() {
-            boardCode = this.getAttribute("data-board-code");
-            loadMiniList(boardCode);
+            mainCode = this.getAttribute("data-board-code");
+            loadMiniList(mainCode);
         });
     });
 
-    function loadMiniList(boardCode) {
+    function loadMiniList(mainCode) {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/board/selectMiniList/" + boardCode);
-        console.log(boardCode);
+        xhr.open("GET", "/board/selectMiniList/" + mainCode);
+        console.log(mainCode);
 
         xhr.onreadystatechange = function() {
             if(xhr.readyState === 4 && xhr.status === 200) {
                 var miniList = JSON.parse(xhr.responseText);
-                renderMiniList(miniList, boardCode);
+                renderMiniList(miniList, mainCode);
             }
         };
         xhr.send();
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if(key === 'boardTitle') {
                     const a = document.createElement("a");
                     a.innerText = mini[key];
-                    a.href = "/board/" + boardCode + "/" + mini.boardNo;
+                    a.href = "/board/" + mainCode + "/" + mini.boardNo;
                     td.append(a);
                     tr.append(td); 
 
@@ -193,12 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
             for(let key of arr){
                 const td = document.createElement("td");
                 
-                if(key === 'boardTitle'){
+                if(key === 'boardTitle') {
                     const a = document.createElement("a");
                     a.innerText = board[key];
-                    a.href = "/board/" + boardCode + "/" + boardNo;
+                    a.href = `/board/${boardCode}/${board.boardNo}`;
                     td.append(a);
-                    tr.append(td);
+                    tr.append(td); 
                 }
 
                 td.innerText = board[key];
@@ -206,15 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             hotBoardList.append(tr);
         }
-
-
-
-
-
     })
-
-
-
 });
 
 

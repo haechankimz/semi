@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Project</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/> -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/main.css">
     <th:block th:replace="~{common/common}"></th:block>
 
@@ -16,39 +17,71 @@
 
         <!-- banner swiper -->
         <div class="swiper-container">
+
             <div class="swiper-wrapper">
+
                 <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
+                    <a href="http://localhost/board/1/1996?cp=1">
+                    
+                        <div class="swiper-text">
+                            <span class="swiper-title">국외 힙합</span>
+                            <span class="swiper-content">이름이 멋있는 래퍼 누가 있을까요?</span>
+                        </div>
+                        <img src="/images/main1.jpg">
+                    </a>
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
+                   <a href="http://localhost/board/1/2035">
+                        <div class="swiper-text">
+                            <span class="swiper-title">국내 힙합</span>
+                            <span class="swiper-content">한국 힙합의 대표적인 곡이 뭐가 있을까요?</span>
+                        </div>
+                        <img src="/images/main2.jpg">
+                   </a>
                 </div>
 
                 <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
+                    <a href="https://www.youtube.com/watch?v=nfWI7h7h7Nc">
+                        <div class="swiper-text">
+                            <span class="swiper-title">인기</span>
+                            <span class="swiper-content">샤이한 효린과 씨스타 뮤비 많이 본 pH-1</span>
+                        </div>
+                        <img src="/images/main3.jpg">
+                    </a>
                 </div>
 
-
+               
                 <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
+                    <a href="/">
+                        <div class="swiper-text">
+                            <span class="swiper-title">종합</span>
+                            <span class="swiper-content">대한민국 보컬리스트 원탑은 누구라고 생각하나요</span>
+                        </div>
+                        <img src="/images/main4.jpg">
+                    </a>
                 </div>
 
+               
                 <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
+                    <a href="http://localhost/board/2/2034">
+                        <div class="swiper-text">
+                            <span class="swiper-title">국외 힙합</span>
+                            <span class="swiper-content">Concrete Boys - 1. POINT ME TO IT (내게 알려줘)</span>
+                        </div>
+                        <img src="/images/main5.jpg">
+                    </a>
                 </div>
 
-                <div class="swiper-slide">
-                    <img src="https://via.placeholder.com/1000x500">
-                </div>
+               
 
                 
             </div>
+        </div>
 
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-        </div>
 
         <hr>
         <p id="community">COMMUNITY</p>
@@ -98,11 +131,15 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <script th:inline="javascript">
         const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="/js/main.js"></script>
 
     

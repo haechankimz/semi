@@ -185,10 +185,12 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("board/hotBoard")
     .then(response => response.json())
     .then(list => {
-
+        console.log(list);
         hotBoardList.innerText = "";
 
         for(let board of list){
+            console.log(board.boardCode);
+            console.log(board.boardNo);
             const tr = document.createElement("tr");
             const arr = ['boardName', 'categoryName', 'boardTitle', 'memberNickname', 'likeCount'];
 
@@ -200,13 +202,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     a.innerText = board[key];
                     a.href = "/board/" + board.boardCode + "/" + board.boardNo;
                     td.append(a);
-                    tr.append(td);
+                }else{
+                    td.innerText = board[key];
                 }
-
-                td.innerText = board[key];
                 tr.append(td);
             }
-
             hotBoardList.append(tr);
         }
     })

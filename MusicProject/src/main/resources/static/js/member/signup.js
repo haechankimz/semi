@@ -334,6 +334,8 @@ sendAuthKeyBtn.addEventListener("click", () => {
 
     checkSignupObj.authKey = false;
 
+    authKey.value = "";
+
     fetch("/email/sendMail", {
         method : "POST",
         headers : {"Content-Type" : "application/json"},
@@ -423,10 +425,12 @@ checkAuthKeyBtn.addEventListener("click", () => {
         authKeyMessage.classList.remove('error');
         checkSignupObj.authKey = true;
 
-        if(checkAuthSentStatus()) {
+        if(!checkAuthSentStatus()) {
             alert("새 인증번호를 입력해 주세요.");
             return;
         }
+        setAuthSentStatus();
+
     })
 
     setAuthSentStatus();

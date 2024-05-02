@@ -128,10 +128,14 @@ public interface BoardMapper {
 	List<Board> searchList(String keyword, RowBounds rowBounds);
 
 
-	/** 실시간 검색어
+	/** 실시간 인기글
+	 * @param rowBounds
 	 * @return
 	 */
-	List<Board> selectHotBoard();
+	List<Board> selectHotBoard(RowBounds rowBounds);
+
+
+	
 
 
 

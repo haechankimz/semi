@@ -154,7 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 if(key === 'boardTitle') {
                     const a = document.createElement("a");
                     a.innerText = mini[key];
+
                     a.href = "/board/" + mainCode + "/" + mini.boardNo;
+
                     td.append(a);
                     tr.append(td); 
 

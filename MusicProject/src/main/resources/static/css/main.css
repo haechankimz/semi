@@ -401,15 +401,15 @@ label {
 .miniBoard {
     padding: 26px;
     margin: 30px;
-    width: 500px;
-    height: 450px;
+    width: 550px;
+    height: 500px;
     border: 1px solid #ccc;
     border-radius: 20px;
 }
 
 #post-list {
-    font-size: 20px;
-    border-bottom: 1px solid #ccc;
+    font-size: 17px;
+    border-bottom: 1px solid gray;
     padding-bottom: 13px;
     margin: 20px;
 }
@@ -422,6 +422,10 @@ label {
 #post-list a:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#post-list a.active {
+    color: red;
 }
 
 
@@ -451,8 +455,28 @@ label {
     margin-bottom: 5px;
 }
 
+#board-links tr td a:hover {
+    text-decoration: underline;
+}
+
 .widgetContent ul li {
     list-style: none;
+}
+
+#moreView {
+    display: block;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid gray;
+    background-color: white;
+    margin-bottom: 0;
+}
+
+#moreView:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .hotBoard {

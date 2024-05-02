@@ -101,7 +101,7 @@
 
 
         
-                <div class="hotBoard" style="border: 1px solid black;">
+                <div class="hotBoard">
                     <h3>실시간 인기글</h3>
                     
                     <div>
@@ -130,6 +130,7 @@
 
     <script th:inline="javascript">
         const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+        const boardCode = /*[[${boardCode}]]*/ "게시판 번호";
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

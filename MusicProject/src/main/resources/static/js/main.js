@@ -194,18 +194,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             for(let key of arr){
                 const td = document.createElement("td");
-                
-                if(key === 'boardTitle') {
+
+                if(key === 'boardTitle'){
                     const a = document.createElement("a");
                     a.innerText = board[key];
-                    a.href = `/board/${boardCode}/${board.boardNo}`;
+                    a.href = "/board/" + board.boardCode + "/" + board.boardNo;
                     td.append(a);
-                    tr.append(td); 
+                    tr.append(td);
                 }
 
                 td.innerText = board[key];
                 tr.append(td);
             }
+
             hotBoardList.append(tr);
         }
     })

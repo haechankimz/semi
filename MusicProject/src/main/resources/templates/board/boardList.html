@@ -155,8 +155,10 @@
                         </li>
 
                         <li th:unless="${i} == *{currentPage}">
+
                             <a th:href="@{/board/{boardCode}/category/{categoryNo}(categoryNo=${categoryNo}, boardCode=${boardCode}, cp=${i}) }" 
                                th:text="${i}"> 이동할 페이지
+
                             </a>
                         </li>
                     </th:block>

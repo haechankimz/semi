@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Project</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/css/main.css">
     <th:block th:replace="~{common/common}"></th:block>
 
@@ -55,15 +55,13 @@
 
             <container class="widget">
                 <!-- 미니 게시판 -->
-                <div class="miniBoard" style="border: 1px solid black;">
-                    <h3 id="post-list">  
-                        [
+                <div class="miniBoard">
+                    <p id="post-list">  
                         <a class="board-link" data-board="domestic" data-board-code="1">국내</a> |
                         <a class="board-link" data-board="international" data-board-code="2">국외</a> |
                         <a class="board-link" data-board="free" data-board-code="3">자유</a> |
                         <a class="board-link" data-board="notice" data-board-code="4">공지</a>
-                        ]
-                    </h3>
+                    </p>
                     <div id="board-links"></div>
                       
                 </div>
@@ -80,7 +78,7 @@
 
     <th:block th:replace="~{common/footer}"></th:block>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="/js/main.js"></script>
 
     

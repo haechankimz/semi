@@ -55,7 +55,7 @@ memberEmail.addEventListener("input", e => {
 
     /* 정규식 검사 */
     if( !regExp.test(inputMemberEmail) ){
-        emailMessage.innerText = "이메일 형식이 옳바르지 않습니다.";
+        emailMessage.innerText = "이메일 형식이 올바르지 않습니다.";
         emailMessage.classList.add('error');
         emailMessage.classList.remove('confirm');
         checkSignupObj.memberEmail = false;
@@ -127,7 +127,7 @@ memberPw.addEventListener("input", e => {
 
     /* 정규식 검사 */
     if( !regExp.test(inputMemberPw) ){
-        pwMessage.innerText = "비밀번호 형식이 옳바르지 않습니다.";
+        pwMessage.innerText = "비밀번호 형식이 올바르지 않습니다.";
         pwMessage.classList.add("error");
         pwMessage.classList.remove('confirm');
         checkSignupObj.memberPw = false;
@@ -181,7 +181,7 @@ memberNickname.addEventListener("input", e => {
     const regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
 
     if( !regExp.test(inputMemberNickname) ){
-        nickMessage.innerText = "닉네임 형식이 옳바르지 않습니다.";
+        nickMessage.innerText = "닉네임 형식이 올바르지 않습니다.";
         nickMessage.classList.add('error');
         nickMessage.classList.remove('confirm');
         checkSignupObj.memberNickname = false;

@@ -48,8 +48,7 @@ public interface BoardMapper {
 	 * @param rowBounds
 	 * @return
 	 */
-	List<Board> selectCategoryBoardList(
-		@Param("boardCode")int boardCode, @Param("categoryNo")int categoryNo, RowBounds rowBounds);
+	List<Board> selectCategoryBoardList(int categoryNo, RowBounds rowBounds);
 
 	/** 게시글에 카테고리 이름 가져오기
 	 * @param categoryNo
@@ -103,7 +102,7 @@ public interface BoardMapper {
 	 * @param paramMap
 	 * @return
 	 */
-	int getCategoryCount(@Param("boardCode")int boardCode, @Param("categoryNo")int categoryNo);
+	int getCategoryCount(int categoryNo);
 
 
 	/** 메인에 미니 게시판
@@ -136,6 +135,8 @@ public interface BoardMapper {
 
 
 	
+
+
 
 
 

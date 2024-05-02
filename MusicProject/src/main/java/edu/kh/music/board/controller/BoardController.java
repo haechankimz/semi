@@ -52,18 +52,16 @@ public class BoardController {
 		@PathVariable("boardCode") int boardCode,
 		@RequestParam(value="categoryNo", required=false) Integer categoryNo,
 		@RequestParam(value="cp", required=false, defaultValue="1") int cp,
-		Model model,
-		@RequestParam Map<String, Object> paramMap) {
+		Model model
 		
+		) {
 		
 		// 카테고리 버튼이름 가져오기
 		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
 		
 		Map<String, Object> map = null;
 
-		if(paramMap.get("key") == null) {
 			map = service.selectBoardList(boardCode, cp);
-			
 			
 			List<Board> boardList = (List<Board>) map.get("boardList");
 			for(Board board : boardList) {
@@ -72,7 +70,6 @@ public class BoardController {
 					board.setCategoryName(categoryName);
 				}
 			}
-		}
 		
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));
@@ -95,33 +92,20 @@ public class BoardController {
 			@PathVariable("boardCode") int boardCode,
 			@PathVariable("categoryNo") int categoryNo,
 			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
-			Model model,
-			@RequestParam Map<String, Object> paramMap) {
+			Model model) {
 		
 		
 		// 카테고리 버튼이름 가져오기
 		List<Map<String, Object>> categoryList = service.selectCategoryList(boardCode);
 		
-		Map<String, Object> map = null;
-		
-		
-		if(paramMap.get("categoryNo") == null) {
-			map = service.selectBoardList(boardCode, cp);
-		} 
-		
-		map = service.selectCategoryBoardList(boardCode, cp, categoryNo);
-		
+		// 카테고리 게시글 리스트
+		Map<Object, Object> map = service.selectCategoryBoardList(categoryNo, cp);
 		List<Board> boardList = (List<Board>) map.get("boardList");
-		for(Board board : boardList) {
-			if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
-				String categoryName = service.getCategoryName(boardCode);
-				board.setCategoryName(categoryName);
-			}
-		}
 		
 		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("pagination", map.get("pagination"));
-		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("categoryList", categoryList);
 		
 		return "board/boardList";
@@ -209,10 +193,6 @@ public class BoardController {
 				
 				model.addAttribute("start", 0);
 				
-				
-				
-				//// 이미지 있을 경우 추가 부분 /////
-					
 				}
 		}
 		
@@ -268,9 +248,10 @@ public class BoardController {
 			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, 
 			Model model,
 			@RequestParam("keyword") String keyword) {
-
+		
 		Map<String, Object> map = service.searchList(keyword, cp);
 
+		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pagination", map.get("pagination"));
 		model.addAttribute("boardList", map.get("boardList"));

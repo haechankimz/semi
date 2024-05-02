@@ -60,9 +60,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 특정 카테고리 게시판 목록
 	@Override
-	public Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo) {
+	public Map<Object, Object> selectCategoryBoardList(int categoryNo, int cp) {
 		
-		int listCount = mapper.getCategoryCount(boardCode, categoryNo);
+		int listCount = mapper.getCategoryCount(categoryNo);
 		
 		Pagination pagination = new Pagination(cp, listCount);
 		
@@ -70,9 +70,9 @@ public class BoardServiceImpl implements BoardService {
 		int offset = (cp-1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Board> boardList = mapper.selectCategoryBoardList(boardCode, categoryNo, rowBounds);
+		List<Board> boardList = mapper.selectCategoryBoardList(categoryNo, rowBounds);
 		
-		Map<String, Object> map = new HashMap<>();
+		Map<Object, Object> map = new HashMap<>();
 		
 		map.put("pagination", pagination);
 		map.put("boardList", boardList);
@@ -104,7 +104,6 @@ public class BoardServiceImpl implements BoardService {
 		return -1;
 	}
 
-
 	// 좋아요
 	@Override
 	public int boardLike(Map<String, Integer> map) {
@@ -125,7 +124,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		return -1;
 	}
-	
 	
 	// 메인에 미니 게시판
 	@Override
@@ -150,6 +148,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardList;
 	}	
 	
+	// 검색기능
 	@Override
 	public Map<String, Object> searchList(String keyword, int cp) {
 		
@@ -170,6 +169,7 @@ public class BoardServiceImpl implements BoardService {
 		  return map;
 		
 	}
+	
 
 	
 	@Override

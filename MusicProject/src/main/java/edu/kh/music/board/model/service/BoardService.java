@@ -27,10 +27,9 @@ public interface BoardService {
 	/** 특정 카테고리의 게시판 목록
 	 * @param boardCode
 	 * @param cp
-	 * @param categoryNo
 	 * @return
 	 */
-	Map<String, Object> selectCategoryBoardList(int boardCode, int cp, int categoryNo);
+	Map<Object, Object> selectCategoryBoardList(int categoryNo, int cp);
 
 	/** 게시글에 카테고리 가져오기
 	 * @param categoryNo
@@ -80,6 +79,7 @@ public interface BoardService {
 	 * @return
 	 */
 	List<Board> selectHotBoard();
+
 
 
 

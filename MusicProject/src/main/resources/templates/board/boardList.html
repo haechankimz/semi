@@ -82,7 +82,12 @@
             <div class="pagination-area">
 
                 <!-- 목록 조회 -->
+
+                <ul class="pagination" th:unless="${categoryNo} or ${param.keyword}" th:object="${pagination}">
+                    
+
                 <ul class="pagination" th:unless="${param.key}" th:object="${pagination}">
+
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
 
@@ -138,18 +143,20 @@
                     <li><a th:href="@{/board/search (keyword=${param.keyword}, cp=*{maxPage})}">&gt;&gt;</a></li>
                     
                 </ul> 
+               
 
                 <!-- /board/2/category/21?cp=2 -->
                 <!-- /board/2?cp=2 -->
 
                 <!-- 카테고리 버튼 누른 경우 -->
-                <ul class="pagination" th:if="${param.categoryNo}" th:object="${pagination}">
 
+                <ul class="pagination" th:if="${categoryNo}" th:object="${pagination}">
                     <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode},  categoryNo=${param.categoryNo}, cp=1)}">&lt;&lt;</a></li>
 
                     <li><a th:href="@{/board/boardCode/category/categoryNo, (boardCode=${boardCode},  categoryNo=$categoryNo=${param.categoryNo}, cp=*{prevPage})}">&lt;</a></li>
 
                 <ul class="pagination" th:if="${param.key}" th:object="${pagination}">
+
 
                     <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1, category=${param.categoryNo})}">&lt;&lt;</a></li>
 

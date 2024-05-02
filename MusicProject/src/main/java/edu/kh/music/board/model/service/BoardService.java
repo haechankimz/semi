@@ -59,7 +59,6 @@ public interface BoardService {
 	int boardLike(Map<String, Integer> map);
 
 
-
 	/** 검색
 	 * @param keyword
 	 * @param cp
@@ -74,6 +73,13 @@ public interface BoardService {
 	 * @return
 	 */
 	List<Board> selectMiniList(int boardCode, int cp);
+
+
+	
+	/** 실시간 인기글
+	 * @return
+	 */
+	List<Board> selectHotBoard();
 
 
 

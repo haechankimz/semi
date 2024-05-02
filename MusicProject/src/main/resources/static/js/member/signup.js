@@ -169,6 +169,14 @@ memberNickname.addEventListener("input", e => {
 
     const inputMemberNickname = e.target.value;
 
+    if(inputMemberNickname.trim().length > 10) {
+        alert("10글자 이내로 작성해 주세요.");
+        nickMessage.classList.remove('confirm', 'error');
+        checkSignupObj.memberNickname = false;
+        memberNickname.value = "";
+        return;
+    }
+
     /* 입력 X */
     if(inputMemberNickname.trim().length === 0){
         inputMemberNickname.innerText = "한글,영어,숫자로만 2~10글자";

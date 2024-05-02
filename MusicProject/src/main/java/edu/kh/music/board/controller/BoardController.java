@@ -277,5 +277,19 @@ public class BoardController {
 		return "board/boardList";
 
 	}
+	
+	@ResponseBody
+	@GetMapping("hotBoard")
+	public List<Board> hotBoard() {
+		return service.selectHotBoard();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

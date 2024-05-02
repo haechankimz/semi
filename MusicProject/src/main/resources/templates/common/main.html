@@ -65,6 +65,9 @@
                         ]
                     </h3>
                     <div id="board-links"></div>
+
+                    
+
                       
                 </div>
 
@@ -73,12 +76,31 @@
                 <div class="hotBoard" style="border: 1px solid black;">
                     <h3>실시간 인기글</h3>
                     
-                    <div id="board-links"></div>
+                    <div>
+                        <table id="hotBoardTable">
+                            <thead>
+                                <th>게시판</th>    
+                                <th>장르</th>    
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th><i class="fa-solid fa-heart"></i></th>
+                            </thead>
+
+                            <tbody id="hotBoardList"></tbody>
+                        </table>
+
+
+
+                    </div>
                 </div>
             </container>
     </main>
 
     <th:block th:replace="~{common/footer}"></th:block>
+
+    <script th:inline="javascript">
+        const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/js/main.js"></script>

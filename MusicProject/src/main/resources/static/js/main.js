@@ -5,7 +5,7 @@ if(document.querySelector(".swiper-container") != null) {
         slidesPerView: 1,
         direction: 'horizontal',
         autoplay: {
-            delay: 2000,
+            delay: 3000,
         },
         loop: true,
         spaceBetween: 30,
@@ -105,81 +105,17 @@ if (loginForm != null) {
 
 // });
 
-
-////////////////////////////////////////////////////////////////////
 // 위젯 
-let mainCode;
-
-document.addEventListener("DOMContentLoaded", function() {
-    loadMiniList("1");
 
 
-    var boardLinks = document.querySelectorAll(".board-link");
-    boardLinks.forEach(function(link) {
-        link.addEventListener("click", function() {
-            mainCode = this.getAttribute("data-board-code");
-            loadMiniList(mainCode);
-        });
-    });
-
-    function loadMiniList(mainCode) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "/board/selectMiniList/" + mainCode);
-        console.log(mainCode);
-
-        xhr.onreadystatechange = function() {
-            if(xhr.readyState === 4 && xhr.status === 200) {
-                var miniList = JSON.parse(xhr.responseText);
-                renderMiniList(miniList, mainCode);
-            }
-        };
-        xhr.send();
-
-    }
-
-    function renderMiniList(miniList, board) {
-        const boardLinks = document.querySelector("#board-links");
-        boardLinks.innerHTML = "";
-
-        console.log(miniList);
-
-        for(let i=0; i<Math.min(miniList.length, 8); i++) {
-            const mini = miniList[i];
-            const tr = document.createElement("tr");
-
-            const arr = ['categoryName', 'boardTitle'];
-
-            for(let key of arr) {
-                const td = document.createElement("td");
-
-                if(key === 'boardTitle') {
-                    const a = document.createElement("a");
-                    a.innerText = mini[key];
-
-                    a.href = `board/${boardCode}`
-
-                    td.append(a);
-                    tr.append(td); 
-
-                    a.addEventListener("click", e => {
-                        e.preventDefault();
-
-                        window.location.href = e.target.href;
-                    });
-                    continue;
-                }
-                td.innerText = mini[key];
-                tr.append(td);
-            }
-            boardLinks.append(tr);
-        }
-    }
-});
-
-
+/* 인기 게시글 / 미니 게시글 */
 const hotBoard = document.querySelector(".hotBoard");
 const hotBoradTable = document.querySelector("#hotBoardTable");
 const hotBoardList = document.querySelector("#hotBoardList");
+
+const miniBoardLink = document.querySelectorAll(".board-link");
+const boardLinks = document.querySelector("#board-links");
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -213,14 +149,64 @@ document.addEventListener("DOMContentLoaded", () => {
             hotBoardList.append(tr);
         }
     })
-});
 
+    // miniBoardLink.forEach(boardLink => {
+    //     boardLink.addEventListener("click", () => {
+            // const mainCode = boardLink.dataset.boardCode;
 
-const moreView = document.querySelector("#moreView")
+            // fetch(`/board/${boardCode}`)
+            // .then(resp => resp.json())
+            // .then(data => {
 
-moreView.forEach(moreView => {
-    moreView.addEventListener("click", () => {
-        const boardCode = moreView.dataset.boardCode;
-        location.href = `/board/${boardCode}`;
+    miniBoardLink.forEach(miniBoardLink => {
+        miniBoardLink.addEventListener("click", function() {
+            const mainCode = this.getAttribute("data-board-code");
+            loadMiniList(mainCode);
+        });
     });
+
+    function loadMiniList(mainCode) {
+        fetch("/board/selectMiniList/" + mainCode)
+        .then(resp => resp.json())
+        .then(list => {
+            boardLinks.innerText = "";
+    
+            for(let mini of list) {
+                const tr = document.createElement("tr");
+                const arr = ['categoryName', 'boardTitle'];
+    
+                for(let key of arr) {
+                    const td = document.createElement("td");
+    
+                    if(key === 'boardTitle') {
+                        const a = document.createElement("a");
+                        a.innerText = mini[key];
+    
+                        a.href = "/board/" + mainCode + "/" + mini.boardNo;
+                        td.append(a);
+                    } else {
+                        td.innerText = mini[key]
+                    }
+                    tr.append(td); 
+                }
+                boardLinks.append(tr);
+            }
+        });
+
+    }
+
 });
+
+
+
+
+
+/* 더보기 */
+// const moreView = document.querySelector("#moreView")
+
+// moreView.forEach(moreView => {
+//     moreView.addEventListener("click", () => {
+//         const boardCode = moreView.dataset.boardCode;
+//         location.href = `/board/${boardCode}`;
+//     });
+// });

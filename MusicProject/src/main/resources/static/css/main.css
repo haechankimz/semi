@@ -78,7 +78,7 @@ header {
 
 /* ** navigator(게시판 종류 나열) ** */
 nav {
-    height: 40px;
+    height: 50px;
     border-bottom: 1px solid black;
 
     position: sticky;
@@ -101,23 +101,23 @@ nav li {
 }
 
 nav a {
+    display: block;
     width: 80px;
     text-decoration: none;
-    color: black;
+    color: #1c1c1c;
     font-weight: bold;
     padding: 10px;
-    display: block;
     justify-content: center;
     text-align: center;
-    border-radius: 3px;
     transition-duration: 0.1s; 
     height: 100%;
+    font-size: 18px;
 }
 
 nav a:hover {
-    color: white;
-    background-color: black;
+    color: red;
     text-decoration: none;
+    transition-duration: 0.1s; 
 }
 
 header {
@@ -176,8 +176,6 @@ header {
     font-weight: bold;
 
     border: 1px solid #ccc;
-   
-
 }
 
 
@@ -375,7 +373,7 @@ label {
 }
 
 .swiper-slide img {
-    display: block;
+    display: inline-block;
     width: 100%;
     height: 110%;
     object-fit: cover;
@@ -401,15 +399,15 @@ label {
 .miniBoard {
     padding: 26px;
     margin: 30px;
-    width: 500px;
-    height: 450px;
+    width: 550px;
+    height: 500px;
     border: 1px solid #ccc;
     border-radius: 20px;
 }
 
 #post-list {
-    font-size: 20px;
-    border-bottom: 1px solid #ccc;
+    font-size: 17px;
+    border-bottom: 1px solid gray;
     padding-bottom: 13px;
     margin: 20px;
 }
@@ -422,6 +420,10 @@ label {
 #post-list a:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#post-list a.active {
+    color: red;
 }
 
 
@@ -451,8 +453,28 @@ label {
     margin-bottom: 5px;
 }
 
+#board-links tr td a:hover {
+    text-decoration: underline;
+}
+
 .widgetContent ul li {
     list-style: none;
+}
+
+#moreView {
+    display: block;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid gray;
+    background-color: white;
+    margin-bottom: 0;
+}
+
+#moreView:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .hotBoard {

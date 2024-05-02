@@ -171,6 +171,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 
+	
+	@Override
+	public List<Board> selectHotBoard() {
+		return mapper.selectHotBoard();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 	
 

@@ -74,6 +74,13 @@ public interface BoardService {
 	List<Board> selectMiniList(int boardCode, int cp);
 
 
+	
+	/** 실시간 인기글
+	 * @return
+	 */
+	List<Board> selectHotBoard();
+
+
 
 
 

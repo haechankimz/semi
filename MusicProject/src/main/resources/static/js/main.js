@@ -193,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(board.boardCode);
             console.log(board.boardNo);
             const tr = document.createElement("tr");
-            const arr = ['boardName', 'categoryName', 'boardTitle', 'memberNickname', 'likeCount'];
+            const arr = ['categoryName', 'boardTitle', 'memberNickname', 'likeCount'];
 
             for(let key of arr){
                 const td = document.createElement("td");

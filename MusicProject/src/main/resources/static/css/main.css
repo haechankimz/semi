@@ -78,7 +78,7 @@ header {
 
 /* ** navigator(게시판 종류 나열) ** */
 nav {
-    height: 40px;
+    height: 50px;
     border-bottom: 1px solid black;
 
     position: sticky;
@@ -101,23 +101,23 @@ nav li {
 }
 
 nav a {
+    display: block;
     width: 80px;
     text-decoration: none;
-    color: black;
+    color: #1c1c1c;
     font-weight: bold;
     padding: 10px;
-    display: block;
     justify-content: center;
     text-align: center;
-    border-radius: 3px;
     transition-duration: 0.1s; 
     height: 100%;
+    font-size: 18px;
 }
 
 nav a:hover {
-    color: white;
-    background-color: black;
+    color: red;
     text-decoration: none;
+    transition-duration: 0.1s; 
 }
 
 header {
@@ -176,8 +176,6 @@ header {
     font-weight: bold;
 
     border: 1px solid #ccc;
-   
-
 }
 
 
@@ -375,7 +373,7 @@ label {
 }
 
 .swiper-slide img {
-    display: block;
+    display: inline-block;
     width: 100%;
     height: 110%;
     object-fit: cover;

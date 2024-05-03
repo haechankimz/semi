@@ -145,11 +145,14 @@ public class BoardController {
 				
 				Cookie[] cookies = req.getCookies();
 				Cookie c = null;
-				for(Cookie temp : cookies) {
-					
-					if(temp.getName().equals("readBoardNo")) {
-						c = temp;
-						break;
+				
+				if(cookies != null) {
+					for(Cookie temp : cookies) {
+						
+						if(temp.getName().equals("readBoardNo")) {
+							c = temp;
+							break;
+						}
 					}
 				}
 				

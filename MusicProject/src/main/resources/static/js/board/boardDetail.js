@@ -52,6 +52,7 @@ deleteBtn.addEventListener("click", () => {
 
     if(confirm("삭제 하시겠습니까?")){
         location.href = `/editBoard/${boardCode}/${boardNo}/delete`;
+        alert("삭제 되었습니다.");
     }else{
         alert("취소 되었습니다.");
     }

@@ -19,7 +19,7 @@
       <h1 class="board-title" th:text="${boardName}">게시판</h1>
 
       <div class="input-area">
-        <select name="categoryNo" id="selectCategory" th:if="${boardCode == 1}" th:value="${board.categoryNo}">
+        <select name="categoryNo" id="selectCategory" th:if="${boardCode == 1}" th:value="${board.categoryName}">
           <option value="0">카테고리 입력</option>
           <option value="28">힙합</option>
           <option value="29">발라드</option>

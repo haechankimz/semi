@@ -331,7 +331,7 @@ sendAuthKeyBtn.addEventListener("click", () => {
     }
 
     if(!checkSignupObj.memberEmail) {
-        alert("중복된 이메일 입니다.");
+        alert("중복된 이메일 또는 옳바르지 않는 형식의 이메일 입니다.");
         return;
     }
 

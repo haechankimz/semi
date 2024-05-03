@@ -227,7 +227,7 @@ public class BoardController {
 		
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("pagination", map.get("pagination"));
-		model.addAttribute("boardList", map.get("boardList"));
+		model.addAttribute("boardList", map.get("boardList")); 
 
 		return "board/boardList";
 

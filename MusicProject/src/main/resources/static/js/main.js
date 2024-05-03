@@ -104,18 +104,16 @@ if (loginForm != null) {
 //     location.href = "/member/quickLogin?memberEmail=" + email;
 
 // });
-
-// 위젯 
-
-
 /* 인기 게시글 / 미니 게시글 */
 const hotBoard = document.querySelector(".hotBoard");
 const hotBoradTable = document.querySelector("#hotBoardTable");
 const hotBoardList = document.querySelector("#hotBoardList");
 
+let mainCode;
 const miniBoardLink = document.querySelectorAll(".board-link");
 const boardLinks = document.querySelector("#board-links");
-
+const postList = document.querySelector("#post-list");
+const moreView = document.querySelector("#moreView")
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -150,63 +148,48 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     })
 
-    // miniBoardLink.forEach(boardLink => {
-    //     boardLink.addEventListener("click", () => {
-            // const mainCode = boardLink.dataset.boardCode;
-
-            // fetch(`/board/${boardCode}`)
-            // .then(resp => resp.json())
-            // .then(data => {
-
     miniBoardLink.forEach(miniBoardLink => {
         miniBoardLink.addEventListener("click", function() {
-            const mainCode = this.getAttribute("data-board-code");
-            loadMiniList(mainCode);
+            const boardCode = this.getAttribute("data-board-code");
+            moreView.dataset.boardCode = boardCode;
+            postList(boardCode);
         });
     });
 
-    function loadMiniList(mainCode) {
-        fetch("/board/selectMiniList/" + mainCode)
+    moreView.addEventListener("click", function() {
+        const boardCode = moreView.dataset.boardCode || "1";
+        location.href = "/board/" + boardCode;
+    });
+
+    postList("1");
+
+    function postList(boardCode) {
+        fetch("board/selectMiniList/" + boardCode)
         .then(resp => resp.json())
         .then(list => {
             boardLinks.innerText = "";
-    
+
             for(let mini of list) {
                 const tr = document.createElement("tr");
                 const arr = ['categoryName', 'boardTitle'];
-    
+
                 for(let key of arr) {
                     const td = document.createElement("td");
-    
+
                     if(key === 'boardTitle') {
                         const a = document.createElement("a");
                         a.innerText = mini[key];
-    
-                        a.href = "/board/" + mainCode + "/" + mini.boardNo;
+
+                        a.href = "/board/" + mini.boardCode + "/" + mini.boardNo;
                         td.append(a);
                     } else {
-                        td.innerText = mini[key]
+                        td.innerText = mini[key];
                     }
                     tr.append(td); 
                 }
                 boardLinks.append(tr);
+                
             }
         });
-
     }
-
 });
-
-
-
-
-
-/* 더보기 */
-// const moreView = document.querySelector("#moreView")
-
-// moreView.forEach(moreView => {
-//     moreView.addEventListener("click", () => {
-//         const boardCode = moreView.dataset.boardCode;
-//         location.href = `/board/${boardCode}`;
-//     });
-// });

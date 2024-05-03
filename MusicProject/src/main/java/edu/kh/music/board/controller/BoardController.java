@@ -211,29 +211,8 @@ public class BoardController {
 	@ResponseBody
 	@GetMapping("selectMiniList/{boardCode:[0-9]+}")
 	public List<Board> selectMiniList(
-		@PathVariable("boardCode") int boardCode,
-		@RequestParam(value="boardNo", required=false) int boardNo,
-		@RequestParam Map<String, Object> paramMap,
-		Model model) {
-		
-		List<Board> miniList = service.selectMiniList(boardCode);
-		
-		Map<String, Object> map = null;
-		
-		
-		List<Board> boardList = (List<Board>) map.get("boardList");
-		for(Board board : boardList) {
-			if(board.getBoardCode() == 1 || board.getBoardCode() == 2) {
-				String categoryName = service.getCategoryName(boardCode);
-				board.setCategoryName(categoryName);
-			}
-		}
-
-		model.addAttribute("pagination", map.get("pagination"));
-		model.addAttribute("miniList", map.get("miniList"));
-		model.addAttribute("boardNo", boardNo);
-		
-		return miniList;
+		@PathVariable("boardCode") int boardCode) {
+		return service.selectMiniList(boardCode);
 	}
 	
 	

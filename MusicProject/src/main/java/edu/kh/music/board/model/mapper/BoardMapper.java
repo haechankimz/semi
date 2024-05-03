@@ -134,9 +134,6 @@ public interface BoardMapper {
 	List<Board> selectHotBoard(RowBounds rowBounds);
 
 
-//	List<Board> selectMiniList(RowBounds rowBounds);
-
-
 
 
 	

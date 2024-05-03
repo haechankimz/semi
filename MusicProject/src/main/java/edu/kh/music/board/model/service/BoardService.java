@@ -68,23 +68,20 @@ public interface BoardService {
   
 	/** 메인 페이지에 미니 게시판
 	 * @param boardCode
-	 * @param cp
 	 * @return
 	 */
-//	List<Board> selectMiniList(int boardCode, int cp);
+	List<Board> selectMiniList(int boardCode);
 
 
-	
 	/** 실시간 인기글
 	 * @return
 	 */
 	List<Board> selectHotBoard();
 
 
-//	List<Board> selectMiniList();
 
 
-	List<Board> selectMiniList(int boardCode);
+
 
 
 

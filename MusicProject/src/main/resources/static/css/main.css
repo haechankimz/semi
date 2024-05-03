@@ -547,9 +547,14 @@ footer {
 }
 
 .footer-title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+.footer-smallTitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+    letter-spacing: 7px;
 }
 
 article {

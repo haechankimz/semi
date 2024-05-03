@@ -130,30 +130,13 @@ public class BoardServiceImpl implements BoardService {
 	// 메인에 미니 게시판
 	@Override
 	public List<Board> selectMiniList(int boardCode) {
-		
 		int limit = 7;
 		int offset = 0;
 		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Board> boardList = mapper.selectMiniList(boardCode, rowBounds);
-		
-		Map<String, Object> map = new HashMap<>();
-		
-		map.put("boardList", boardList);
-		
-		return boardList;
-	}	
-	
-//	@Override
-//	public List<Board> selectMiniList() {
-//		int limit = 7;
-//		int offset = 0;
-//		
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//		
-//		return mapper.selectMiniList(rowBounds);
-//	}
+		return mapper.selectMiniList(boardCode, rowBounds);
+	}
 	
 	// 검색기능
 	@Override
@@ -174,10 +157,8 @@ public class BoardServiceImpl implements BoardService {
 		  map.put("boardList", boardList);
 		  
 		  return map;
-		
 	}
 	
-
 	
 	@Override
 	public List<Board> selectHotBoard() {

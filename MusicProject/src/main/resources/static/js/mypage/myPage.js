@@ -173,6 +173,8 @@ if(changePw != null){
       e.preventDefault();
       return;
     }
+
+    alert("비밀번호가 변경되었습니다");
   });
 }
 

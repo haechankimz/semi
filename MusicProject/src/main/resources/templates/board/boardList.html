@@ -52,11 +52,11 @@
                                 <td th:text="*{categoryName}">카테고리 종류</td>
                                 <td>
                                     <a th:unless="${param.keyword}"
-                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${board.boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
+                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
                                         th:text="*{boardTitle}">게시글 제목</a>
 
                                     <a th:if="${param.keyword}"
-                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${board.boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, keyword=${param.keyword})}"
+                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, keyword=${param.keyword})}"
                                         th:text="*{boardTitle}">게시글 제목</a>
                                     <th:block th:text="|[*{commentCount}]|">댓글 수</th:block>
                                 </td>

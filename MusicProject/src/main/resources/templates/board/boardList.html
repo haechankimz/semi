@@ -59,10 +59,9 @@
 
                                     <a th:if="${param.keyword}"
 
+
+
                                         th:href="@{/board/{boardCode}/{boardNo}(boardCode=${board.boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, keyword=${param.keyword})}"
-
-
-                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, keyword=${param.keyword})}"
 
 
                                         th:text="*{boardTitle}">게시글 제목</a>
@@ -93,9 +92,9 @@
 
                 <ul class="pagination" th:unless="${categoryNo} or ${param.keyword}" th:object="${pagination}">
 
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=1)}">&lt;&lt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
 
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=*{prevPage})}">&lt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage})}">&lt;</a></li>
 
                     <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
 
@@ -104,15 +103,15 @@
                         </li>
 
                         <li th:unless="${i} == *{currentPage}">
-                            <a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=${i})}" th:text="${i}">
+                            <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}" th:text="${i}">
                                 이동할 페이지
                             </a>
                         </li>
                     </th:block>
                     
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=*{nextPage})}">&gt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{nextPage})}">&gt;</a></li>
                     
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
 
                 </ul>
 

@@ -437,6 +437,7 @@ label {
     word-wrap: break-word;
     margin: 0 10px;
     cursor: default;
+    min-width: 40px;
 }
 
 

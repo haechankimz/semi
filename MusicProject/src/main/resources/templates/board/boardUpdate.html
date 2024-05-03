@@ -43,6 +43,18 @@
           <option value="27">R&B</option>
         </select>
 
+        <th:block th:if="${boardCode == 3}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="37">자유</option>
+          </select>
+        </th:block>
+
+        <th:block th:if="${boardCode == 4}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="38">공지</option>
+          </select>
+        </th:block>
+        
         <input type="text" name="boardTitle" th:value="${board.boardTitle}">
       </div>
 

@@ -52,11 +52,11 @@
                                 <td th:text="*{categoryName}">카테고리 종류</td>
                                 <td>
                                     <a th:unless="${param.key}"
-                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
+                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${board.boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}"
                                         th:text="*{boardTitle}">게시글 제목</a>
 
                                     <a th:if="${param.key}"
-                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, key=${param.key}, query=${param.query})}"
+                                        th:href="@{/board/{boardCode}/{boardNo}(boardCode=${board.boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage}, key=${param.key}, query=${param.query})}"
                                         th:text="*{boardTitle}">게시글 제목</a>
                                     <th:block th:text="|[*{commentCount}]|">댓글 수</th:block>
                                 </td>
@@ -85,9 +85,9 @@
 
                 <ul class="pagination" th:unless="${categoryNo} or ${param.keyword}" th:object="${pagination}">
 
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=1)}">&lt;&lt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=1)}">&lt;&lt;</a></li>
 
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{prevPage})}">&lt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=*{prevPage})}">&lt;</a></li>
 
                     <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
 
@@ -96,15 +96,15 @@
                         </li>
 
                         <li th:unless="${i} == *{currentPage}">
-                            <a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=${i})}" th:text="${i}">
+                            <a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=${i})}" th:text="${i}">
                                 이동할 페이지
                             </a>
                         </li>
                     </th:block>
                     
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{nextPage})}">&gt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${board.boardCode}, cp=*{nextPage})}">&gt;</a></li>
                     
-                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
+                    <li><a th:href="@{/board/{boardCode}(boardCode=${boardboardCode}, cp=*{maxPage})}">&gt;&gt;</a></li>
 
                 </ul>
 
